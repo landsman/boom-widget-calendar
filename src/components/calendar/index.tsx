@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import {BoomWidgetConfigThemeTypes} from "../../configuration/boom-widget/properties";
 
-export function Calendar() {
+type PropTypes = {
+    widgetTheme: BoomWidgetConfigThemeTypes;
+}
+
+export function Calendar({ widgetTheme }: PropTypes) {
     return (
         <Wrapper>
             calendar

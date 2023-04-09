@@ -6,7 +6,12 @@ export type BoomWidgetConfigTypes = {
     theme: BoomWidgetConfigThemeTypes;
 }
 
-// https://github.com/boomeventsorg/frontend/blob/main/packages/app-connect/public/events/v3/example-mighty.html
+/**
+ * keep this abstraction to know what's going on internally
+ */
+export type BoomWidgetConfigThemeColors = Partial<MantineThemeColors>;
+
 export type BoomWidgetConfigThemeTypes = {
-    colors: Partial<MantineThemeColors>;
+    colors: BoomWidgetConfigThemeColors;
 }
+

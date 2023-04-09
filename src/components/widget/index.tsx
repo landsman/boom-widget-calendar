@@ -1,14 +1,21 @@
 import styled from "styled-components";
+import {BoomWidgetConfigTypes} from "../../configuration/boom-widget/properties";
 
-type PropTypes = {
-    eventId: string;
-}
-
-export function BoomWidget({ eventId }: PropTypes): JSX.Element {
+export function BoomWidget({ theme, eventId, eventUrl }: BoomWidgetConfigTypes): JSX.Element {
     return (
         <Wrapper>
+            <h1>
+                boom widget
+            </h1>
             <>
-                boom widget: {eventId}
+                eventId: {eventId}
+            </>
+            <>
+                eventUrl: {eventUrl}
+            </>
+            <>
+                <h2>theme</h2>
+                {JSON.stringify(theme)}
             </>
         </Wrapper>
     );
