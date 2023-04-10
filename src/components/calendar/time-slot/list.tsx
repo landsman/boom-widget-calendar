@@ -12,7 +12,9 @@ export function ListOfSlots({ events }: PropTypes): JSX.Element {
             {events.map((item) => (
                 <TimeSlot
                     key={item.id}
-                    event={item}
+                    id={item.id}
+                    dateFrom={item.dateFrom}
+                    dateTo={item.dateTo}
                 />
             ))}
         </Wrapper>

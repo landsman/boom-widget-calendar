@@ -1,17 +1,19 @@
-import {EventType} from "@local/api/view/events/types/event-type";
 import styled from "styled-components";
-import {useAppContext} from "@local/runtime";
 import {differenceInHours, format, parseISO} from "date-fns";
 import {t} from "@lingui/macro";
 import {useLingui} from "@lingui/react";
+import {useAppContext} from "@local/runtime";
 
 type PropTypes = {
-    event: EventType; // todo: sent just necessary data!
+    id: string;
+    dateFrom: Date;
+    dateTo: Date;
 }
 
+// in hours
 const wholeDay = 8;
 
-export function TimeSlot({ event }: PropTypes): JSX.Element {
+export function TimeSlot({ id, dateFrom, dateTo }: PropTypes): JSX.Element {
     const { setSelectedEvent, localeDataForCalendar } = useAppContext();
     const { i18n } = useLingui();
 
@@ -20,8 +22,8 @@ export function TimeSlot({ event }: PropTypes): JSX.Element {
     };
 
     // convert for date-fns
-    const fromParsed = parseISO(event.dateFrom.toString());
-    const toParsed = parseISO(event.dateTo.toString());
+    const fromParsed = parseISO(dateFrom.toString());
+    const toParsed = parseISO(dateTo.toString());
 
     const eventDuration = differenceInHours(fromParsed, toParsed) * -1;
 
@@ -37,7 +39,7 @@ export function TimeSlot({ event }: PropTypes): JSX.Element {
 
     return (
         <Wrapper>
-            <Content onClick={() => setSelectedEvent(event.id)}>
+            <Content onClick={() => setSelectedEvent(id)}>
                 {text}
             </Content>
         </Wrapper>
