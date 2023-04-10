@@ -1,9 +1,9 @@
 import {createContext, useContext} from "react";
-import {ProviderResponseTypes} from "./types";
-import {AppLocale} from "../configuration/locale";
+import {ProviderResponseTypes} from "@local/runtime/types";
+import {defaultLocale} from "@local/configuration/i18n";
 
 const defaultValues = {
-    locale: AppLocale.en,
+    locale: defaultLocale,
     localeDataForCalendar: undefined,
     year: undefined,
     setYear: (_y: number) => null,

@@ -1,6 +1,6 @@
 import type { Locale } from "date-fns";
 import {EventType} from "../api/view/events/types/event-type";
-import {AppLocale} from "../configuration/locale";
+import {AppLocale} from "../configuration/i18n";
 
 export type ProviderResponseTypes = {
     locale: AppLocale;

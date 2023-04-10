@@ -1,15 +1,14 @@
 import {ReactNode, useEffect, useState} from "react";
-import {EventType} from "../api/view/events/types/event-type";
-import {AppContext} from "./app-context";
-import {handleGetEvents} from "./data/get-events";
-import {ProviderResponseTypes} from "./types";
-import {AppLocale} from "../configuration/locale";
-import {mockConfig} from "../configuration/boom-widget/mock-config";
-import {CurrentDateType} from "../utils/date-time/get-current-date";
-import {FeatureTypes} from "../configuration/features";
-import {filterEventsByDay} from "./data/filter-events-by-day";
 import type {Locale} from "date-fns";
-import {lazyLoadLocale} from "../components/calendar/locale-loader";
+import {EventType} from "@local/api/view/events/types/event-type";
+import {AppLocale} from "@local/configuration/i18n";
+import {mockConfig} from "@local/configuration/boom-widget";
+import {CurrentDateType} from "@local/utils/date-time/get-current-date";
+import {FeatureTypes} from "@local/configuration/features";
+import {lazyLoadLocale} from "@local/components/calendar/locale-loader";
+import {AppContext, ProviderResponseTypes} from "@local/runtime";
+import {handleGetEvents} from "./data/get-events";
+import {filterEventsByDay} from "./data/filter-events-by-day";
 
 type PropTypes = {
     children: ReactNode;
@@ -21,9 +20,6 @@ type PropTypes = {
 export function AppProvider({ children, currentDate, locale, features }: PropTypes) {
     const [localeDataForCalendar, setLocaleDataForCalendar] = useState<undefined | Locale>(undefined);
 
-    const [year, setYear] = useState<undefined | number>(currentDate.year);
-    const [month, setMonth] = useState<undefined | number>(currentDate.month);
-    const [day, setDay] = useState<undefined | number>(currentDate.day);
     const [date, setDate] = useState<Date>(currentDate.date);
 
     const [events, setEvents] = useState<undefined | EventType[]>(undefined);
@@ -35,7 +31,7 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
     }
 
     const handleEventsInTheDay = async () => {
-        const result = filterEventsByDay(events, year, month, day);
+        const result = filterEventsByDay(events, date);
         setEventsInTheDay(result);
     }
 
@@ -44,23 +40,16 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
     }, [locale]);
 
     /**
-     * init, year/month change in the calendar
-     */
-    useEffect(() => {
-        handleGetEvents(
-            mockConfig.organizerId,
-            year,
-            month,
-            setEvents,
-        );
-    }, [year, month]);
-
-    /**
-     * when user has click to some day in the calendar
+     * init, user changed day in the calendar
      */
     useEffect(() => {
         handleEventsInTheDay();
-    }, [day])
+        handleGetEvents(
+            mockConfig.organizerId,
+            date,
+            setEvents,
+        );
+    }, [date]);
 
     const contextValue: ProviderResponseTypes = {
         locale,

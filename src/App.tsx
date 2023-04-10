@@ -1,18 +1,15 @@
 import React from 'react';
-import {Layout} from "./components/layout";
-import {Content} from "./components/content";
-import {CustomThemeProvider} from "./components/theme/provider";
-import {CustomizedThemeOverride} from "./components/theme/lib-mango/MangoTheme";
-import {mockTheme} from "./configuration/boom-widget/mock-theme";
-import {mockConfig} from "./configuration/boom-widget/mock-config";
-import {AppProvider} from "./runtime";
-import {getCurrentDate} from "./utils/date-time/get-current-date";
-import {AppLocale} from "./configuration/locale";
+import {Layout} from "@local/components/layout";
+import {Content} from "@local/components/content";
+import {CustomThemeProvider} from "@local/components/theme/provider";
+import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {mockTheme, mockConfig} from "@local/configuration/boom-widget";
+import {AppProvider, LocaleProvider} from "@local/runtime";
+import {getCurrentDate} from "@local/utils/date-time/get-current-date";
+import {AppLocale, detectLocaleResult} from "@local/configuration/i18n";
 
 const currentDate = getCurrentDate();
-
-// todo: make this work in truth
-const currentLocale = AppLocale.cs;
+const currentLocale = detectLocaleResult as AppLocale;
 
 // todo: configuration from the outside, somehow!
 const features = {
@@ -29,9 +26,11 @@ function App() {
                 locale={currentLocale}
                 features={features}
             >
-                <Layout>
-                    <Content widgetConfig={mockConfig} />
-                </Layout>
+                <LocaleProvider>
+                    <Layout>
+                        <Content widgetConfig={mockConfig} />
+                    </Layout>
+                </LocaleProvider>
             </AppProvider>
         </CustomThemeProvider>
     );

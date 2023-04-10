@@ -3,17 +3,9 @@ interface DateRange {
     to: Date;
 }
 
-export function getOneMonthRange(timezone: string, year: number, month: number): DateRange {
-    if (isNaN(year)) {
-        throw new Error('Invalid year');
-    }
-
-    if (isNaN(month) || month > 12) {
-        throw new Error('Invalid month');
-    }
-
-    const startOfMonth = new Date(Date.UTC(year, month - 1, 1));
-    const endOfMonth = new Date(Date.UTC(year, month, 1, 0, 0, 0, 0));
+export function getOneMonthRange(timezone: string, date: Date): DateRange {
+    const startOfMonth = new Date(Date.UTC(date.getFullYear(), date.getMonth(), 1));
+    const endOfMonth = new Date(Date.UTC(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0));
 
     endOfMonth.setUTCDate(endOfMonth.getUTCDate() - 1);
     endOfMonth.setUTCHours(23, 59, 59, 999);

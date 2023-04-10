@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
-
 import {DayPicker} from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-
-import {BoomWidgetConfigThemeTypes} from "../../configuration/boom-widget/properties";
-import {useAppContext} from "../../runtime";
+import {BoomWidgetConfigThemeTypes} from "@local/configuration/boom-widget";
+import {useAppContext} from "@local/runtime";
 
 type PropTypes = {
     widgetTheme: BoomWidgetConfigThemeTypes;
@@ -37,6 +35,7 @@ export function Calendar({ widgetTheme }: PropTypes) {
                 selected={date}
                 onSelect={handleSelected}
                 footer={footer}
+                showOutsideDays
             />
         </Wrapper>
     );

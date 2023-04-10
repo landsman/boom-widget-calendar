@@ -5,7 +5,10 @@
  * @see Locale
  */
 export function convertLocaleToISO(locale: string): string {
-    if (locale === 'en') {
+    if (locale.includes("cs-")) {
+        return 'cs';
+    }
+    if (locale === 'en-') {
         return "en-GB";
     }
     return locale;

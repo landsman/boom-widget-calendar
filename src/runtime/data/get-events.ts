@@ -5,21 +5,16 @@ import {getOneMonthRange} from "../../utils/date-time/one-month-range";
 
 export async function handleGetEvents(
     organizerId: string,
-    year: undefined | number,
-    month: undefined | number,
+    date: undefined | Date,
     setEvents: Dispatch<SetStateAction<undefined | EventType[]>>,
 ): Promise<void> {
-    if (undefined === year) {
-        console.debug("handleGetEvents - skip because of `year` is undefined");
-        return;
-    }
-    if (undefined === month) {
-        console.debug("handleGetEvents - skip because of `month` is undefined");
+    if (undefined === date) {
+        console.debug("handleGetEvents - skip because of `date` is undefined");
         return;
     }
     try {
         // todo: check timezone if it's okay or not
-        const range = getOneMonthRange('UTC', year, month);
+        const range = getOneMonthRange('UTC', date);
         const response = await getViewEvents({
             organizerId,
             fromDate: range.from,

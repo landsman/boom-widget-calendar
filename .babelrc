@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    "macros",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@local": "./src"
+        }
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "dynamic-import-node"
+      ]
+    }
+  }
+}
