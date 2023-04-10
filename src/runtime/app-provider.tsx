@@ -30,6 +30,7 @@ export function AppProvider({ children, currentDate, locale }: PropTypes) {
         setFlashMessage("please select date");
     }
 
+    // year, month
     useEffect(() => {
         handleGetEvents(
             mockConfig.organizerId,
@@ -37,7 +38,7 @@ export function AppProvider({ children, currentDate, locale }: PropTypes) {
             month,
             setEvents,
         );
-    }, [year, month]);
+    }, []);
 
     const contextValue: ProviderResponseTypes = {
         locale,
