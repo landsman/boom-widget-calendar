@@ -13,6 +13,9 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+msgid "calendar.time_slot.whole_day"
+msgstr "celodenní"
+
 msgid "loading"
 msgstr "Načítání"
 
