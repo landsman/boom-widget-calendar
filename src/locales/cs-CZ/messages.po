@@ -22,6 +22,9 @@ msgstr "Vyberte si datum své návštěvy"
 msgid "select_date_and_time"
 msgstr "Vyberte si datum a čas své návštěvy"
 
+msgid "select_time"
+msgstr "Nyní si zvolte čas své návštěvy"
+
 msgid "selected_date_is"
 msgstr "Vybrali jste termín"
 

@@ -5,11 +5,11 @@ export function filterEventsByDay(
     targetDate: undefined | Date,
 ): EventType[] {
     if (undefined === events) {
-        console.error("Events state is undefined!");
+        console.debug("Events state is undefined!");
         return [];
     }
     if (undefined === targetDate) {
-        console.error("targetDate is undefined!");
+        console.debug("targetDate is undefined!");
         return [];
     }
     return events.filter((event: EventType) => {

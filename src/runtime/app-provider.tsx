@@ -8,7 +8,6 @@ import {FeatureTypes} from "@local/configuration/features";
 import {lazyLoadLocale} from "@local/components/calendar/locale-loader";
 import {AppContext, ProviderResponseTypes} from "@local/runtime";
 import {handleGetEvents} from "./data/get-events";
-import {filterEventsByDay} from "./data/filter-events-by-day";
 import {flashMessageText} from "@local/components/flash-message/messages";
 
 type PropTypes = {
@@ -21,9 +20,9 @@ type PropTypes = {
 export function AppProvider({ children, currentDate, locale, features }: PropTypes) {
     const [localeDataForCalendar, setLocaleDataForCalendar] = useState<undefined | Locale>(undefined);
     const [date, setDate] = useState<undefined | Date>(undefined);
-    const [events, setEvents] = useState<undefined | EventType[]>(undefined);
-    const [eventsInTheDay, setEventsInTheDay] = useState<undefined | EventType[]>(undefined);
+    const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
 
+    /** calendar localization */
     useEffect(() => {
         lazyLoadLocale(locale, setLocaleDataForCalendar);
     }, [locale]);
@@ -36,24 +35,36 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
 
     const [flashMessage, setFlashMessage] = useState<undefined | string>(defaultFlashMessage);
 
-    const handleEventsInTheDay = async () => {
-        const result = filterEventsByDay(events, date);
-        setEventsInTheDay(result);
-    }
-
-    const handleSetDate = async (newValue: Date) => {
+    /**
+     * user clicked to the specific date in the calendar
+     */
+    const handleSetDate = async (newDateSelected: Date) => {
         setFlashMessage(undefined);
-        setDate(newValue);
-        handleGetEvents(
+        setDate(newDateSelected);
+        const apiEvents = await handleGetEvents(
             mockConfig.organizerId,
-            date || currentDate.date,
-            setEvents,
+            newDateSelected || currentDate.date
         );
+
+        if (0 === apiEvents.length) {
+            setFlashMessage(flashMessageText.noEvents);
+            return;
+        }
+
+        if (features.allowTimeSlots) {
+            setFlashMessage(flashMessageText.selectTime);
+        } else {
+            setFlashMessage(undefined);
+            setSelectedEvent(apiEvents[0]);
+        }
     }
 
-    useEffect(() => {
-        //handleEventsInTheDay();
-    }, [date, events])
+    /**
+     * user clicked to specific event in the calendar (time slot)
+     */
+    const handleSetSelectedEvent = async (finalEvent: EventType) => {
+        setSelectedEvent(finalEvent);
+    }
 
     const contextValue: ProviderResponseTypes = {
         features,
@@ -61,8 +72,8 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
         localeDataForCalendar,
         date,
         setDate: handleSetDate,
-        events,
-        eventsInTheDay,
+        selectedEvent,
+        setSelectedEvent: handleSetSelectedEvent,
         flashMessage,
     }
 

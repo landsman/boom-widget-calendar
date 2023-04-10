@@ -22,6 +22,9 @@ msgstr "Choose the date of your visit"
 msgid "select_date_and_time"
 msgstr "Choose the date and time of your visit"
 
+msgid "select_time"
+msgstr "Now please choose the time of your visit"
+
 msgid "selected_date_is"
 msgstr "You have selected the date"
 
