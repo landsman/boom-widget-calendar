@@ -6,10 +6,10 @@ import {CustomizedThemeOverride} from "./components/theme/lib-mango/MangoTheme";
 import {mockTheme} from "./configuration/boom-widget/mock-theme";
 import {mockConfig} from "./configuration/boom-widget/mock-config";
 import {AppProvider} from "./runtime";
-import {getCurrentYearAndMonth} from "./runtime/data/get-current-year-and-month";
+import {getCurrentDate} from "./utils/date-time/get-current-date";
 import {Locale} from "./configuration/locale";
 
-const currentDate = getCurrentYearAndMonth();
+const currentDate = getCurrentDate();
 
 // todo: make this work in truth
 const currentLocale = Locale.en;

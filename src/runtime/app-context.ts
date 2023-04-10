@@ -8,6 +8,8 @@ const defaultValues = {
     setYear: (_y: number) => null,
     month: undefined,
     setMonth: (_m: number) => null,
+    day: undefined,
+    setDay: (_d: number) => null,
     events: undefined,
     flashMessage: undefined,
 };
