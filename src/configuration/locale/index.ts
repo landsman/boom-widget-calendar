@@ -1,1 +1,1 @@
-export { Locale } from "./locale";
+export { AppLocale } from "./appLocale";

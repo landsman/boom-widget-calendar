@@ -1,8 +1,8 @@
 import {EventType} from "../api/view/events/types/event-type";
-import {Locale} from "../configuration/locale";
+import {AppLocale} from "../configuration/locale";
 
 export type ProviderResponseTypes = {
-    locale: Locale;
+    locale: AppLocale;
     year: undefined | number;
     setYear: (newYearNumber: number) => void;
     month: undefined | number;

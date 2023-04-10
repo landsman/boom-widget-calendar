@@ -3,7 +3,7 @@ import {EventType} from "../api/view/events/types/event-type";
 import {AppContext} from "./app-context";
 import {handleGetEvents} from "./data/get-events";
 import {ProviderResponseTypes} from "./types";
-import {Locale} from "../configuration/locale";
+import {AppLocale} from "../configuration/locale";
 import {mockConfig} from "../configuration/boom-widget/mock-config";
 import {CurrentDateType} from "../utils/date-time/get-current-date";
 import {FeatureTypes} from "../configuration/features";
@@ -12,7 +12,7 @@ import {filterEventsByDay} from "./data/filter-events-by-day";
 type PropTypes = {
     children: ReactNode;
     currentDate: CurrentDateType;
-    locale: Locale; // todo: implementation of i18n provider
+    locale: AppLocale; // todo: implementation of i18n provider
     features: FeatureTypes;
 }
 

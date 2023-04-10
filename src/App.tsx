@@ -7,12 +7,12 @@ import {mockTheme} from "./configuration/boom-widget/mock-theme";
 import {mockConfig} from "./configuration/boom-widget/mock-config";
 import {AppProvider} from "./runtime";
 import {getCurrentDate} from "./utils/date-time/get-current-date";
-import {Locale} from "./configuration/locale";
+import {AppLocale} from "./configuration/locale";
 
 const currentDate = getCurrentDate();
 
 // todo: make this work in truth
-const currentLocale = Locale.en;
+const currentLocale = AppLocale.cs;
 
 // todo: configuration from the outside, somehow!
 const features = {

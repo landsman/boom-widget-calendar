@@ -1,9 +1,9 @@
 import {createContext, useContext} from "react";
 import {ProviderResponseTypes} from "./types";
-import {Locale} from "../configuration/locale";
+import {AppLocale} from "../configuration/locale";
 
 const defaultValues = {
-    locale: Locale.en,
+    locale: AppLocale.en,
     year: undefined,
     setYear: (_y: number) => null,
     month: undefined,
