@@ -14,6 +14,11 @@ const currentDate = getCurrentDate();
 // todo: make this work in truth
 const currentLocale = Locale.en;
 
+// todo: configuration from the outside, somehow!
+const features = {
+    allowTimeSlots: true,
+}
+
 function App() {
     // todo: check this
     const customTheme = mockTheme as CustomizedThemeOverride;
@@ -23,6 +28,7 @@ function App() {
                 <AppProvider
                     currentDate={currentDate}
                     locale={currentLocale}
+                    features={features}
                 >
                     <Content widgetConfig={mockConfig} />
                 </AppProvider>

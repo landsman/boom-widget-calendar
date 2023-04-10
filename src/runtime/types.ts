@@ -10,5 +10,6 @@ export type ProviderResponseTypes = {
     day: undefined | number;
     setDay: (newDayNumber: number) => void;
     events: undefined | EventType[];
+    eventsInTheDay: undefined | EventType[];
     flashMessage: undefined | string;
 };
