@@ -1,8 +1,9 @@
 import { MantineThemeColors } from '@mantine/styles/lib/theme/types/MantineColor'
 
 export type BoomWidgetConfigTypes = {
-    eventId: string;
-    eventUrl: string;
+    organizerId: string;
+    eventId?: string;
+    eventUrl?: string;
     theme: BoomWidgetConfigThemeTypes;
 }
 

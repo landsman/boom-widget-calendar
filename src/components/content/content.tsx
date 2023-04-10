@@ -2,22 +2,20 @@ import styled from "styled-components";
 import {Calendar} from "../calendar";
 import {FlashMessage} from "../flash-message";
 import {BoomWidget} from "../widget";
-import {BoomWidgetConfigThemeTypes} from "../../configuration/boom-widget/properties";
+import {BoomWidgetConfigTypes} from "../../configuration/boom-widget/properties";
 
 type PropTypes = {
-    widgetTheme: BoomWidgetConfigThemeTypes;
+    widgetConfig: BoomWidgetConfigTypes;
 }
 
-export function Content({ widgetTheme }: PropTypes): JSX.Element {
+export function Content({ widgetConfig }: PropTypes): JSX.Element {
     const alertMessageContent = "Alert message content";
-    const eventId = "100";
-    const eventUrl = "todo";
     return (
         <Wrapper>
             <Grid>
                 <Left>
                     <Calendar
-                        widgetTheme={widgetTheme}
+                        widgetTheme={widgetConfig.theme}
                     />
                 </Left>
                 <Right>
@@ -25,9 +23,10 @@ export function Content({ widgetTheme }: PropTypes): JSX.Element {
                         text={alertMessageContent}
                     />
                     <BoomWidget
-                        theme={widgetTheme}
-                        eventId={eventId}
-                        eventUrl={eventUrl}
+                        theme={widgetConfig.theme}
+                        organizerId={widgetConfig.organizerId}
+                        eventId={widgetConfig.eventId}
+                        eventUrl={widgetConfig.eventUrl}
                     />
                 </Right>
             </Grid>
