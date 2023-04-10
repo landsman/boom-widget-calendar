@@ -11,6 +11,7 @@ const defaultValues = {
     day: undefined,
     setDay: (_d: number) => null,
     events: undefined,
+    eventsInTheDay: undefined,
     flashMessage: undefined,
 };
 
