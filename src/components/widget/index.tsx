@@ -1,11 +1,17 @@
 import styled from "styled-components";
-import {BoomWidgetConfigTypes} from "../../configuration/boom-widget/properties";
-import {SelectedDate} from "../content/selected-date";
+import {useAppContext} from "@local/runtime";
+import {BoomWidgetConfigTypes} from "@local/configuration/boom-widget";
+import {SelectedDate} from "@local/components/content/selected-date";
+import {FlashMessage} from "@local/components/flash-message";
 
 export function BoomWidget({ theme, organizerId, eventId, eventUrl }: BoomWidgetConfigTypes): JSX.Element {
+    const { flashMessage } = useAppContext();
     return (
         <Wrapper>
             <SelectedDate />
+            <FlashMessage
+                text={flashMessage}
+            />
             <h1>
                 boom widget
             </h1>

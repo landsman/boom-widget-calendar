@@ -1,18 +1,25 @@
 import React from "react";
-import {useAppContext} from "../../runtime";
 import {format} from "date-fns";
+import {useLingui} from "@lingui/react";
+import {t} from "@lingui/macro";
 import styled from "styled-components";
+import {useAppContext} from "@local/runtime";
 
 export function SelectedDate(): JSX.Element {
     const { localeDataForCalendar, date } = useAppContext();
+    const { i18n } = useLingui();
 
-    const formattedDate = format(date!, 'PP', {
+    if (undefined === date) {
+        return <div />;
+    }
+
+    const formattedDate = format(date, 'PP', {
         locale: localeDataForCalendar,
     });
 
     return (
         <Wrapper>
-            <p>You picked {formattedDate}.</p>
+            <p>{i18n._(t`selected_date_is`)}{': '}{formattedDate}.</p>
         </Wrapper>
     );
 }

@@ -9,53 +9,58 @@ import {lazyLoadLocale} from "@local/components/calendar/locale-loader";
 import {AppContext, ProviderResponseTypes} from "@local/runtime";
 import {handleGetEvents} from "./data/get-events";
 import {filterEventsByDay} from "./data/filter-events-by-day";
+import {flashMessageText} from "@local/components/flash-message/messages";
 
 type PropTypes = {
     children: ReactNode;
     currentDate: CurrentDateType;
-    locale: AppLocale; // todo: implementation of i18n provider
+    locale: AppLocale;
     features: FeatureTypes;
 }
 
 export function AppProvider({ children, currentDate, locale, features }: PropTypes) {
     const [localeDataForCalendar, setLocaleDataForCalendar] = useState<undefined | Locale>(undefined);
-
-    const [date, setDate] = useState<Date>(currentDate.date);
-
+    const [date, setDate] = useState<undefined | Date>(undefined);
     const [events, setEvents] = useState<undefined | EventType[]>(undefined);
     const [eventsInTheDay, setEventsInTheDay] = useState<undefined | EventType[]>(undefined);
-    const [flashMessage, setFlashMessage] = useState<undefined | string>(undefined);
 
-    const handleLocaleDataForCalendar = () => {
+    useEffect(() => {
         lazyLoadLocale(locale, setLocaleDataForCalendar);
+    }, [locale]);
+
+    /** different init message for time slots */
+    let defaultFlashMessage = flashMessageText.selectDate;
+    if (features.allowTimeSlots && undefined === date) {
+        defaultFlashMessage = flashMessageText.selectDateAndTime;
     }
+
+    const [flashMessage, setFlashMessage] = useState<undefined | string>(defaultFlashMessage);
 
     const handleEventsInTheDay = async () => {
         const result = filterEventsByDay(events, date);
         setEventsInTheDay(result);
     }
 
-    useEffect(() => {
-        handleLocaleDataForCalendar();
-    }, [locale]);
-
-    /**
-     * init, user changed day in the calendar
-     */
-    useEffect(() => {
-        handleEventsInTheDay();
+    const handleSetDate = async (newValue: Date) => {
+        setFlashMessage(undefined);
+        setDate(newValue);
         handleGetEvents(
             mockConfig.organizerId,
-            date,
+            date || currentDate.date,
             setEvents,
         );
-    }, [date]);
+    }
+
+    useEffect(() => {
+        //handleEventsInTheDay();
+    }, [date, events])
 
     const contextValue: ProviderResponseTypes = {
+        features,
         locale,
         localeDataForCalendar,
         date,
-        setDate,
+        setDate: handleSetDate,
         events,
         eventsInTheDay,
         flashMessage,
