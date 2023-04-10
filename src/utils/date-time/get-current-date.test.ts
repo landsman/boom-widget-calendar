@@ -22,7 +22,7 @@ describe('getCurrentDate', () => {
 
     it('returns the current day of the week', () => {
         const currentDate = getCurrentDate();
-        const currentDay = new Date().getDay();
+        const currentDay = new Date().getDate();
         expect(currentDate.day).toBe(currentDay);
     });
 });

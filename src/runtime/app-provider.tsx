@@ -8,6 +8,8 @@ import {mockConfig} from "../configuration/boom-widget/mock-config";
 import {CurrentDateType} from "../utils/date-time/get-current-date";
 import {FeatureTypes} from "../configuration/features";
 import {filterEventsByDay} from "./data/filter-events-by-day";
+import type {Locale} from "date-fns";
+import {lazyLoadLocale} from "../components/calendar/locale-loader";
 
 type PropTypes = {
     children: ReactNode;
@@ -17,35 +19,29 @@ type PropTypes = {
 }
 
 export function AppProvider({ children, currentDate, locale, features }: PropTypes) {
+    const [localeDataForCalendar, setLocaleDataForCalendar] = useState<undefined | Locale>(undefined);
+
     const [year, setYear] = useState<undefined | number>(currentDate.year);
     const [month, setMonth] = useState<undefined | number>(currentDate.month);
     const [day, setDay] = useState<undefined | number>(currentDate.day);
+    const [date, setDate] = useState<Date>(currentDate.date);
+
     const [events, setEvents] = useState<undefined | EventType[]>(undefined);
     const [eventsInTheDay, setEventsInTheDay] = useState<undefined | EventType[]>(undefined);
     const [flashMessage, setFlashMessage] = useState<undefined | string>(undefined);
 
-    // todo: add reset actions for flash message etc
-    const handleSetYear = (newYear: number) => {
-        setYear(newYear);
-        setFlashMessage("please select date");
-    }
-
-    // todo: add reset action for flash message etc
-    const handleSetMonth = (newMonth: number) => {
-        setMonth(newMonth);
-        setFlashMessage("please select date");
-    }
-
-    // todo: add reset action for flash message etc
-    const handleSetDay = (newDay: number) => {
-        setDay(newDay);
-        setFlashMessage(undefined);
+    const handleLocaleDataForCalendar = () => {
+        lazyLoadLocale(locale, setLocaleDataForCalendar);
     }
 
     const handleEventsInTheDay = async () => {
         const result = filterEventsByDay(events, year, month, day);
         setEventsInTheDay(result);
     }
+
+    useEffect(() => {
+        handleLocaleDataForCalendar();
+    }, [locale]);
 
     /**
      * init, year/month change in the calendar
@@ -68,12 +64,9 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
 
     const contextValue: ProviderResponseTypes = {
         locale,
-        year,
-        setYear: handleSetYear,
-        month,
-        setMonth: handleSetMonth,
-        day,
-        setDay: handleSetDay,
+        localeDataForCalendar,
+        date,
+        setDate,
         events,
         eventsInTheDay,
         flashMessage,

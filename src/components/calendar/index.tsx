@@ -1,50 +1,41 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styled from "styled-components";
 
-import type { Locale } from "date-fns";
-import { format } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
+import {DayPicker} from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
 import {BoomWidgetConfigThemeTypes} from "../../configuration/boom-widget/properties";
 import {useAppContext} from "../../runtime";
-import {lazyLoadLocale} from "./locale-loader";
 
 type PropTypes = {
     widgetTheme: BoomWidgetConfigThemeTypes;
 }
 
 export function Calendar({ widgetTheme }: PropTypes) {
-    const { locale, year, month } = useAppContext();
+    const { localeDataForCalendar, date, setDate } = useAppContext();
 
-    console.debug("Calendar - current year is ", year);
-    console.debug("Calendar - current month is ", month);
-
-    const [localeData, setLocaleData] = useState<undefined | Locale>(undefined);
-    const [selected, setSelected] = useState<undefined | Date>(undefined);
-
-    useEffect(() => {
-        lazyLoadLocale(locale, setLocaleData);
-    }, [locale]);
-
-    if (undefined === localeData) {
+    /** show skeleton until app context fetch locale data */
+    if (undefined === localeDataForCalendar) {
         return (
             <div>Loading localization...</div>
         );
     }
 
-    let footer = <p>Please pick a day.</p>;
-    if (selected) {
-        footer = <p>You picked {format(selected, 'PP')}.</p>;
+    // todo
+    let footer = <p>There should be time slots....</p>;
+
+    /** set date to app context */
+    const handleSelected = (day: Date | undefined, selectedDay: Date) => {
+        setDate(selectedDay!);
     }
 
     return (
         <Wrapper>
             <DayPicker
                 mode="single"
-                locale={localeData}
-                selected={selected}
-                onSelect={setSelected}
+                locale={localeDataForCalendar}
+                selected={date}
+                onSelect={handleSelected}
                 footer={footer}
             />
         </Wrapper>
