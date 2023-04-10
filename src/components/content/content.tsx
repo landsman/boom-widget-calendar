@@ -12,41 +12,34 @@ type PropTypes = {
 export function Content({ widgetConfig }: PropTypes): JSX.Element {
     const { flashMessage } = useAppContext();
     return (
-        <Wrapper>
-            <Grid>
-                <Left>
-                    <Calendar
-                        widgetTheme={widgetConfig.theme}
-                    />
-                </Left>
-                <Right>
-                    <FlashMessage
-                        text={flashMessage}
-                    />
-                    <BoomWidget
-                        theme={widgetConfig.theme}
-                        organizerId={widgetConfig.organizerId}
-                        eventId={widgetConfig.eventId}
-                        eventUrl={widgetConfig.eventUrl}
-                    />
-                </Right>
-            </Grid>
-        </Wrapper>
+        <Grid>
+            <Left>
+                <Calendar
+                    widgetTheme={widgetConfig.theme}
+                />
+            </Left>
+            <Right>
+                <FlashMessage
+                    text={flashMessage}
+                />
+                <BoomWidget
+                    theme={widgetConfig.theme}
+                    organizerId={widgetConfig.organizerId}
+                    eventId={widgetConfig.eventId}
+                    eventUrl={widgetConfig.eventUrl}
+                />
+            </Right>
+        </Grid>
     );
 }
 
-const Wrapper = styled.div`
-  width: 100%;
-  height: auto;
-`;
-
 const Grid = styled.div`
+  width: 100%;
+  max-width: 100%;
+  height: auto;
   display: flex;
-  width: 800px;
-  margin: 0 auto;
   
   // debug
-  margin-top: 30px;
   background: gray;
 `;
 
@@ -55,14 +48,14 @@ const Column = styled.div`
 `;
 
 const Left = styled(Column)`
-  width: 20%;
+  width: 40%;
   
   // debug
   background: red;
 `;
 
 const Right = styled(Column)`
-  width: 80%;
+  width: 60%;
   
   // debug
   background: yellow;

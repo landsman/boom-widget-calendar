@@ -23,17 +23,17 @@ function App() {
     // todo: check this
     const customTheme = mockTheme as CustomizedThemeOverride;
     return (
-        <Layout>
-            <CustomThemeProvider customTheme={customTheme}>
-                <AppProvider
-                    currentDate={currentDate}
-                    locale={currentLocale}
-                    features={features}
-                >
+        <CustomThemeProvider customTheme={customTheme}>
+            <AppProvider
+                currentDate={currentDate}
+                locale={currentLocale}
+                features={features}
+            >
+                <Layout>
                     <Content widgetConfig={mockConfig} />
-                </AppProvider>
-            </CustomThemeProvider>
-        </Layout>
+                </Layout>
+            </AppProvider>
+        </CustomThemeProvider>
     );
 }
 
