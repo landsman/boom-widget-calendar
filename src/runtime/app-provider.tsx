@@ -20,6 +20,7 @@ type PropTypes = {
 export function AppProvider({ children, currentDate, locale, features }: PropTypes) {
     const [localeDataForCalendar, setLocaleDataForCalendar] = useState<undefined | Locale>(undefined);
     const [date, setDate] = useState<undefined | Date>(undefined);
+    const [events, setEvents] = useState<undefined | EventType[]>(undefined);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
 
     /** calendar localization */
@@ -40,7 +41,10 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
      */
     const handleSetDate = async (newDateSelected: Date) => {
         setFlashMessage(undefined);
+        setEvents(undefined);
+        setSelectedEvent(undefined);
         setDate(newDateSelected);
+
         const apiEvents = await handleGetEvents(
             mockConfig.organizerId,
             newDateSelected || currentDate.date
@@ -52,6 +56,7 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
         }
 
         if (features.allowTimeSlots) {
+            setEvents(apiEvents);
             setFlashMessage(flashMessageText.selectTime);
         } else {
             setFlashMessage(undefined);
@@ -62,8 +67,9 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
     /**
      * user clicked to specific event in the calendar (time slot)
      */
-    const handleSetSelectedEvent = async (finalEvent: EventType) => {
-        setSelectedEvent(finalEvent);
+    const handleSetSelectedEvent = async (eventId: string) => {
+        const result = events?.filter((i) => i.id === eventId).shift();
+        setSelectedEvent(result);
     }
 
     const contextValue: ProviderResponseTypes = {
@@ -72,8 +78,9 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
         localeDataForCalendar,
         date,
         setDate: handleSetDate,
-        selectedEvent,
+        events,
         setSelectedEvent: handleSetSelectedEvent,
+        selectedEvent,
         flashMessage,
     }
 

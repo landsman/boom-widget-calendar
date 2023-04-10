@@ -9,7 +9,8 @@ export type ProviderResponseTypes = {
     localeDataForCalendar: undefined | Locale;
     date: undefined | Date,
     setDate: (newDate: Date) => void;
+    events: undefined | EventType[];
+    setSelectedEvent: (eventId: string) => void;
     selectedEvent: undefined | EventType;
-    setSelectedEvent: (newEvent: EventType) => void;
     flashMessage: undefined | string;
 };

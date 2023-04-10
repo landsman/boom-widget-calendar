@@ -2,7 +2,6 @@ import {createContext, useContext} from "react";
 import {ProviderResponseTypes} from "@local/runtime/types";
 import {defaultLocale} from "@local/configuration/i18n";
 import {featureDefaultValues} from "@local/configuration/features";
-import {EventType} from "@local/api/view/events/types/event-type";
 
 const defaultValues = {
     features: featureDefaultValues,
@@ -10,8 +9,9 @@ const defaultValues = {
     localeDataForCalendar: undefined,
     date: undefined,
     setDate: (_d: Date) => null,
+    events: undefined,
+    setSelectedEvent: (_id: string) => null,
     selectedEvent: undefined,
-    setSelectedEvent: (_e: EventType) => null,
     flashMessage: undefined,
 };
 

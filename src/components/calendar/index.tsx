@@ -6,6 +6,7 @@ import {BoomWidgetConfigThemeTypes} from "@local/configuration/boom-widget";
 import {useAppContext} from "@local/runtime";
 import {useLingui} from "@lingui/react";
 import {t} from "@lingui/macro";
+import {ListOfSlots} from "@local/components/calendar/time-slot";
 
 type PropTypes = {
     widgetTheme: BoomWidgetConfigThemeTypes;
@@ -13,7 +14,7 @@ type PropTypes = {
 
 export function Calendar({ widgetTheme }: PropTypes) {
     const { i18n } = useLingui();
-    const { features, localeDataForCalendar, date, setDate } = useAppContext();
+    const { localeDataForCalendar, features, events, date, setDate } = useAppContext();
 
     /** show skeleton until app context fetch locale data */
     if (undefined === localeDataForCalendar) {
@@ -22,13 +23,13 @@ export function Calendar({ widgetTheme }: PropTypes) {
         );
     }
 
-    // todo
-    let footer = <p>There should be time slots....</p>;
+    let footer = <div />;
 
-    if (features.allowTimeSlots) {
-        footer = (
-            <>here would be time slots</>
-        );
+    if (features.allowTimeSlots &&
+        undefined !== events &&
+        events?.length > 0
+    ) {
+        footer = <ListOfSlots events={events} />;
     }
 
     /** set date to app context */
