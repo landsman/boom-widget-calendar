@@ -1,5 +1,5 @@
 export interface PaginationQueryParamsTypes {
-    page: number;
-    size: number;
-    sort: 'asc' | 'desc';
+    page?: number;
+    size?: number;
+    sort?: 'asc' | 'desc';
 }

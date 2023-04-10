@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 type PropTypes = {
-    text: string;
+    text: undefined | string;
 }
 
-export function FlashMessage({ text }: PropTypes) {
+export function FlashMessage({ text }: PropTypes): JSX.Element {
+    if (undefined === text) {
+        return <div />;
+    }
     return (
-        <Wrapper>
-            {text}
-        </Wrapper>
+        <Wrapper>{text}</Wrapper>
     );
 }
 

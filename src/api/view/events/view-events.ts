@@ -3,7 +3,7 @@ import {PaginationQueryParamsTypes} from "../../general/query-params/pagination"
 import {axiosInstance} from "../../../configuration/http/axios";
 import {apiEndpoints} from "../../../configuration/boom-api/endpoints";
 
-interface QueryParamsTypes extends PaginationQueryParamsTypes {
+interface ViewEventsQueryParamsTypes extends PaginationQueryParamsTypes {
     published?: boolean;
     localization?: string;
     search?: string;
@@ -12,7 +12,9 @@ interface QueryParamsTypes extends PaginationQueryParamsTypes {
     organizerId: string;
 }
 
-export async function getViewEvents(queryParams: QueryParamsTypes): Promise<ViewEventsTypes> {
+export async function getViewEvents(
+    queryParams: ViewEventsQueryParamsTypes
+): Promise<ViewEventsTypes> {
     const response = await axiosInstance.get<ViewEventsTypes>(apiEndpoints.viewEvents, {
         params: queryParams,
     });

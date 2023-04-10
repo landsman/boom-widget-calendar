@@ -3,13 +3,14 @@ import {Calendar} from "../calendar";
 import {FlashMessage} from "../flash-message";
 import {BoomWidget} from "../widget";
 import {BoomWidgetConfigTypes} from "../../configuration/boom-widget/properties";
+import {useAppContext} from "../../runtime";
 
 type PropTypes = {
     widgetConfig: BoomWidgetConfigTypes;
 }
 
 export function Content({ widgetConfig }: PropTypes): JSX.Element {
-    const alertMessageContent = "Alert message content";
+    const { flashMessage } = useAppContext();
     return (
         <Wrapper>
             <Grid>
@@ -20,7 +21,7 @@ export function Content({ widgetConfig }: PropTypes): JSX.Element {
                 </Left>
                 <Right>
                     <FlashMessage
-                        text={alertMessageContent}
+                        text={flashMessage}
                     />
                     <BoomWidget
                         theme={widgetConfig.theme}
