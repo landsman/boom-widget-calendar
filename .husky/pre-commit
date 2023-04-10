@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# https://lingui.dev/ref/cli#extract
+lingui extract $(git diff --name-only --staged)

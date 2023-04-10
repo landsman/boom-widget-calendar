@@ -6,3 +6,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: cs\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+msgid "loading"
+msgstr "Načítání"
+
+msgid "select_date"
+msgstr "Vyberte si datum své návštěvy"
+
+msgid "select_date_and_time"
+msgstr "Vyberte si datum a čas své návštěvy"
+
+msgid "selected_date_is"
+msgstr "Vybrali jste termín"
+
+msgid "there_are_no_events"
+msgstr "V tomto termínu nejsou žádné události"

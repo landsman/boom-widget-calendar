@@ -6,5 +6,10 @@ module.exports = {
         path: "src/locales/{locale}/messages",
         include: ["src"]
     }],
-    format: "po"
+    format: "po",
+    sourceLocale: "en-GB",
+    formatOptions: {
+        origins: false,
+        lineNumbers: false
+    }
 }
