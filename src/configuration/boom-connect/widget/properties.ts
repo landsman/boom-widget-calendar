@@ -2,8 +2,8 @@ import { MantineThemeColors } from '@mantine/styles/lib/theme/types/MantineColor
 
 export type BoomWidgetConfigTypes = {
     organizerId: string;
-    eventId?: string;
-    eventUrl?: string;
+    eventId: string;
+    eventUrl: string;
     theme: BoomWidgetConfigThemeTypes;
 }
 
@@ -14,11 +14,29 @@ export type BoomWidgetConfigThemeColors = Partial<MantineThemeColors>;
 
 export type BoomWidgetConfigThemeTypes = {
     colors: BoomWidgetConfigThemeColors;
+};
+
+/**
+ * possible fields
+ */
+export enum BoomDataConfigProperty {
+    WIDGET_CONFIG = 'WIDGET_CONFIG',
+    WIDGET_CONFIG_PREVIEW = 'WIDGET_CONFIG_PREVIEW',
 }
 
+/**
+ * interface of window objects
+ */
 type BoomWidgetConfigWindowFieldType = {
-    WIDGET_CONFIG?: BoomWidgetConfigTypes;
-    WIDGET_CONFIG_PREVIEW?: {};
+    [BoomDataConfigProperty.WIDGET_CONFIG]?: BoomWidgetConfigTypes;
+    [BoomDataConfigProperty.WIDGET_CONFIG_PREVIEW]?: {};
+    placeSalesWidget?: (
+        containerElement: Element,
+        eventWidgetInternalId: number,
+        eventUrl: string,
+        eventId: string,
+        theme: BoomWidgetConfigThemeTypes
+    ) => void,
 };
 
 /**

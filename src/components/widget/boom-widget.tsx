@@ -8,7 +8,7 @@ import {BoomWidgetElement} from "@local/components/widget";
 export function BoomWidget({ organizerId, theme }: BoomWidgetConfigTypes): JSX.Element {
     const { isProduction, selectedEvent, flashMessage } = useAppContext();
 
-    let eventUrl;
+    let eventUrl = '#';
     if (selectedEvent) {
         eventUrl = buildBoomWidgetIframeUrl(
             isProduction,

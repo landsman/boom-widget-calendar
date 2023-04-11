@@ -9,5 +9,7 @@ export const mockOrganizerId = "e43780b9-a220-42d3-a026-cc97875a61e3";
 
 export const mockConfig: BoomWidgetConfigTypes = {
     organizerId: mockOrganizerId,
+    eventId: '#',
+    eventUrl: '#',
     theme: mockTheme,
 };

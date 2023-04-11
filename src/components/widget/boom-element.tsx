@@ -1,7 +1,12 @@
 import {useEffect, useState} from "react";
 import styled from "styled-components";
 import {loadBoomCss, loadBoomScript, resetBoomScript} from '@local/components/widget/boom-script';
-import {BoomWidgetConfigTypes, windowBoomWidgetConfig} from "@local/configuration/boom-connect";
+import {
+    BoomDataConfigProperty,
+    BoomWidgetConfigTypes,
+    boomWidgetIds,
+    windowBoomWidgetConfig
+} from "@local/configuration/boom-connect";
 import {useAppContext} from "@local/runtime";
 
 /**
@@ -43,8 +48,8 @@ export function BoomWidgetElement({ organizerId, eventId, eventUrl, theme }: Boo
         <>
             {/*<!-- BOOM Events Widget -->*/}
             <SalesWidget
-                className='sales-widget'
-                data-config-property='WIDGET_CONFIG'
+                className={boomWidgetIds.widgetClass}
+                data-config-property={BoomDataConfigProperty.WIDGET_CONFIG}
             >
                 BOOM SALES WIDGET
             </SalesWidget>
