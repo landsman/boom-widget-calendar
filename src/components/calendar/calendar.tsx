@@ -104,6 +104,10 @@ const Wrapper = styled.div`
   
   .rdp-button {
     color: ${(props) => props.theme.colors!.gray!['4']};
+    
+    &:hover {
+      color: black;
+    }
   }
   
   .rdp-nav_button {
@@ -125,6 +129,12 @@ const Wrapper = styled.div`
     
     &:hover {
       background: black;
+
+      svg {
+        &> path {
+          fill: black;
+        }
+      }
     }
   }
   
@@ -156,6 +166,10 @@ const Wrapper = styled.div`
     background: #D527D7;
     border: 1px solid transparent;
     //background: props => props.widgetTheme.colors.violet[0]
+
+    &:hover {
+      color: white;
+    }
   }
     
 `;
