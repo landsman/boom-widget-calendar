@@ -31,6 +31,8 @@ jobs:
           cache: 'npm'
 
       - name: 'Install dependencies'
+        env:
+          GENERATE_SOURCEMAP: false
         run: |
           npm ci
           npm run pre-deploy
