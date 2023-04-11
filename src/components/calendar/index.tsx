@@ -51,7 +51,7 @@ export function Calendar({ widgetTheme }: PropTypes) {
     };
 
     return (
-        <Wrapper>
+        <Wrapper widgetTheme={widgetTheme}>
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
@@ -65,5 +65,43 @@ export function Calendar({ widgetTheme }: PropTypes) {
     );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ widgetTheme: BoomWidgetConfigThemeTypes }>`
+    
+    // calendar styles overides
+  .rdp-button_reset {
+    border-radius: 0;
+  }
+  .rdp-button {
+    
+  }
+  
+  .rdp-nav_button {
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    
+    border: 1px solid black;
+  }
+  
+  .rdp-nav_button_previous {
+    
+  }
+  
+  .rdp-nav_button_next {
+    margin-left: 5px;
+  }
+  
+  .rdp-day {
+    
+  }
+
+  .rdp-day_selected {
+    background: black;
+    //background: props => props.widgetTheme.colors.violet[0]
+  } 
+  
+  .rdp-day_today {
+    border: 1px solid gray;
+  }
+    
 `;

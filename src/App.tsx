@@ -8,6 +8,7 @@ import {AppProvider, LocaleProvider} from "@local/runtime";
 import {getCurrentDate} from "@local/utils/date-time/get-current-date";
 import {AppLocale, detectLocaleResult} from "@local/configuration/i18n";
 import {isProduction} from "@local/configuration/environment/production";
+import {mangoThemeConfig} from "@local/components/theme/lib-mango/MangoThemeConfig";
 
 const prod = isProduction();
 const currentDate = getCurrentDate();
@@ -21,6 +22,12 @@ const features = {
 function App() {
     // todo: check this
     const customTheme = mockTheme as CustomizedThemeOverride;
+    const widgetStyles = {
+        ...mangoThemeConfig.colors,
+        ...mockConfig,
+        ...{}
+    };
+
     return (
         <CustomThemeProvider customTheme={customTheme}>
             <AppProvider
@@ -31,7 +38,7 @@ function App() {
             >
                 <LocaleProvider>
                     <Layout>
-                        <Content widgetConfig={mockConfig} />
+                        <Content widgetConfig={widgetStyles} />
                     </Layout>
                 </LocaleProvider>
             </AppProvider>
