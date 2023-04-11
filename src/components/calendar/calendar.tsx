@@ -8,13 +8,8 @@ import {useAppContext} from "@local/runtime";
 import {ListOfSlots} from "@local/components/calendar";
 import {useLocaleContext} from "@local/configuration/i18n";
 import {breakpoints} from "@local/components/theme/breakpoints";
-import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
-type PropTypes = {
-    themeConfig: CustomizedThemeOverride;
-}
-
-export function Calendar({ themeConfig }: PropTypes) {
+export function Calendar(): JSX.Element {
     const { i18n } = useLingui();
     const { localeDataForCalendar  } = useLocaleContext();
     const { features, events, date, setDate } = useAppContext();
@@ -55,7 +50,7 @@ export function Calendar({ themeConfig }: PropTypes) {
     };
 
     return (
-        <Wrapper themeConfig={themeConfig}>
+        <Wrapper>
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
@@ -69,8 +64,7 @@ export function Calendar({ themeConfig }: PropTypes) {
     );
 }
 
-// todo: use theme styles to calendar
-const Wrapper = styled.div<{ themeConfig: CustomizedThemeOverride }>`
+const Wrapper = styled.div`
   width: 100%;
   max-width: 90%;
   

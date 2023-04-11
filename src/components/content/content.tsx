@@ -9,9 +9,7 @@ export function Content(): JSX.Element {
     return (
         <Grid>
             <Left>
-                <Calendar
-                    themeConfig={themeConfig}
-                />
+                <Calendar />
             </Left>
             <Right>
                 <BoomWidget
