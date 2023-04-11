@@ -70,19 +70,31 @@ const Wrapper = styled.div`
   
   // columns
   @media (max-width: ${breakpoints.tablet}) {
-    width: 300px;
+    width: 100%;
+    max-width: 700px;
     margin: 0 auto;
     padding: 10px 0;
+
+    background: ${(props) => props.theme.colors!.gray!['0']};
   }
   
   // calendar styles overrides
   .rdp {
     width: 100%;
     max-width: 100%;
-    margin: 0;
     padding: 30px 30px;
     background: ${(props) => props.theme.colors!.gray!['0']};
     border-radius: 6px;
+    
+    margin: 0 auto;
+
+    // columns
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 50%;
+      max-width: 290px;
+      margin: 0 auto;
+      padding: 10px 0;
+    }
   }
 
   .rdp-months {

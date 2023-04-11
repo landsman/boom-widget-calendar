@@ -30,13 +30,19 @@ export function SelectedDate(): JSX.Element {
 const Wrapper = styled.div`
   display: block;
   width: 100%;
-  max-width: 100%;
-  margin-bottom: 10px;
-  
+  max-width: 700px;
+  margin: 10px auto;
   text-align: center;
 
+  // todo: sticky
+  //position: fixed;
+  //top: 0;
+  
   @media (min-width: ${breakpoints.tablet}) {
+    width: 100%;
+    max-width: 100%;
     text-align: left;
+    margin-top: 0;
   }
 
   // todo: client specific, move to theme!

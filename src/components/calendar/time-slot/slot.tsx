@@ -36,6 +36,7 @@ const Wrapper = styled.div<{ active: boolean }>`
   
   // clickable
   cursor: pointer;
+  font-size: 13px;
   
   // todo: client-specific! move it to theme!
   background: #363152;

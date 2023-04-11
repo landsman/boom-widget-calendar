@@ -17,12 +17,16 @@ export function FlashMessage({ text }: PropTypes): JSX.Element {
 }
 
 const Wrapper = styled.div`
-  margin-bottom: 15px;
   padding: 10px;
   text-align: center;
+  
+  max-width: 700px;
+  margin: 15px auto;
 
   @media (min-width: ${breakpoints.tablet}) {
+    margin-top: 0;
     text-align: left;
+    max-width: 100%;
   }
   
   
