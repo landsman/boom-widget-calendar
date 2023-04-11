@@ -1,2 +1,0 @@
-(self.webpackChunkboom_widget_calendar=self.webpackChunkboom_widget_calendar||[]).push([[4335],{4335:function(e){e.exports={messages:JSON.parse('{"calendar.time_slot.whole_day":"whole day","footer.created_by":"Created by","loading":"Loading","select_date":"Choose the date of your visit","select_date_and_time":"Choose the date and time of your visit","select_time":"Now please choose the time of your visit","selected_date_is":"You have selected the date","there_are_no_events":"There are no events"}')}}}]);
-//# sourceMappingURL=4335.66050ca1.chunk.js.map
