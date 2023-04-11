@@ -25,7 +25,13 @@ const Wrapper = styled.div`
     text-align: left;
   }
   
-  // debug
-  background: pink;
-  border: 1px solid black;
+  
+  
+  // todo: client specific, move to theme, somehow!
+  color: #FFFFFF;
+  font-size: 16px;
+  
+  background: #251D3F;
+  border: 1px solid transparent;
+  border-radius: 6px;
 `;

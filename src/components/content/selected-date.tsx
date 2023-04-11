@@ -38,10 +38,14 @@ const Wrapper = styled.div`
   @media (min-width: ${breakpoints.tablet}) {
     text-align: left;
   }
-  
-  // debug
-  border: 1px solid black;
-  background: aqua;
+
+  // todo: client specific, move to theme!
+  color: #FFFFFF;
+  font-size: 16px;
+
+  background: #251D3F;
+  border: 1px solid transparent;
+  border-radius: 6px;
 `;
 
 const Text = styled.p`
