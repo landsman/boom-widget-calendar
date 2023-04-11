@@ -24,11 +24,11 @@ export function ListOfSlots({ events }: PropTypes): JSX.Element {
 const Wrapper = styled.div`
   max-width: 100%;
   padding: 0;
-  margin: 0;
+  margin: 15px 0 0 0;
   list-style: none;
   
   /* We first create a flex layout context */
-  display: flex;
+  display: inline-flex;
 
   /* Then we define the flow direction 
      and if we allow the items to wrap 
