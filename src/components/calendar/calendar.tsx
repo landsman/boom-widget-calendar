@@ -32,7 +32,7 @@ export function Calendar({ widgetTheme }: PropTypes) {
      */
     const footer = () => {
         const anyEvents = undefined !== events && events?.length > 0;
-        if (showFooter && features.allowTimeSlots && anyEvents) {
+        if (showFooter && features?.allowTimeSlots && anyEvents) {
             return <ListOfSlots events={events} />;
         }
         return <span />;

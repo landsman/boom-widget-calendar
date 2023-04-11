@@ -9,7 +9,7 @@ import {AppContext, ProviderResponseTypes, handleGetEvents} from "@local/runtime
 type PropTypes = {
     children: ReactNode;
     currentDate: CurrentDateType;
-    features: FeatureTypes;
+    features?: undefined | FeatureTypes;
     isProduction: boolean;
 }
 
@@ -20,7 +20,7 @@ export function AppProvider({ children, currentDate, features, isProduction }: P
 
     /** different init message for time slots */
     let defaultFlashMessage = flashMessageText.selectDate;
-    if (features.allowTimeSlots && undefined === date) {
+    if (features?.allowTimeSlots && undefined === date) {
         defaultFlashMessage = flashMessageText.selectDateAndTime;
     }
 
@@ -45,7 +45,7 @@ export function AppProvider({ children, currentDate, features, isProduction }: P
             return;
         }
 
-        if (features.allowTimeSlots) {
+        if (features?.allowTimeSlots) {
             setEvents(apiEvents);
             setFlashMessage(flashMessageText.selectTime);
         } else {

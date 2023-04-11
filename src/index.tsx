@@ -2,13 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {AppLocale} from "@local/configuration/i18n";
+import {mockTheme} from "@local/configuration/boom-connect";
+import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+
+// todo, just debug
+const fixedLocale = AppLocale.cs;
+
+// todo: configuration from the outside, somehow!
+const features = {
+    allowTimeSlots: true,
+}
+
+// todo: check this
+const customTheme = mockTheme as CustomizedThemeOverride;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <App
+        fixedLocale={fixedLocale}
+        features={features}
+        customTheme={customTheme}
+    />
   </React.StrictMode>
 );
 

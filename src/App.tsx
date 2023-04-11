@@ -3,41 +3,37 @@ import {Footer, Layout} from "@local/components/layout";
 import {Content} from "@local/components/content";
 import {CustomThemeProvider} from "@local/components/theme/provider";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
-import {mockConfig, mockTheme} from "@local/configuration/boom-connect";
 import {AppProvider, LocaleProvider} from "@local/runtime";
 import {getCurrentDate} from "@local/utils/date-time/get-current-date";
 import {isProduction} from "@local/configuration/environment";
-import {mangoThemeConfig} from "@local/components/theme/lib-mango/MangoThemeConfig";
 import {AppLocale} from "@local/configuration/i18n";
+import {FeatureTypes} from "@local/configuration/features";
+import {mangoThemeConfig} from "@local/components/theme/lib-mango/MangoThemeConfig";
+import {mockConfig} from "@local/configuration/boom-connect";
 
-const prod = isProduction();
-const currentDate = getCurrentDate();
-
-// todo: configuration from the outside, somehow!
-const features = {
-    allowTimeSlots: true,
-}
-
-// todo, just debug
-const forceLocale = AppLocale.cs;
-
-// todo: check this
-const customTheme = mockTheme as CustomizedThemeOverride;
-const widgetStyles = {
-    ...mangoThemeConfig.colors,
-    ...mockConfig,
-    ...{}
+type PropTypes = {
+    fixedLocale?: undefined | AppLocale;
+    features?: undefined | FeatureTypes;
+    customTheme?: undefined | CustomizedThemeOverride;
 };
 
-function App() {
+function App({ fixedLocale, features, customTheme }: PropTypes) {
+
+    // todo: get rid of?
+    const widgetStyles = {
+        ...mangoThemeConfig.colors,
+        ...mockConfig,
+        ...{}
+    };
+
     return (
         <CustomThemeProvider customTheme={customTheme}>
             <AppProvider
-                currentDate={currentDate}
+                currentDate={getCurrentDate()}
                 features={features}
-                isProduction={prod}
+                isProduction={isProduction()}
             >
-                <LocaleProvider forceLocale={forceLocale}>
+                <LocaleProvider fixedLocale={fixedLocale}>
                     <Layout>
                         <Content widgetConfig={widgetStyles} />
                         <Footer />
