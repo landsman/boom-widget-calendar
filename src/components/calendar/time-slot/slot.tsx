@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import {differenceInHours, format, parseISO} from "date-fns";
 import {t} from "@lingui/macro";
 import {useLingui} from "@lingui/react";
@@ -14,7 +14,7 @@ type PropTypes = {
 const wholeDay = 8;
 
 export function TimeSlot({ id, dateFrom, dateTo }: PropTypes): JSX.Element {
-    const { setSelectedEvent, localeDataForCalendar } = useAppContext();
+    const { selectedEvent, setSelectedEvent, localeDataForCalendar } = useAppContext();
     const { i18n } = useLingui();
 
     const opts = {
@@ -38,7 +38,7 @@ export function TimeSlot({ id, dateFrom, dateTo }: PropTypes): JSX.Element {
     }
 
     return (
-        <Wrapper>
+        <Wrapper active={selectedEvent?.id === id}>
             <Content onClick={() => setSelectedEvent(id)}>
                 {text}
             </Content>
@@ -46,13 +46,17 @@ export function TimeSlot({ id, dateFrom, dateTo }: PropTypes): JSX.Element {
     );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ active: boolean }>`
   display: block;
   cursor: pointer;
   
   &:hover {
     background: chocolate;
   }
+
+  ${({ active }) => active && css`
+    background: blue;
+  `}
 `;
 
 const Content = styled.div`
