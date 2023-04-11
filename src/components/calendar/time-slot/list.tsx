@@ -3,7 +3,7 @@ import {TimeSlot} from "@local/components/calendar/time-slot/slot";
 import styled from "styled-components";
 
 type PropTypes = {
-    events: EventType[];
+    events: EventType[]; // todo: change to small DTO
 }
 
 export function ListOfSlots({ events }: PropTypes): JSX.Element {
