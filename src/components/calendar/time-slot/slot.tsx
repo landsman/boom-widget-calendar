@@ -47,18 +47,32 @@ export function TimeSlot({ id, dateFrom, dateTo }: PropTypes): JSX.Element {
 }
 
 const Wrapper = styled.div<{ active: boolean }>`
-  display: block;
+  margin: auto;
+  
+  // clickable
   cursor: pointer;
   
   &:hover {
-    background: chocolate;
+    background: green;
+    * {
+      color: white;
+    }
   }
 
+  // debug
+  border: 1px solid black;
+  
   ${({ active }) => active && css`
+    font-weight: bold;
+    
     background: blue;
+    color: white;
   `}
 `;
 
 const Content = styled.div`
+  padding: 5px 5px;
+  
+  // debug
   color: red;
 `;
