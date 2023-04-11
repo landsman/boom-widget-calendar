@@ -1,14 +1,13 @@
 import {ReactNode, useEffect, useState} from "react";
 import type {Locale} from "date-fns";
-import {EventType} from "@local/api/view/events/types/event-type";
+import {EventType} from "@local/api/view/events/types";
 import {AppLocale} from "@local/configuration/i18n";
-import {mockConfig} from "@local/configuration/boom-widget";
-import {CurrentDateType} from "@local/utils/date-time/get-current-date";
+import {mockConfig} from "@local/configuration/boom-connect";
 import {FeatureTypes} from "@local/configuration/features";
-import {lazyLoadLocale} from "@local/components/calendar/locale-loader";
-import {AppContext, ProviderResponseTypes} from "@local/runtime";
-import {handleGetEvents} from "./data/get-events";
-import {flashMessageText} from "@local/components/flash-message/messages";
+import {CurrentDateType} from "@local/utils";
+import {lazyLoadLocale} from "@local/components/calendar";
+import {flashMessageText} from "@local/components/flash-message";
+import {AppContext, ProviderResponseTypes, handleGetEvents} from "@local/runtime";
 
 type PropTypes = {
     children: ReactNode;

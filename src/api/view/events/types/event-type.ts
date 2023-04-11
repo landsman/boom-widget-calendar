@@ -1,6 +1,5 @@
-import {LocationType} from "../../../general/types/location";
-import {LocalizationType} from "./localization";
-import {TimezoneType} from "../../../general/types/timezone";
+import {LocationType, TimezoneType} from "@local/api/general/types";
+import {LocalizationType} from "@local/api/view/events/types";
 
 export type EventType = {
     id: string;

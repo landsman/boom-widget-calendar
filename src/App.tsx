@@ -3,11 +3,11 @@ import {Layout} from "@local/components/layout";
 import {Content} from "@local/components/content";
 import {CustomThemeProvider} from "@local/components/theme/provider";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
-import {mockTheme, mockConfig} from "@local/configuration/boom-widget";
+import {mockTheme, mockConfig} from "@local/configuration/boom-connect";
 import {AppProvider, LocaleProvider} from "@local/runtime";
 import {getCurrentDate} from "@local/utils/date-time/get-current-date";
 import {AppLocale, detectLocaleResult} from "@local/configuration/i18n";
-import {isProduction} from "@local/configuration/environment/production";
+import {isProduction} from "@local/configuration/environment";
 import {mangoThemeConfig} from "@local/components/theme/lib-mango/MangoThemeConfig";
 
 const prod = isProduction();

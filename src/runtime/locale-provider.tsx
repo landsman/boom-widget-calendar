@@ -1,8 +1,8 @@
 import {ReactNode, useEffect, useState} from "react";
 import { i18n } from '@lingui/core'
 import {I18nProvider} from "@lingui/react";
-import {useAppContext} from "./app-context";
-import {dynamicActivate} from "../configuration/i18n/dynamic-loader";
+import {useAppContext} from "@local/runtime";
+import {dynamicActivate} from "@local/configuration/i18n";
 
 type PropTypes = {
     children: ReactNode;

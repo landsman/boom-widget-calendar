@@ -1,6 +1,6 @@
 import type { Locale } from "date-fns";
 import {Dispatch, SetStateAction} from "react";
-import {convertLocaleToISO} from "./locale-iso";
+import {convertLocaleToISO} from "@local/components/calendar/locale-iso";
 
 /**
  * effective way how to load data only for current localization

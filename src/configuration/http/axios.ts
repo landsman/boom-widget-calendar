@@ -1,6 +1,6 @@
 import axios from "axios";
-import {apiHost} from "../boom-api/host";
-import {isProduction} from "../environment/production";
+import {apiHost} from "@local/configuration/boom-api";
+import {isProduction} from "@local/configuration/environment";
 
 const production = isProduction();
 

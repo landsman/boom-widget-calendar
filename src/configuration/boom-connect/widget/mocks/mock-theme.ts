@@ -1,4 +1,4 @@
-import {BoomWidgetConfigThemeColors, BoomWidgetConfigThemeTypes} from "./properties";
+import {BoomWidgetConfigThemeColors, BoomWidgetConfigThemeTypes} from "../properties";
 
 // todo: prepare design for both clients
 const mockColors: BoomWidgetConfigThemeColors = {

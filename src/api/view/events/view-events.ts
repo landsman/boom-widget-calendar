@@ -1,7 +1,7 @@
-import {ViewEventsTypes} from "./types/view-events-type";
-import {PaginationQueryParamsTypes} from "../../general/query-params/pagination";
-import {axiosInstance} from "../../../configuration/http/axios";
-import {apiEndpoints} from "../../../configuration/boom-api/endpoints";
+import {axiosInstance} from "@local/configuration/http/axios";
+import {apiEndpoints} from "@local/configuration/boom-api";
+import {PaginationQueryParamsTypes} from "@local/api/general/query-params";
+import {ViewEventsTypes} from "@local/api/view/events/types";
 
 interface ViewEventsQueryParamsTypes extends PaginationQueryParamsTypes {
     published?: boolean;

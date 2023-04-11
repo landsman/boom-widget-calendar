@@ -1,6 +1,6 @@
+import styled from "styled-components";
 import {EventType} from "@local/api/view/events/types/event-type";
 import {TimeSlot} from "@local/components/calendar/time-slot/slot";
-import styled from "styled-components";
 
 type PropTypes = {
     events: EventType[]; // todo: change to small DTO

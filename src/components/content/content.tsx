@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {Calendar} from "@local/components/calendar";
 import {BoomWidget} from "@local/components/widget";
-import {BoomWidgetConfigTypes} from "@local/configuration/boom-widget";
+import {BoomWidgetConfigTypes} from "@local/configuration/boom-connect";
 
 type PropTypes = {
     widgetConfig: BoomWidgetConfigTypes;

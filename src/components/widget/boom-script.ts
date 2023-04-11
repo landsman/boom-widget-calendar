@@ -1,13 +1,16 @@
+import {connectEndpoints, connectHost} from "@local/configuration/boom-connect";
+
 const ids = {
     script: 'boom_widget_script',
     css: 'boom_widget_css',
 }
 
-export function loadBoomScript(): void {
+export function loadBoomScript(production: boolean): void {
+    const host = connectHost(production);
     const isExist = document.getElementById(ids.script);
     if (!isExist) {
         const el = document.createElement('script');
-        el.src = 'https://connect.boomevents.dev/events/v3/widget.js';
+        el.src = host + connectEndpoints.widgetScript;
         el.id = ids.script;
         document.body.appendChild(el);
         el.onload = () => {
@@ -40,12 +43,13 @@ export function resetBoomScript(): void {
     //loadBoomScript();
 }
 
-export function loadBoomCss(): void {
+export function loadBoomCss(production: boolean): void {
+    const host = connectHost(production);
     const isExist = document.getElementById(ids.css);
     if (!isExist) {
         const el = document.createElement('link');
         el.rel = "stylesheet"
-        el.href = 'https://connect.boomevents.dev/events/v3/widget.css';
+        el.href = host + connectEndpoints.widgetStyle;
         el.id = ids.css;
         document.body.appendChild(el);
         el.onload = () => {

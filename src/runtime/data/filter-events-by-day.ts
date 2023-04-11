@@ -1,4 +1,4 @@
-import {EventType} from "../../api/view/events/types/event-type";
+import {EventType} from "@local/api/view/events/types";
 
 export function filterEventsByDay(
     events: undefined | EventType[],

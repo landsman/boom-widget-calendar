@@ -1,12 +1,14 @@
 import {useEffect, useState} from "react";
-import {BoomWidgetConfigTypes, windowBoomWidgetConfig} from "@local/configuration/boom-widget";
-import {loadBoomCss, loadBoomScript, resetBoomScript} from './boom-script';
 import styled from "styled-components";
+import {loadBoomCss, loadBoomScript, resetBoomScript} from '@local/components/widget/boom-script';
+import {BoomWidgetConfigTypes, windowBoomWidgetConfig} from "@local/configuration/boom-connect";
+import {useAppContext} from "@local/runtime";
 
 /**
  * @see https://github.com/boomeventsorg/frontend/blob/main/packages/app-connect/public/events/v3/example-mighty.html
  */
 export function BoomWidgetElement({ organizerId, eventId, eventUrl, theme }: BoomWidgetConfigTypes) {
+    const { isProduction } = useAppContext();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
 
     // todo: force to show
@@ -20,8 +22,8 @@ export function BoomWidgetElement({ organizerId, eventId, eventUrl, theme }: Boo
     };
 
     useEffect(() => {
-        loadBoomCss();
-        loadBoomScript();
+        loadBoomCss(isProduction);
+        loadBoomScript(isProduction);
         setOldEventId(eventId);
     }, []);
 

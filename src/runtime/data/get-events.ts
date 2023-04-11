@@ -1,7 +1,6 @@
-
-import {getViewEvents} from "../../api/view/events/view-events";
-import {EventType} from "../../api/view/events/types/event-type";
-import {getOneDayDateRange} from "../../utils/date-time/one-day-range";
+import {getViewEvents} from "@local/api/view/events/view-events";
+import {EventType} from "@local/api/view/events/types";
+import {getOneDayDateRange} from "@local/utils";
 
 export async function handleGetEvents(organizerId: string, date: undefined | Date): Promise<EventType[]> {
     let response: EventType[] = [];
