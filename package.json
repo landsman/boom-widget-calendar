@@ -11,7 +11,7 @@
     "eject": "craco eject",
     "prepare": "husky install",
     "predeploy": "npm run compile && npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run predeploy && gh-pages -d build"
   },
   "dependencies": {
     "@lingui/detect-locale": "^3.17.2",
