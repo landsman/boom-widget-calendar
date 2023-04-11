@@ -8,6 +8,7 @@ import {useAppContext} from "@local/runtime";
 import {BoomWidgetConfigThemeTypes} from "@local/configuration/boom-connect";
 import {ListOfSlots} from "@local/components/calendar";
 import {useLocaleContext} from "@local/configuration/i18n";
+import {breakpoints} from "@local/components/theme/breakpoints";
 
 type PropTypes = {
     widgetTheme: BoomWidgetConfigThemeTypes;
@@ -69,7 +70,13 @@ export function Calendar({ widgetTheme }: PropTypes) {
 }
 
 const Wrapper = styled.div<{ widgetTheme: BoomWidgetConfigThemeTypes }>`
-    
+  // columns
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 300px;
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+  
     // calendar styles overrides
   .rdp-button_reset {
     border-radius: 0;

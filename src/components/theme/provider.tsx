@@ -6,7 +6,7 @@ import {CustomFonts} from "./fonts";
 
 type PropTypes = {
     children: ReactNode;
-    customTheme?: CustomizedThemeOverride;
+    customTheme: CustomizedThemeOverride;
 }
 
 /**

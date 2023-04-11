@@ -5,6 +5,7 @@ import {t} from "@lingui/macro";
 import styled from "styled-components";
 import {useAppContext} from "@local/runtime";
 import {useLocaleContext} from "@local/configuration/i18n";
+import {breakpoints} from "@local/components/theme/breakpoints";
 
 export function SelectedDate(): JSX.Element {
     const { i18n } = useLingui();
@@ -31,6 +32,12 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: 100%;
   margin-bottom: 10px;
+  
+  text-align: center;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    text-align: left;
+  }
   
   // debug
   border: 1px solid black;

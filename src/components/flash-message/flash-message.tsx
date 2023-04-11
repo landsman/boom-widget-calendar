@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {useLingui} from "@lingui/react";
+import {breakpoints} from "@local/components/theme/breakpoints";
 
 type PropTypes = {
     text: undefined | string;
@@ -18,8 +19,13 @@ export function FlashMessage({ text }: PropTypes): JSX.Element {
 const Wrapper = styled.div`
   margin-bottom: 15px;
   padding: 10px;
-  border: 1px solid black;
+  text-align: center;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    text-align: left;
+  }
   
   // debug
   background: pink;
+  border: 1px solid black;
 `;

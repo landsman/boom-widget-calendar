@@ -2,7 +2,7 @@ import React from 'react';
 import {Footer, Layout} from "@local/components/layout";
 import {Content} from "@local/components/content";
 import {CustomThemeProvider} from "@local/components/theme/provider";
-import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {CustomizedThemeOverride, mangoTheme} from "@local/components/theme/lib-mango/MangoTheme";
 import {AppProvider, LocaleProvider} from "@local/runtime";
 import {getCurrentDate} from "@local/utils/date-time/get-current-date";
 import {isProduction} from "@local/configuration/environment";
@@ -21,13 +21,14 @@ function App({ fixedLocale, features, customTheme }: PropTypes) {
 
     // todo: get rid of?
     const widgetStyles = {
+        ...mangoTheme,
         ...mangoThemeConfig.colors,
         ...mockConfig,
         ...{}
     };
 
     return (
-        <CustomThemeProvider customTheme={customTheme}>
+        <CustomThemeProvider customTheme={mangoTheme}>
             <AppProvider
                 currentDate={getCurrentDate()}
                 features={features}

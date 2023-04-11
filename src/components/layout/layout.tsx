@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {GlobalStyle} from "@local/components/layout/theme";
 import {LocaleSwitcher} from "@local/components/layout/locale-switcher";
+import {breakpoints} from "@local/components/theme/breakpoints";
 
 type PropTypes = {
     children: React.ReactNode;
@@ -21,6 +22,8 @@ export function Layout({ children }: PropTypes): JSX.Element {
 
 const Wrapper = styled.div`
   width: 100%;
+  max-width: 100%;
+  
   height: auto;
   overflow: hidden;
   
@@ -31,7 +34,13 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  width: 960px;
+  width: 100%;
+  max-width: 100%;
+  
   margin: 0 auto;
   overflow: hidden;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    width: 960px;
+  }
 `;

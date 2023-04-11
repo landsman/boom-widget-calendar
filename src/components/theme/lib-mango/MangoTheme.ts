@@ -9,10 +9,9 @@ type MangoCustomizedTheme = {
     }
 }
 
-export type CustomizedThemeOverride = MantineThemeOverride &
-    MangoCustomizedTheme
+export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;
 
-const mangoTheme: CustomizedThemeOverride = {
+export const mangoTheme: CustomizedThemeOverride = {
     white: mangoThemeConfig.colors.gray?.[0] || DEFAULT_THEME.white,
     black: mangoThemeConfig.colors.gray?.[9] || DEFAULT_THEME.black,
     colorScheme: 'light',
@@ -76,6 +75,4 @@ const mangoTheme: CustomizedThemeOverride = {
         // ...MantineCard,
         // ...MantineCheckbox,
     },
-}
-
-export { mangoTheme }
+};
