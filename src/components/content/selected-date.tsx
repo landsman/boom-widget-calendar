@@ -19,7 +19,7 @@ export function SelectedDate(): JSX.Element {
 
     return (
         <Wrapper>
-            <p>{i18n._(t`selected_date_is`)}{': '}{formattedDate}.</p>
+            <Text>{i18n._(t`selected_date_is`)}{': '}{formattedDate}.</Text>
         </Wrapper>
     );
 }
@@ -27,7 +27,14 @@ export function SelectedDate(): JSX.Element {
 const Wrapper = styled.div`
   display: block;
   width: 100%;
+  max-width: 100%;
+  margin-bottom: 10px;
   
   // debug
+  border: 1px solid black;
   background: aqua;
+`;
+
+const Text = styled.p`
+  padding: 10px;
 `;
