@@ -145,13 +145,17 @@ const Wrapper = styled.div`
     
   }
 
-  .rdp-day_selected {
-    background: black;
-    //background: props => props.widgetTheme.colors.violet[0]
-  } 
-  
   .rdp-day_today {
-    border: 1px solid gray;
+    // todo: client specific, move to theme!
+    border: 1px solid #D527D7;
+  }
+
+  .rdp-day_selected {
+    font-weight: bold;
+    // todo: client specific, move to theme!
+    background: #D527D7;
+    border: 1px solid transparent;
+    //background: props => props.widgetTheme.colors.violet[0]
   }
     
 `;

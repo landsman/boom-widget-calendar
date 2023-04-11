@@ -37,8 +37,9 @@ const Wrapper = styled.div<{ active: boolean }>`
   // clickable
   cursor: pointer;
   
-  // debug
-  border: 1px solid transparent;
+  // todo: client-specific! move it to theme!
+  background: #363152;
+  color: white;
   border-radius: 6px;
 
   &:hover {
