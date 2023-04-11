@@ -39,5 +39,11 @@ jobs:
 
       - name: "Build and deploy"
         env:
+          MY_EMAIL: 'landsman@insuit.cz'
+          MY_NAME: landsman
           REACT_APP_IS_PRODUCTION: false
-        run: npm run deploy
+        run: |
+          git config --global user.email $MY_EMAIL
+          git config --global user.name $MY_NAME
+          git remote set-url origin https://$MY_NAME:${{ secrets.GITHUB_TOKEN }}@github.com/landsman/boom-widget-calendar.git
+          npm run deploy
