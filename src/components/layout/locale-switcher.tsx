@@ -3,10 +3,10 @@ import {localeWithNames, useLocaleContext} from "@local/configuration/i18n";
 import {useAppContext} from "@local/runtime";
 
 export function LocaleSwitcher(): JSX.Element {
-    const { isProduction } = useAppContext();
+    const { isProduction, features } = useAppContext();
     const { switchLocale } = useLocaleContext();
     // only for dev for now
-    if (isProduction) {
+    if (isProduction || !features?.localeSwitcher) {
         return <div />;
     }
     return (

@@ -5,12 +5,13 @@ import reportWebVitals from './reportWebVitals';
 import {AppLocale} from "@local/configuration/i18n";
 import {mockOrganizerId, mockThemeKvantario} from "@local/configuration/boom-connect";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {FeatureTypes} from "@local/configuration/features";
 
 // todo, just debug
 const fixedLocale = AppLocale.cs;
 
 // todo: configuration from the outside, somehow!
-const features = {
+const features: FeatureTypes = {
     allowTimeSlots: true,
 }
 
