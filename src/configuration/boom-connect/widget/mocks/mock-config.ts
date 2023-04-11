@@ -1,4 +1,4 @@
-import {mockTheme} from "./mock-theme";
+import {mockThemeKvantario} from "./mock-theme-kvantario";
 import {BoomWidgetConfigTypes} from "../properties";
 
 // todo: this will be dynamic from outside
@@ -11,5 +11,5 @@ export const mockConfig: BoomWidgetConfigTypes = {
     organizerId: mockOrganizerId,
     eventId: '#',
     eventUrl: '#',
-    theme: mockTheme,
+    theme: mockThemeKvantario,
 };

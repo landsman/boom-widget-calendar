@@ -5,15 +5,18 @@ import {FeatureTypes} from "@local/configuration/features";
 import {CurrentDateType} from "@local/utils";
 import {flashMessageText} from "@local/components/flash-message";
 import {AppContext, ProviderResponseTypes, handleGetEvents} from "@local/runtime";
+import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
 type PropTypes = {
     children: ReactNode;
-    currentDate: CurrentDateType;
+    organizerId: string;
     features?: undefined | FeatureTypes;
+    currentDate: CurrentDateType;
     isProduction: boolean;
+    themeConfig: CustomizedThemeOverride;
 }
 
-export function AppProvider({ children, currentDate, features, isProduction }: PropTypes) {
+export function AppProvider({ organizerId, features, children, currentDate, isProduction, themeConfig }: PropTypes) {
     const [date, setDate] = useState<undefined | Date>(undefined);
     const [events, setEvents] = useState<undefined | EventType[]>(undefined);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
@@ -63,7 +66,7 @@ export function AppProvider({ children, currentDate, features, isProduction }: P
     }
 
     /**
-     * hide flash message when it's specific event selected
+     * hide flash message when its specific event selected
      */
     useEffect(() => {
         if (undefined !== selectedEvent) {
@@ -72,6 +75,7 @@ export function AppProvider({ children, currentDate, features, isProduction }: P
     }, [selectedEvent])
 
     const contextValue: ProviderResponseTypes = {
+        organizerId,
         isProduction,
         features,
         date,
@@ -80,6 +84,7 @@ export function AppProvider({ children, currentDate, features, isProduction }: P
         setSelectedEvent: handleSetSelectedEvent,
         selectedEvent,
         flashMessage,
+        themeConfig,
     }
 
     return (

@@ -3,6 +3,6 @@ export type FeatureTypes = {
 }
 
 /** for app context init */
-export const featureDefaultValues = {
+export const featureDefaultValues: FeatureTypes = {
     allowTimeSlots: false,
 }

@@ -1,2 +1,2 @@
 export * from "./mock-config";
-export * from "./mock-theme";
+export * from "./mock-theme-kvantario";

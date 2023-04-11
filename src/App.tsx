@@ -8,35 +8,31 @@ import {getCurrentDate} from "@local/utils/date-time/get-current-date";
 import {isProduction} from "@local/configuration/environment";
 import {AppLocale} from "@local/configuration/i18n";
 import {FeatureTypes} from "@local/configuration/features";
-import {mangoThemeConfig} from "@local/components/theme/lib-mango/MangoThemeConfig";
-import {mockConfig} from "@local/configuration/boom-connect";
 
 type PropTypes = {
     fixedLocale?: undefined | AppLocale;
     features?: undefined | FeatureTypes;
+    organizerId: string;
     customTheme?: undefined | CustomizedThemeOverride;
 };
 
-function App({ fixedLocale, features, customTheme }: PropTypes) {
-
-    // todo: get rid of?
+function App({ organizerId, fixedLocale, features, customTheme }: PropTypes) {
     const widgetStyles = {
         ...mangoTheme,
-        ...mangoThemeConfig.colors,
-        ...mockConfig,
-        ...{}
+        ...customTheme || {},
     };
-
     return (
-        <CustomThemeProvider customTheme={mangoTheme}>
+        <CustomThemeProvider customTheme={widgetStyles}>
             <AppProvider
-                currentDate={getCurrentDate()}
                 features={features}
+                currentDate={getCurrentDate()}
                 isProduction={isProduction()}
+                organizerId={organizerId}
+                themeConfig={widgetStyles}
             >
                 <LocaleProvider fixedLocale={fixedLocale}>
                     <Layout>
-                        <Content widgetConfig={widgetStyles} />
+                        <Content />
                         <Footer />
                     </Layout>
                 </LocaleProvider>

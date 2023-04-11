@@ -5,16 +5,16 @@ import {t} from "@lingui/macro";
 import {DayPicker} from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import {useAppContext} from "@local/runtime";
-import {BoomWidgetConfigThemeTypes} from "@local/configuration/boom-connect";
 import {ListOfSlots} from "@local/components/calendar";
 import {useLocaleContext} from "@local/configuration/i18n";
 import {breakpoints} from "@local/components/theme/breakpoints";
+import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
 type PropTypes = {
-    widgetTheme: BoomWidgetConfigThemeTypes;
+    themeConfig: CustomizedThemeOverride;
 }
 
-export function Calendar({ widgetTheme }: PropTypes) {
+export function Calendar({ themeConfig }: PropTypes) {
     const { i18n } = useLingui();
     const { localeDataForCalendar  } = useLocaleContext();
     const { features, events, date, setDate } = useAppContext();
@@ -55,7 +55,7 @@ export function Calendar({ widgetTheme }: PropTypes) {
     };
 
     return (
-        <Wrapper widgetTheme={widgetTheme}>
+        <Wrapper themeConfig={themeConfig}>
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
@@ -69,7 +69,8 @@ export function Calendar({ widgetTheme }: PropTypes) {
     );
 }
 
-const Wrapper = styled.div<{ widgetTheme: BoomWidgetConfigThemeTypes }>`
+// todo: use theme styles to calendar
+const Wrapper = styled.div<{ themeConfig: CustomizedThemeOverride }>`
   // columns
   @media (max-width: ${breakpoints.tablet}) {
     width: 300px;

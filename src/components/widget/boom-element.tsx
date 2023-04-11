@@ -2,28 +2,36 @@ import {useEffect, useState} from "react";
 import styled from "styled-components";
 import {loadBoomCss, loadBoomScript, resetBoomScript} from '@local/components/widget/boom-script';
 import {
-    BoomDataConfigProperty,
-    BoomWidgetConfigTypes,
+    BoomDataConfigProperty, BoomWidgetConfigThemeColors,
     boomWidgetIds,
     windowBoomWidgetConfig
 } from "@local/configuration/boom-connect";
 import {useAppContext} from "@local/runtime";
+import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+
+type PropTypes = {
+    eventId: string;
+    eventUrl: string;
+    theme: CustomizedThemeOverride;
+}
 
 /**
  * @see https://github.com/boomeventsorg/frontend/blob/main/packages/app-connect/public/events/v3/example-mighty.html
  */
-export function BoomWidgetElement({ organizerId, eventId, eventUrl, theme }: BoomWidgetConfigTypes) {
-    const { isProduction } = useAppContext();
+export function BoomWidgetElement({ eventId, eventUrl, theme }: PropTypes) {
+    const { organizerId, isProduction } = useAppContext();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
 
     // todo: force to show
     windowBoomWidgetConfig.WIDGET_CONFIG_PREVIEW = {};
 
     windowBoomWidgetConfig.WIDGET_CONFIG = {
-        organizerId: organizerId,
+        organizerId: organizerId!,
         eventId: eventId,
         eventUrl: eventUrl,
-        theme: theme,
+        theme: {
+            colors: theme.colors as BoomWidgetConfigThemeColors,
+        },
     };
 
     useEffect(() => {

@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import {useAppContext} from "@local/runtime";
-import {BoomWidgetConfigTypes, buildBoomWidgetIframeUrl} from "@local/configuration/boom-connect";
+import {buildBoomWidgetIframeUrl} from "@local/configuration/boom-connect";
 import {SelectedDate} from "@local/components/content/selected-date";
 import {FlashMessage} from "@local/components/flash-message";
 import {BoomWidgetElement} from "@local/components/widget";
+import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
-export function BoomWidget({ organizerId, theme }: BoomWidgetConfigTypes): JSX.Element {
+type PropTypes = {
+    themeConfig: CustomizedThemeOverride;
+}
+
+export function BoomWidget({ themeConfig }: PropTypes): JSX.Element {
     const { isProduction, selectedEvent, flashMessage } = useAppContext();
 
     let eventUrl = '#';
@@ -26,10 +31,9 @@ export function BoomWidget({ organizerId, theme }: BoomWidgetConfigTypes): JSX.E
             {selectedEvent && (
                 <>
                     <BoomWidgetElement
-                        organizerId={organizerId}
                         eventId={selectedEvent!.id}
                         eventUrl={eventUrl}
-                        theme={theme}
+                        theme={themeConfig}
                     />
                 </>
             )}

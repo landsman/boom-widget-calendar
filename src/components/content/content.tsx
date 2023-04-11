@@ -1,27 +1,21 @@
 import styled from "styled-components";
 import {Calendar} from "@local/components/calendar";
 import {BoomWidget} from "@local/components/widget";
-import {BoomWidgetConfigTypes} from "@local/configuration/boom-connect";
 import {breakpoints} from "@local/components/theme/breakpoints";
+import {useAppContext} from "@local/runtime";
 
-type PropTypes = {
-    widgetConfig: BoomWidgetConfigTypes;
-}
-
-export function Content({ widgetConfig }: PropTypes): JSX.Element {
+export function Content(): JSX.Element {
+    const { themeConfig } = useAppContext();
     return (
         <Grid>
             <Left>
                 <Calendar
-                    widgetTheme={widgetConfig.theme}
+                    themeConfig={themeConfig}
                 />
             </Left>
             <Right>
                 <BoomWidget
-                    theme={widgetConfig.theme}
-                    organizerId={widgetConfig.organizerId}
-                    eventId={widgetConfig.eventId}
-                    eventUrl={widgetConfig.eventUrl}
+                    themeConfig={themeConfig}
                 />
             </Right>
         </Grid>
