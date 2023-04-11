@@ -16,6 +16,9 @@ msgstr ""
 msgid "calendar.time_slot.whole_day"
 msgstr "whole day"
 
+msgid "footer.created_by"
+msgstr "Created by"
+
 msgid "loading"
 msgstr "Loading"
 

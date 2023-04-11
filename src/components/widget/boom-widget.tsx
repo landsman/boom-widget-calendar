@@ -33,7 +33,6 @@ export function BoomWidget({ organizerId, theme }: BoomWidgetConfigTypes): JSX.E
                     />
                 </>
             )}
-            <ForTests>for-tests</ForTests>
         </Wrapper>
     );
 }
@@ -42,8 +41,4 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: 100%;
   height: auto;
-`;
-
-const ForTests = styled.div`
-    display: none;
 `;

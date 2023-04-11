@@ -16,6 +16,9 @@ msgstr ""
 msgid "calendar.time_slot.whole_day"
 msgstr "celodenní"
 
+msgid "footer.created_by"
+msgstr "Pohání"
+
 msgid "loading"
 msgstr "Načítání"
 

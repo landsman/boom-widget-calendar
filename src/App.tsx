@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout} from "@local/components/layout";
+import {Layout, Footer} from "@local/components/layout";
 import {Content} from "@local/components/content";
 import {CustomThemeProvider} from "@local/components/theme/provider";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
@@ -12,7 +12,9 @@ import {mangoThemeConfig} from "@local/components/theme/lib-mango/MangoThemeConf
 
 const prod = isProduction();
 const currentDate = getCurrentDate();
-const currentLocale = detectLocaleResult as AppLocale;
+
+// todo: option to force locale from outside!
+const detectedLocale = detectLocaleResult as AppLocale;
 
 // todo: configuration from the outside, somehow!
 const features = {
@@ -32,13 +34,14 @@ function App() {
         <CustomThemeProvider customTheme={customTheme}>
             <AppProvider
                 currentDate={currentDate}
-                locale={currentLocale}
+                locale={detectedLocale}
                 features={features}
                 isProduction={prod}
             >
                 <LocaleProvider>
                     <Layout>
                         <Content widgetConfig={widgetStyles} />
+                        <Footer />
                     </Layout>
                 </LocaleProvider>
             </AppProvider>

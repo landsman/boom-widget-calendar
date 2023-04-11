@@ -1,6 +1,6 @@
 import type { Locale } from "date-fns";
 import {Dispatch, SetStateAction} from "react";
-import {convertLocaleToISO} from "@local/components/calendar/locale-iso";
+import {chooseFromSupported} from "@local/configuration/i18n";
 
 /**
  * effective way how to load data only for current localization
@@ -11,7 +11,7 @@ export async function lazyLoadLocale(
     locale: string,
     setLocaleData: Dispatch<SetStateAction<undefined | Locale>>,
 ): Promise<void> {
-    const isoLocale = convertLocaleToISO(locale);
+    const isoLocale = chooseFromSupported(locale);
     try {
         // This webpack option stops all the date-fns files being imported and chunked.
         const module = await import(
