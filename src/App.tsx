@@ -7,7 +7,9 @@ import {mockTheme, mockConfig} from "@local/configuration/boom-widget";
 import {AppProvider, LocaleProvider} from "@local/runtime";
 import {getCurrentDate} from "@local/utils/date-time/get-current-date";
 import {AppLocale, detectLocaleResult} from "@local/configuration/i18n";
+import {isProduction} from "@local/configuration/environment/production";
 
+const prod = isProduction();
 const currentDate = getCurrentDate();
 const currentLocale = detectLocaleResult as AppLocale;
 
@@ -25,6 +27,7 @@ function App() {
                 currentDate={currentDate}
                 locale={currentLocale}
                 features={features}
+                isProduction={prod}
             >
                 <LocaleProvider>
                     <Layout>

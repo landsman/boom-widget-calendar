@@ -4,6 +4,7 @@ import {AppLocale} from "../configuration/i18n";
 import {FeatureTypes} from "@local/configuration/features";
 
 export type ProviderResponseTypes = {
+    isProduction: boolean,
     features: FeatureTypes,
     locale: AppLocale;
     localeDataForCalendar: undefined | Locale;

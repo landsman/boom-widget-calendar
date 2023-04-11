@@ -4,6 +4,7 @@ import {defaultLocale} from "@local/configuration/i18n";
 import {featureDefaultValues} from "@local/configuration/features";
 
 const defaultValues = {
+    isProduction: false,
     features: featureDefaultValues,
     locale: defaultLocale,
     localeDataForCalendar: undefined,

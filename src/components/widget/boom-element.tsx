@@ -1,11 +1,16 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {BoomWidgetConfigTypes, windowBoomWidgetConfig} from "@local/configuration/boom-widget";
-import {loadBoomCss, loadBoomScript} from './boom-script';
+import {loadBoomCss, loadBoomScript, resetBoomScript} from './boom-script';
+import styled from "styled-components";
 
 /**
  * @see https://github.com/boomeventsorg/frontend/blob/main/packages/app-connect/public/events/v3/example-mighty.html
  */
 export function BoomWidgetElement({ organizerId, eventId, eventUrl, theme }: BoomWidgetConfigTypes) {
+    const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
+
+    // todo: force to show
+    windowBoomWidgetConfig.WIDGET_CONFIG_PREVIEW = {};
 
     windowBoomWidgetConfig.WIDGET_CONFIG = {
         organizerId: organizerId,
@@ -17,22 +22,40 @@ export function BoomWidgetElement({ organizerId, eventId, eventUrl, theme }: Boo
     useEffect(() => {
         loadBoomCss();
         loadBoomScript();
-    });
+        setOldEventId(eventId);
+    }, []);
+
+    /**
+     * force to reload boom script, because there is no method for it
+     */
+    useEffect(() => {
+        if (undefined === oldEventId) {
+            return;
+        }
+        if (eventId !== oldEventId) {
+            resetBoomScript();
+        }
+    }, [eventId])
 
     return (
         <>
             {/*<!-- BOOM Events Widget -->*/}
-            <div
+            <SalesWidget
                 className='sales-widget'
                 data-config-property='WIDGET_CONFIG'
-                style={{
-                    padding: 10,
-                    background: 'green',
-                }}
             >
                 BOOM SALES WIDGET
-            </div>
+            </SalesWidget>
             {/*<!-- BOOM Events Widget -->'*/}
         </>
     );
 }
+
+const SalesWidget = styled.div`
+  height: auto;
+  
+  &> iframe {
+    // todo: debug
+    min-height: 1500px; 
+  }
+`;

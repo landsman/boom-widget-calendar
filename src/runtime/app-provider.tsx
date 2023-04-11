@@ -15,9 +15,10 @@ type PropTypes = {
     currentDate: CurrentDateType;
     locale: AppLocale;
     features: FeatureTypes;
+    isProduction: boolean;
 }
 
-export function AppProvider({ children, currentDate, locale, features }: PropTypes) {
+export function AppProvider({ children, currentDate, locale, features, isProduction }: PropTypes) {
     const [localeDataForCalendar, setLocaleDataForCalendar] = useState<undefined | Locale>(undefined);
     const [date, setDate] = useState<undefined | Date>(undefined);
     const [events, setEvents] = useState<undefined | EventType[]>(undefined);
@@ -73,6 +74,7 @@ export function AppProvider({ children, currentDate, locale, features }: PropTyp
     }
 
     const contextValue: ProviderResponseTypes = {
+        isProduction,
         features,
         locale,
         localeDataForCalendar,
