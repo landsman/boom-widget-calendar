@@ -28,8 +28,10 @@ export function resetBoomScript(): void {
             el.innerHTML = '';
         });
 
-        const load_event = new Event("load");
-        window.dispatchEvent(load_event);
+        alert("Missing support for reload sales widget :( in JS API ... you have to reload the page");
+
+        //const load_event = new Event("load");
+        //window.dispatchEvent(load_event);
 
         // remove declared function
         // @ts-ignore
