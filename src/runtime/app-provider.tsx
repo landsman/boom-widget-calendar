@@ -1,4 +1,4 @@
-import {ReactNode, useState} from "react";
+import {ReactNode, useEffect, useState} from "react";
 import {EventType} from "@local/api/view/events/types";
 import {mockConfig} from "@local/configuration/boom-connect";
 import {FeatureTypes} from "@local/configuration/features";
@@ -61,6 +61,15 @@ export function AppProvider({ children, currentDate, features, isProduction }: P
         const result = events?.filter((i) => i.id === eventId).shift();
         setSelectedEvent(result);
     }
+
+    /**
+     * hide flash message when it's specific event selected
+     */
+    useEffect(() => {
+        if (undefined !== selectedEvent) {
+            setFlashMessage(undefined);
+        }
+    }, [selectedEvent])
 
     const contextValue: ProviderResponseTypes = {
         isProduction,
