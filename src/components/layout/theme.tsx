@@ -1,6 +1,6 @@
 import {createGlobalStyle} from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle<{ bodyBackground?: string }>`
   html {
     scroll-behavior: smooth;
   }
@@ -18,5 +18,6 @@ export const GlobalStyle = createGlobalStyle`
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: ${(props) => props.bodyBackground ? props.bodyBackground : 'transparent'};
   }
 `;

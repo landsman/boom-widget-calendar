@@ -38,4 +38,5 @@ const mockColors: BoomWidgetConfigThemeColors = {
 // todo: resolve how to inject this from window object or other config outside this project
 export const mockThemeKvantario: BoomWidgetConfigThemeTypes = {
     colors: mockColors,
+    bodyBackground: '#1A1135',
 }

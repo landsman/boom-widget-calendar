@@ -31,7 +31,7 @@ function App({ organizerId, fixedLocale, features, customTheme }: PropTypes) {
                 themeConfig={widgetStyles}
             >
                 <LocaleProvider fixedLocale={fixedLocale}>
-                    <Layout>
+                    <Layout bodyBackground={customTheme?.bodyBackground}>
                         <Content />
                         <Footer />
                     </Layout>

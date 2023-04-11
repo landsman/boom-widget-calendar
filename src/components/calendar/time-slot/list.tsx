@@ -44,7 +44,4 @@ const Wrapper = styled.div`
   gap: 10px 10px; /* row-gap column gap */
   row-gap: 10px;
   column-gap: 10px;
-  
-  // debug
-  background: bisque;
 `;

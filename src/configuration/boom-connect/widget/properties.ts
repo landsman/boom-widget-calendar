@@ -14,6 +14,7 @@ export type BoomWidgetConfigThemeColors = Partial<MantineThemeColors>;
 
 export type BoomWidgetConfigThemeTypes = {
     colors: BoomWidgetConfigThemeColors;
+    bodyBackground?: string;
 };
 
 /**

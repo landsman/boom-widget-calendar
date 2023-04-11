@@ -6,12 +6,13 @@ import {breakpoints} from "@local/components/theme/breakpoints";
 
 type PropTypes = {
     children: React.ReactNode;
+    bodyBackground?: string;
 }
 
-export function Layout({ children }: PropTypes): JSX.Element {
+export function Layout({ children, bodyBackground }: PropTypes): JSX.Element {
     return (
         <Wrapper>
-            <GlobalStyle />
+            <GlobalStyle bodyBackground={bodyBackground} />
             <LocaleSwitcher />
             <Container>
                 {children}
@@ -30,7 +31,6 @@ const Wrapper = styled.div`
   // debug 
   padding-top: 30px;
   padding-bottom: 30px;
-  background: gray;
 `;
 
 const Container = styled.div`

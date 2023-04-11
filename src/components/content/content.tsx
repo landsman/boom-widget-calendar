@@ -33,8 +33,7 @@ const Grid = styled.div`
     display: flex;
   }
   
-  // debug
-  background: gray;
+  background: transparent;
 `;
 
 const Column = styled.div`
@@ -54,9 +53,6 @@ const Left = styled(Column)`
   @media (min-width: ${breakpoints.tablet}) {
     width: 40%;
   }
-  
-  // debug
-  background: red;
 `;
 
 const Right = styled(Column)`
@@ -66,7 +62,4 @@ const Right = styled(Column)`
   @media (min-width: ${breakpoints.tablet}) {
     width: 60%;
   }
-  
-  // debug
-  background: yellow;
 `;

@@ -6,7 +6,9 @@ type MangoCustomizedTheme = {
     borderRadius: {
         xs: number
         sm: number
-    }
+    };
+
+    bodyBackground?: string;
 }
 
 export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;

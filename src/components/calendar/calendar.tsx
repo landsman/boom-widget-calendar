@@ -71,6 +71,9 @@ export function Calendar({ themeConfig }: PropTypes) {
 
 // todo: use theme styles to calendar
 const Wrapper = styled.div<{ themeConfig: CustomizedThemeOverride }>`
+  width: 100%;
+  max-width: 90%;
+  
   // columns
   @media (max-width: ${breakpoints.tablet}) {
     width: 300px;
@@ -78,12 +81,35 @@ const Wrapper = styled.div<{ themeConfig: CustomizedThemeOverride }>`
     padding: 10px 0;
   }
   
-    // calendar styles overrides
-  .rdp-button_reset {
-    border-radius: 0;
+  // calendar styles overrides
+  .rdp {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 30px 30px;
+    background: ${(props) => props.theme.colors!.gray!['0']};
+    border-radius: 6px;
   }
+
+  .rdp-months {
+    margin: 0 auto;
+  }
+  
+  .rdp-caption_label {
+    color: ${(props) => props.theme.colors!.gray!['9']};
+  }
+  
+  .rdp-button_reset {
+    // todo: this is specific for client!
+    border-radius: 4px;
+  }
+  
+  .rdp-head_cell {
+    color: ${(props) => props.theme.colors!.gray!['4']};
+  }
+  
   .rdp-button {
-    
+    color: ${(props) => props.theme.colors!.gray!['4']};
   }
   
   .rdp-nav_button {
@@ -91,7 +117,26 @@ const Wrapper = styled.div<{ themeConfig: CustomizedThemeOverride }>`
     height: 36px;
     overflow: hidden;
     
-    border: 1px solid black;
+    // todo: specific for client!
+    background: #363053;
+
+    svg {
+      height: 10px;
+      width: auto;
+      
+      &> path {
+        fill: white;
+      }
+    }
+    
+    &:hover {
+      background: black;
+    }
+  }
+  
+  // todo: specic for client
+  .rdp-nav_icon {
+
   }
   
   .rdp-nav_button_previous {
