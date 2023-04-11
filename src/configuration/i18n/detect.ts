@@ -1,7 +1,7 @@
-import {detect, fromNavigator, fromStorage, fromUrl} from "@lingui/detect-locale";
+import {detect, fromNavigator, fromStorage, fromUrl, LocaleString} from "@lingui/detect-locale";
 import {defaultLocale} from "@local/configuration/i18n/default";
 
-export const detectLocaleResult = detect(
+export const detectLocaleResult: null | LocaleString = detect(
     fromUrl("lang"),
     fromStorage("lang"),
     fromNavigator(),

@@ -3,6 +3,7 @@ import {differenceInHours, format, parseISO} from "date-fns";
 import {t} from "@lingui/macro";
 import {useLingui} from "@lingui/react";
 import {useAppContext} from "@local/runtime";
+import {useLocaleContext} from "@local/configuration/i18n";
 
 type PropTypes = {
     id: string;
@@ -14,8 +15,9 @@ type PropTypes = {
 const wholeDay = 8;
 
 export function TimeSlot({ id, dateFrom, dateTo }: PropTypes): JSX.Element {
-    const { selectedEvent, setSelectedEvent, localeDataForCalendar } = useAppContext();
     const { i18n } = useLingui();
+    const { localeDataForCalendar } = useLocaleContext();
+    const { selectedEvent, setSelectedEvent } = useAppContext();
 
     const opts = {
         locale: localeDataForCalendar,

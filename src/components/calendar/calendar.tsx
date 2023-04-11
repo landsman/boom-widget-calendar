@@ -7,6 +7,7 @@ import 'react-day-picker/dist/style.css';
 import {useAppContext} from "@local/runtime";
 import {BoomWidgetConfigThemeTypes} from "@local/configuration/boom-connect";
 import {ListOfSlots} from "@local/components/calendar";
+import {useLocaleContext} from "@local/configuration/i18n";
 
 type PropTypes = {
     widgetTheme: BoomWidgetConfigThemeTypes;
@@ -14,7 +15,9 @@ type PropTypes = {
 
 export function Calendar({ widgetTheme }: PropTypes) {
     const { i18n } = useLingui();
-    const { localeDataForCalendar, features, events, date, setDate } = useAppContext();
+    const { localeDataForCalendar  } = useLocaleContext();
+    const { features, events, date, setDate } = useAppContext();
+
     const [showFooter, setShowFooter] = useState<boolean>(true);
 
     /** show skeleton until app context fetch locale data */
@@ -67,7 +70,7 @@ export function Calendar({ widgetTheme }: PropTypes) {
 
 const Wrapper = styled.div<{ widgetTheme: BoomWidgetConfigThemeTypes }>`
     
-    // calendar styles overides
+    // calendar styles overrides
   .rdp-button_reset {
     border-radius: 0;
   }

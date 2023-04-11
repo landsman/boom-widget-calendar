@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {GlobalStyle} from "@local/components/layout/theme";
+import {LocaleSwitcher} from "@local/components/layout/locale-switcher";
 
 type PropTypes = {
     children: React.ReactNode;
@@ -10,6 +11,7 @@ export function Layout({ children }: PropTypes): JSX.Element {
     return (
         <Wrapper>
             <GlobalStyle />
+            <LocaleSwitcher />
             <Container>
                 {children}
             </Container>

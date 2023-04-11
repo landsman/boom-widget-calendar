@@ -7,6 +7,7 @@ const defaultValues = {
     isProduction: false,
     features: featureDefaultValues,
     locale: defaultLocale,
+    changeLocale: (_l: string) => null,
     localeDataForCalendar: undefined,
     date: undefined,
     setDate: (_d: Date) => null,

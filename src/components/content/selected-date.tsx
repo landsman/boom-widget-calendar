@@ -4,10 +4,12 @@ import {useLingui} from "@lingui/react";
 import {t} from "@lingui/macro";
 import styled from "styled-components";
 import {useAppContext} from "@local/runtime";
+import {useLocaleContext} from "@local/configuration/i18n";
 
 export function SelectedDate(): JSX.Element {
-    const { localeDataForCalendar, date } = useAppContext();
     const { i18n } = useLingui();
+    const { localeDataForCalendar } = useLocaleContext();
+    const { date } = useAppContext();
 
     if (undefined === date) {
         return <div />;

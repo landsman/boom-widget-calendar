@@ -1,32 +1,22 @@
-import {ReactNode, useEffect, useState} from "react";
-import type {Locale} from "date-fns";
+import {ReactNode, useState} from "react";
 import {EventType} from "@local/api/view/events/types";
-import {AppLocale} from "@local/configuration/i18n";
 import {mockConfig} from "@local/configuration/boom-connect";
 import {FeatureTypes} from "@local/configuration/features";
 import {CurrentDateType} from "@local/utils";
-import {lazyLoadLocale} from "@local/components/calendar";
 import {flashMessageText} from "@local/components/flash-message";
 import {AppContext, ProviderResponseTypes, handleGetEvents} from "@local/runtime";
 
 type PropTypes = {
     children: ReactNode;
     currentDate: CurrentDateType;
-    locale: AppLocale;
     features: FeatureTypes;
     isProduction: boolean;
 }
 
-export function AppProvider({ children, currentDate, locale, features, isProduction }: PropTypes) {
-    const [localeDataForCalendar, setLocaleDataForCalendar] = useState<undefined | Locale>(undefined);
+export function AppProvider({ children, currentDate, features, isProduction }: PropTypes) {
     const [date, setDate] = useState<undefined | Date>(undefined);
     const [events, setEvents] = useState<undefined | EventType[]>(undefined);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
-
-    /** calendar localization */
-    useEffect(() => {
-        lazyLoadLocale(locale, setLocaleDataForCalendar);
-    }, [locale]);
 
     /** different init message for time slots */
     let defaultFlashMessage = flashMessageText.selectDate;
@@ -75,8 +65,6 @@ export function AppProvider({ children, currentDate, locale, features, isProduct
     const contextValue: ProviderResponseTypes = {
         isProduction,
         features,
-        locale,
-        localeDataForCalendar,
         date,
         setDate: handleSetDate,
         events,
