@@ -20,5 +20,5 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
-      - name: "Build Docker image"
+      - name: "Build and deploy"
         run: npm run deploy
