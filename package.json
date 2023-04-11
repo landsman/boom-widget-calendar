@@ -8,6 +8,7 @@
     "compile": "lingui compile",
     "start": "craco start",
     "build": "craco build",
+    "eslint": "eslint ./src/**/*",
     "test": "craco test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "craco eject",
     "prepare": "husky install",

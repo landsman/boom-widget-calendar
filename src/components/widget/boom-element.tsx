@@ -30,7 +30,7 @@ export function BoomWidgetElement({ organizerId, eventId, eventUrl, theme }: Boo
         loadBoomCss(isProduction);
         loadBoomScript(isProduction);
         setOldEventId(eventId);
-    }, []);
+    }, [eventId, isProduction]);
 
     /**
      * force to reload boom script, because there is no method for it
@@ -42,7 +42,7 @@ export function BoomWidgetElement({ organizerId, eventId, eventUrl, theme }: Boo
         if (eventId !== oldEventId) {
             resetBoomScript();
         }
-    }, [eventId])
+    }, [eventId, oldEventId])
 
     return (
         <>
