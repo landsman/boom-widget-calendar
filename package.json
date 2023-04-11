@@ -3,6 +3,11 @@
   "name": "boom-widget-calendar",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/landsman/boom-widget-calendar.git"
+  },
+  "author": "Michal Landsman",
   "scripts": {
     "extract": "lingui extract",
     "compile": "lingui compile",
