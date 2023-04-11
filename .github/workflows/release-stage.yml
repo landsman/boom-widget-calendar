@@ -13,12 +13,19 @@ jobs:
       id-token: write
       pull-requests: write
     steps:
-      - name: "Checkout"
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: "Set git commit short hash"
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
+      - name: 'Install dependencies'
+        run: npm install
+
       - name: "Build and deploy"
+        env:
+          REACT_APP_IS_PRODUCTION: false
         run: npm run deploy
