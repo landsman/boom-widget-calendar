@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import styled from "styled-components";
 import {loadBoomCss, loadBoomScript, resetBoomScript} from '@local/components/widget/boom-script';
 import {
-    BoomDataConfigProperty, BoomWidgetConfigThemeColors,
+    BoomDataConfigProperty, BoomWidgetConfigThemeColors, BoomWidgetConfigTypes,
     boomWidgetIds,
     windowBoomWidgetConfig
 } from "@local/configuration/boom-connect";
@@ -21,19 +21,14 @@ type PropTypes = {
 export function BoomWidgetElement({ eventId, eventUrl, theme }: PropTypes) {
     const { organizerId, isProduction } = useAppContext();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
-
-    const config = {
+    const [config] = useState<BoomWidgetConfigTypes>({
         organizerId: organizerId!,
         eventId: eventId,
         eventUrl: eventUrl,
         theme: {
             colors: theme.colors as BoomWidgetConfigThemeColors,
         },
-    }
-
-    // todo: force to show
-    windowBoomWidgetConfig.WIDGET_CONFIG_PREVIEW = {};
-    windowBoomWidgetConfig.WIDGET_CONFIG = config;
+    });
 
     useEffect(() => {
         loadBoomCss(isProduction);
@@ -45,13 +40,17 @@ export function BoomWidgetElement({ eventId, eventUrl, theme }: PropTypes) {
      * force to reload boom script, because there is no method for it
      */
     useEffect(() => {
+        // todo: force to show
+        windowBoomWidgetConfig.WIDGET_CONFIG_PREVIEW = {};
+        windowBoomWidgetConfig.WIDGET_CONFIG = config;
+
         if (undefined === oldEventId) {
             return;
         }
         if (eventId !== oldEventId) {
             resetBoomScript(config);
         }
-    }, [eventId, oldEventId])
+    }, [config, eventId, oldEventId])
 
     return (
         <>
