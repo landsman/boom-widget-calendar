@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/boom-widget-calendar/static/css/main.c91beb81.css",
-    "main.js": "/boom-widget-calendar/static/js/main.ad4b9820.js",
+    "main.js": "/boom-widget-calendar/static/js/main.bf31af59.js",
     "static/js/4312.9750707a.chunk.js": "/boom-widget-calendar/static/js/4312.9750707a.chunk.js",
     "static/js/6318.ad30462b.chunk.js": "/boom-widget-calendar/static/js/6318.ad30462b.chunk.js",
     "df-0.js": "/boom-widget-calendar/static/js/df-0.c501d738.chunk.js",
@@ -101,6 +101,6 @@
   },
   "entrypoints": [
     "static/css/main.c91beb81.css",
-    "static/js/main.ad4b9820.js"
+    "static/js/main.bf31af59.js"
   ]
 }
