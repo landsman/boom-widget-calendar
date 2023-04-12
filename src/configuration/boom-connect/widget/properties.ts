@@ -23,6 +23,7 @@ export type BoomWidgetConfigThemeTypes = {
 export enum BoomDataConfigProperty {
     WIDGET_CONFIG = 'WIDGET_CONFIG',
     WIDGET_CONFIG_PREVIEW = 'WIDGET_CONFIG_PREVIEW',
+    BOOM_WIDGET_CONFIG = 'BOOM_WIDGET_CONFIG',
 }
 
 /**
@@ -31,13 +32,15 @@ export enum BoomDataConfigProperty {
 type BoomWidgetConfigWindowFieldType = {
     [BoomDataConfigProperty.WIDGET_CONFIG]?: BoomWidgetConfigTypes;
     [BoomDataConfigProperty.WIDGET_CONFIG_PREVIEW]?: {};
-    placeSalesWidget?: (
-        containerElement: Element,
-        eventWidgetInternalId: number,
-        eventUrl: string,
-        eventId: string,
-        theme: BoomWidgetConfigThemeTypes
-    ) => void,
+    [BoomDataConfigProperty.BOOM_WIDGET_CONFIG]?: {
+        placeSalesWidget?: (
+            containerElement: Element,
+            eventWidgetInternalId: number,
+            eventUrl: string,
+            eventId: string,
+            theme: BoomWidgetConfigThemeTypes
+        ) => void,
+    }
 };
 
 /**

@@ -34,13 +34,13 @@ export function resetBoomScript(): void {
                 return;
             }
 
-            if (undefined === windowBoomWidgetConfig.placeSalesWidget) {
+            if (undefined === windowBoomWidgetConfig.BOOM_WIDGET_CONFIG?.placeSalesWidget) {
                 console.error("placeSalesWidget is not in window object!");
                 return;
             }
 
             const internalId = Math.random();
-            windowBoomWidgetConfig.placeSalesWidget(
+            windowBoomWidgetConfig.BOOM_WIDGET_CONFIG.placeSalesWidget(
                 containerElement,
                 internalId,
                 config.eventUrl,
