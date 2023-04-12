@@ -22,17 +22,18 @@ export function BoomWidgetElement({ eventId, eventUrl, theme }: PropTypes) {
     const { organizerId, isProduction } = useAppContext();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
 
-    // todo: force to show
-    windowBoomWidgetConfig.WIDGET_CONFIG_PREVIEW = {};
-
-    windowBoomWidgetConfig.WIDGET_CONFIG = {
+    const config = {
         organizerId: organizerId!,
         eventId: eventId,
         eventUrl: eventUrl,
         theme: {
             colors: theme.colors as BoomWidgetConfigThemeColors,
         },
-    };
+    }
+
+    // todo: force to show
+    windowBoomWidgetConfig.WIDGET_CONFIG_PREVIEW = {};
+    windowBoomWidgetConfig.WIDGET_CONFIG = config;
 
     useEffect(() => {
         loadBoomCss(isProduction);
@@ -48,7 +49,7 @@ export function BoomWidgetElement({ eventId, eventUrl, theme }: PropTypes) {
             return;
         }
         if (eventId !== oldEventId) {
-            resetBoomScript();
+            resetBoomScript(config);
         }
     }, [eventId, oldEventId])
 

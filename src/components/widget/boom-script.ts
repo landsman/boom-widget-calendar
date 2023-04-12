@@ -1,11 +1,35 @@
 import {
-    BoomDataConfigProperty, BoomWidgetConfigTypes,
+    BoomWidgetConfigTypes,
     boomWidgetIds,
     connectEndpoints,
     connectHost,
     windowBoomWidgetConfig
 } from "@local/configuration/boom-connect";
 
+/**
+ * there should not be more widgets than one on the page!
+ */
+function getWidget(): null | Element {
+    const elements = window.document.querySelectorAll(`.` + boomWidgetIds.widgetClass);
+
+    // good case scenario
+    if (elements.length === 1) {
+        return elements[0];
+    }
+
+    // more widget in page from some weird reason
+    if (elements.length > 1) {
+        console.error("We do not support more widget on the page!");
+        return null;
+    }
+
+    console.error("Missing widget element in the page!");
+    return null;
+}
+
+/**
+ * place external JS script to the page for iframe loading & communication
+ */
 export function loadBoomScript(production: boolean): void {
     const host = connectHost(production);
     const isExist = document.getElementById(boomWidgetIds.script);
@@ -20,39 +44,46 @@ export function loadBoomScript(production: boolean): void {
     }
 }
 
-export function resetBoomScript(): void {
+/**
+ * replace widget iframe on the page
+ */
+export function resetBoomScript(config: BoomWidgetConfigTypes): void {
     const isExist = document.getElementById(boomWidgetIds.script);
-    if (isExist) {
-        // replace iframe
-        const widgetsWrappers = window.document.querySelectorAll(`.` + boomWidgetIds.widgetClass);
-        widgetsWrappers.forEach((containerElement) => {
-
-            const config: undefined | BoomWidgetConfigTypes = windowBoomWidgetConfig[BoomDataConfigProperty.WIDGET_CONFIG];
-
-            if (undefined === config) {
-                console.log("config is missing!");
-                return;
-            }
-
-            if (undefined === windowBoomWidgetConfig.BOOM_WIDGET_CONFIG?.placeSalesWidget) {
-                console.error("placeSalesWidget is not in window object!");
-                return;
-            }
-
-            const internalId = Math.random();
-            windowBoomWidgetConfig.BOOM_WIDGET_CONFIG.placeSalesWidget(
-                containerElement,
-                internalId,
-                config.eventUrl,
-                config.eventId,
-                config.theme
-            );
-        });
-
-        //alert("Missing support for reload sales widget :( in JS API ... you have to reload the page");
+    if (!isExist) {
+        console.error("BOOM widget JS script not initialized");
+        return;
     }
+
+    const containerElement = getWidget();
+    if (!containerElement) {
+        alert("Problem occurred, please try it again.");
+        return;
+    }
+
+    if (undefined === config) {
+        console.log("config is missing!");
+        return;
+    }
+
+    if (undefined === windowBoomWidgetConfig.BOOM_WIDGET_CONFIG?.placeSalesWidget) {
+        console.error("placeSalesWidget is not in window object!");
+        return;
+    }
+
+    const internalId = Math.random();
+    windowBoomWidgetConfig.BOOM_WIDGET_CONFIG.placeSalesWidget(
+        containerElement,
+        internalId,
+        config.eventUrl,
+        config.eventId,
+        config.theme
+    );
+
 }
 
+/**
+ * place external CSS file to the page with styles for widget container
+ */
 export function loadBoomCss(production: boolean): void {
     const host = connectHost(production);
     const isExist = document.getElementById(boomWidgetIds.css);
