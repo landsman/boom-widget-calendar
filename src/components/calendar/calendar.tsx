@@ -90,8 +90,8 @@ const Wrapper = styled.div`
 
     // columns
     @media (max-width: ${breakpoints.tablet}) {
-      width: 50%;
-      max-width: 290px;
+      width: 290px;
+      max-width: 100%;
       margin: 0 auto;
       padding: 10px 0;
     }
