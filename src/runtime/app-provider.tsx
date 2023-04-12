@@ -22,6 +22,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
     const [selectedDate, setSelectedDate] = useState<undefined | Date>(undefined);
     const [selectedDateEvents, setSelectedDateEvents] = useState<undefined | EventType[]>(undefined);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
+    const [isWidgetLoading, setWidgetLoading] = useState<boolean>(true);
 
     /** different init message for time slots */
     let defaultFlashMessage = flashMessageText.selectDate;
@@ -90,6 +91,8 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
     const contextValue: ProviderResponseTypes = {
         organizerId,
         isProduction,
+        isWidgetLoading,
+        setWidgetLoading,
         features,
         occupiedDates,
         setSelectedMonth,

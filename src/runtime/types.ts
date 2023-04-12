@@ -5,6 +5,8 @@ import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTh
 export type ProviderResponseTypes = {
     isProduction: boolean;
     features: FeatureTypes;
+    isWidgetLoading: boolean;
+    setWidgetLoading: (state: boolean) => void;
     occupiedDates: undefined | Date[];
     setSelectedMonth: (month: Date) => void;
     selectedDate: undefined | Date,
