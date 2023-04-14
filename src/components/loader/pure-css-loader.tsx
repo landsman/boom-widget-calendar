@@ -1,14 +1,14 @@
 import styled, {css, keyframes} from "styled-components";
 
 type PropTypes = {
-    size: number;
+    size?: number;
 }
 
 /**
  * credits: https://loading.io/css/
  * transformed to styled-components via chatGTP
  */
-export function PureCssLoader({ size }: PropTypes): JSX.Element {
+export function PureCssLoader({ size = 80 }: PropTypes): JSX.Element {
     return (
         <Wrapper>
             <Spinner

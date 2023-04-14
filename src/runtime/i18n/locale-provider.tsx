@@ -38,7 +38,7 @@ export function LocaleProvider({ fixedLocale, children }: PropTypes) {
         console.debug("💬 forceLocale:", fixedLocale);
         const newValue = fixedLocale ? fixedLocale : detectLocaleResult;
         handleSwitchLocale(newValue, false);
-    }, [fixedLocale])
+    }, [fixedLocale]);
 
     const contextValue: LocaleResponseTypes = {
         locale,

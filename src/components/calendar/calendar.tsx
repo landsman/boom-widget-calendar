@@ -1,15 +1,13 @@
-import React, {useState} from 'react';
-import {useLingui} from "@lingui/react";
-import {t} from "@lingui/macro";
+import React, {useEffect, useState} from 'react';
 import {DayPicker} from 'react-day-picker';
 import {useAppContext} from "@local/runtime";
 import {useLocaleContext} from "@local/configuration/i18n";
 import {getFooter} from "@local/components/calendar/footer";
 import {isSameDay} from "date-fns";
 import {CalendarStyles} from "@local/components/calendar/calendar-styles";
+import {PureCssLoader} from "@local/components/loader/pure-css-loader";
 
 export function Calendar(): JSX.Element {
-    const { i18n } = useLingui();
     const {
         features,
         occupiedDates,
@@ -19,16 +17,17 @@ export function Calendar(): JSX.Element {
         selectedDateEvents,
         setIsLoading
     } = useAppContext();
-    const { localeDataForCalendar  } = useLocaleContext();
+    const { localeDataForCalendar } = useLocaleContext();
     const [showFooter, setShowFooter] = useState<boolean>(false);
     const [defaultMonth, setDefaultMonth] = useState<undefined | Date>(new Date());
 
-    /** show skeleton until app context fetch locale data */
-    if (undefined === localeDataForCalendar) {
-        return (
-            <div>{i18n._(t`loading`)}</div>
-        );
-    }
+    /** hide global splash screen */
+    useEffect(() => {
+        if (localeDataForCalendar) {
+            setIsLoading(false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     /** set date to app context */
     const handleSelected = (day: Date | undefined, selectedDay: Date) => {
@@ -48,17 +47,22 @@ export function Calendar(): JSX.Element {
     };
 
     const footer = getFooter(showFooter, features.allowTimeSlots, selectedDateEvents);
-    const disabled = occupiedDates || [];
 
-    /** hide global splash screen */
-    setIsLoading(false);
+    /** show skeleton until app context fetch locale data */
+    if (undefined === localeDataForCalendar || undefined === occupiedDates) {
+        return (
+            <CalendarStyles>
+                <PureCssLoader />
+            </CalendarStyles>
+        );
+    }
 
     return (
         <CalendarStyles>
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
-                disabled={(date: Date) => !disabled.some((d) => isSameDay(d, date))}
+                disabled={(date: Date) => !occupiedDates.some((d) => isSameDay(d, date))}
                 selected={selectedDate}
                 onSelect={handleSelected}
                 onMonthChange={handleOnMonthChange}
