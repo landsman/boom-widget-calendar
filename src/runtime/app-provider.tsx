@@ -1,4 +1,5 @@
 import {ReactNode, useEffect, useState} from "react";
+import {useLingui} from "@lingui/react";
 import {EventType} from "@local/api/view/events/types";
 import {FeatureTypes} from "@local/configuration/features";
 import {CurrentDateType} from "@local/utils";
@@ -18,6 +19,8 @@ type PropTypes = {
 };
 
 export function AppProvider({ organizerId, features, children, currentDate, isProduction, themeConfig }: PropTypes) {
+    const { i18n } = useLingui();
+
     const init = appProviderDefaultValues;
     const [isLoading, setIsLoading] = useState<boolean>(init.isLoading);
     const [occupiedDates, setOccupiedDates] = useState<undefined | Date[]>(init.occupiedDates);
@@ -36,7 +39,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
     const [flashMessage, setFlashMessage] = useState<undefined | string>(defaultFlashMessage);
 
     const handleGetEventsForCurrentMonth = async (newMonthSelected: Date) => {
-        const result = await getOccupiedDates(organizerId, newMonthSelected);
+        const result = await getOccupiedDates(i18n, organizerId, newMonthSelected);
         setOccupiedDates(result);
     };
 
@@ -58,7 +61,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         setSelectedEvent(undefined);
         setSelectedDate(newDateSelected);
 
-        const apiEvents = await oneDayRangeEvents(organizerId, newDateSelected || currentDate.date);
+        const apiEvents = await oneDayRangeEvents(i18n, organizerId, newDateSelected || currentDate.date);
 
         if (0 === apiEvents.length) {
             setFlashMessage(flashMessageText.noEvents);

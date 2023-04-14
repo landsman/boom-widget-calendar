@@ -33,24 +33,24 @@ function App({ organizerId, fixedLocale, features, customTheme }: PropTypes) {
 
     return (
         <CustomThemeProvider customTheme={widgetStyles}>
-            <AppProvider
-                features={features}
-                currentDate={getCurrentDate()}
-                isProduction={prod}
-                organizerId={organizerId}
-                themeConfig={widgetStyles}
-            >
-                <SplashScreen />
-                <LocaleProvider fixedLocale={fixedLocale}>
-                    <Layout
-                        bodyBackground={customTheme?.bodyBackground}
-                        selectedDayColor={customTheme?.selectedDayColor}
-                    >
-                        <Content />
-                        <Footer />
-                    </Layout>
-                </LocaleProvider>
-            </AppProvider>
+            <LocaleProvider fixedLocale={fixedLocale}>
+                <AppProvider
+                    features={features}
+                    currentDate={getCurrentDate()}
+                    isProduction={prod}
+                    organizerId={organizerId}
+                    themeConfig={widgetStyles}
+                >
+                    <SplashScreen />
+                        <Layout
+                            bodyBackground={customTheme?.bodyBackground}
+                            selectedDayColor={customTheme?.selectedDayColor}
+                        >
+                            <Content />
+                            <Footer />
+                        </Layout>
+                </AppProvider>
+            </LocaleProvider>
         </CustomThemeProvider>
     );
 }
