@@ -17,13 +17,13 @@ type PropTypes = {
 }
 
 export function AppProvider({ organizerId, features, children, currentDate, isProduction, themeConfig }: PropTypes) {
-    const [date, setDate] = useState<undefined | Date>(undefined);
+    const [selectedDate, setSelectedDate] = useState<undefined | Date>(undefined);
     const [events, setEvents] = useState<undefined | EventType[]>(undefined);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
 
     /** different init message for time slots */
     let defaultFlashMessage = flashMessageText.selectDate;
-    if (features?.allowTimeSlots && undefined === date) {
+    if (features?.allowTimeSlots && undefined === selectedDate) {
         defaultFlashMessage = flashMessageText.selectDateAndTime;
     }
 
@@ -36,7 +36,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         setFlashMessage(undefined);
         setEvents(undefined);
         setSelectedEvent(undefined);
-        setDate(newDateSelected);
+        setSelectedDate(newDateSelected);
 
         const apiEvents = await handleGetEvents(
             mockConfig.organizerId,
@@ -78,8 +78,8 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         organizerId,
         isProduction,
         features,
-        date,
-        setDate: handleSetDate,
+        selectedDate,
+        setSelectedDate: handleSetDate,
         events,
         setSelectedEvent: handleSetSelectedEvent,
         selectedEvent,

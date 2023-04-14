@@ -12,7 +12,7 @@ import {breakpoints} from "@local/components/theme/breakpoints";
 export function Calendar(): JSX.Element {
     const { i18n } = useLingui();
     const { localeDataForCalendar  } = useLocaleContext();
-    const { features, events, date, setDate } = useAppContext();
+    const { features, events, selectedDate, setSelectedDate } = useAppContext();
 
     const [showFooter, setShowFooter] = useState<boolean>(true);
 
@@ -36,13 +36,13 @@ export function Calendar(): JSX.Element {
 
     /** set date to app context */
     const handleSelected = (day: Date | undefined, selectedDay: Date) => {
-        setDate(selectedDay!);
+        setSelectedDate(selectedDay!);
         setShowFooter(true);
     };
 
     /** hide footer when change month */
     const handleOnMonthChange = (month: Date) => {
-        if (date?.getMonth() === month.getMonth()) {
+        if (selectedDate?.getMonth() === month.getMonth()) {
             setShowFooter(true);
         } else {
             setShowFooter(false);
@@ -54,7 +54,7 @@ export function Calendar(): JSX.Element {
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
-                selected={date}
+                selected={selectedDate}
                 onSelect={handleSelected}
                 onMonthChange={handleOnMonthChange}
                 footer={footer()}

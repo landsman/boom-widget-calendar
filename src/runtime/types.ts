@@ -5,8 +5,8 @@ import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTh
 export type ProviderResponseTypes = {
     isProduction: boolean,
     features: undefined | FeatureTypes,
-    date: undefined | Date,
-    setDate: (newDate: Date) => void;
+    selectedDate: undefined | Date,
+    setSelectedDate: (newDate: Date) => void;
     events: undefined | EventType[];
     setSelectedEvent: (eventId: string) => void;
     selectedEvent: undefined | EventType;

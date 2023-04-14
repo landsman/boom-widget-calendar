@@ -10,13 +10,13 @@ import {breakpoints} from "@local/components/theme/breakpoints";
 export function SelectedDate(): JSX.Element {
     const { i18n } = useLingui();
     const { localeDataForCalendar } = useLocaleContext();
-    const { date } = useAppContext();
+    const { selectedDate } = useAppContext();
 
-    if (undefined === date) {
+    if (undefined === selectedDate) {
         return <div />;
     }
 
-    const formattedDate = format(date, 'PP', {
+    const formattedDate = format(selectedDate, 'PP', {
         locale: localeDataForCalendar,
     });
 
