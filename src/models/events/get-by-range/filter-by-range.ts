@@ -9,6 +9,7 @@ export async function filterByRange(organizerId: string, dateRange: DateRange): 
             organizerId,
             fromDate: dateRange.from,
             toDate: dateRange.to,
+            sort: 'desc',
         });
         if (api) {
             response = api.page;

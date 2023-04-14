@@ -5,7 +5,7 @@ import {CurrentDateType} from "@local/utils";
 import {flashMessageText} from "@local/components/flash-message";
 import {AppContext, ProviderResponseTypes} from "@local/runtime";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
-import {getOneMonthRangeEvents, oneDayRangeEvents} from "@local/models";
+import {getNotOccupiedDates, oneDayRangeEvents} from "@local/models";
 
 type PropTypes = {
     children: ReactNode;
@@ -17,7 +17,8 @@ type PropTypes = {
 }
 
 export function AppProvider({ organizerId, features, children, currentDate, isProduction, themeConfig }: PropTypes) {
-    const [availableDates, setAvailableDates] = useState<undefined | Date[]>(undefined);
+    const [notOccupiedDays, setNotOccupiedDays] = useState<undefined | Date[]>(undefined);
+    const [selectedMonth, setSelectedMonth] = useState<Date>(currentDate.date);
     const [selectedDate, setSelectedDate] = useState<undefined | Date>(undefined);
     const [selectedDateEvents, setSelectedDateEvents] = useState<undefined | EventType[]>(undefined);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
@@ -30,16 +31,16 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
 
     const [flashMessage, setFlashMessage] = useState<undefined | string>(defaultFlashMessage);
 
-    const handleGetEventsForCurrentMonth = async (newMonthSelected: undefined | Date) => {
-        const month = await getOneMonthRangeEvents(organizerId, newMonthSelected || currentDate.date);
-
-
-        console.log(month);
-    }
+    const handleGetEventsForCurrentMonth = async (newMonthSelected: Date) => {
+        const result = await getNotOccupiedDates(organizerId, newMonthSelected);
+        setNotOccupiedDays(result);
+    };
 
     useEffect(() => {
-        handleGetEventsForCurrentMonth(undefined);
-    }, [])
+        setNotOccupiedDays(undefined);
+        handleGetEventsForCurrentMonth(selectedMonth);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedMonth]);
 
     /**
      * user clicked to the specific date in the calendar
@@ -87,6 +88,8 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         organizerId,
         isProduction,
         features,
+        notOccupiedDays,
+        setSelectedMonth,
         selectedDate,
         setSelectedDate: handleSetDate,
         selectedDateEvents,

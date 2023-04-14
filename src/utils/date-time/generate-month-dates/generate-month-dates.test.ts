@@ -1,8 +1,8 @@
-import {generateDaysArray} from "@local/utils/date-time/days-array/days-array";
+import {generateMonthDates} from "@local/utils/date-time/generate-month-dates/generate-month-dates";
 
 describe('generateDaysArray', () => {
     it('should return an array of Date objects for January', () => {
-        const result = generateDaysArray(1); // January
+        const result = generateMonthDates(1); // January
 
         expect(result).toBeInstanceOf(Array);
         expect(result).toHaveLength(31);
@@ -14,7 +14,7 @@ describe('generateDaysArray', () => {
     });
 
     it('should return an array of Date objects for February in a non-leap year', () => {
-        const result = generateDaysArray(2); // February (assuming current year is not a leap year)
+        const result = generateMonthDates(2); // February (assuming current year is not a leap year)
 
         expect(result).toBeInstanceOf(Array);
         expect(result).toHaveLength(28);
@@ -26,7 +26,7 @@ describe('generateDaysArray', () => {
     });
 
     it('should return an array of Date objects for April', () => {
-        const result = generateDaysArray(4); // April
+        const result = generateMonthDates(4); // April
 
         expect(result).toBeInstanceOf(Array);
         expect(result).toHaveLength(30);

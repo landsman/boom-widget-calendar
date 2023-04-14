@@ -11,9 +11,15 @@ import {breakpoints} from "@local/components/theme/breakpoints";
 
 export function Calendar(): JSX.Element {
     const { i18n } = useLingui();
+    const {
+        features,
+        notOccupiedDays,
+        setSelectedMonth,
+        selectedDate,
+        setSelectedDate,
+        selectedDateEvents
+    } = useAppContext();
     const { localeDataForCalendar  } = useLocaleContext();
-    const { features, selectedDateEvents, selectedDate, setSelectedDate } = useAppContext();
-
     const [showFooter, setShowFooter] = useState<boolean>(true);
 
     /** show skeleton until app context fetch locale data */
@@ -42,6 +48,7 @@ export function Calendar(): JSX.Element {
 
     /** hide footer when change month */
     const handleOnMonthChange = (month: Date) => {
+        setSelectedMonth(month);
         if (selectedDate?.getMonth() === month.getMonth()) {
             setShowFooter(true);
         } else {
@@ -49,19 +56,14 @@ export function Calendar(): JSX.Element {
         }
     };
 
-    // todo: change when month has changed
-    const disabledDays = [
-        new Date(2022, 5, 10),
-        new Date(2022, 5, 12),
-        new Date(2022, 5, 20),
-    ]
+    // todo: show loader when setNotOccupiedDays is undefined....
 
     return (
         <Wrapper>
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
-                disabled={disabledDays}
+                disabled={notOccupiedDays}
                 selected={selectedDate}
                 onSelect={handleSelected}
                 onMonthChange={handleOnMonthChange}

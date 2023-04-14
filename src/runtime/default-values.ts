@@ -5,6 +5,8 @@ import {mangoTheme} from "@local/components/theme/lib-mango/MangoTheme";
 export const appProviderDefaultValues: ProviderResponseTypes = {
     isProduction: false,
     features: featureDefaultValues,
+    notOccupiedDays: undefined,
+    setSelectedMonth: (_m: Date) => null,
     selectedDate: undefined,
     setSelectedDate: (_d: Date) => null,
     selectedDateEvents: undefined,

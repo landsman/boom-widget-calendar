@@ -1,4 +1,4 @@
-import {excludeMultiDayEvent} from "@local/models/events/exclude-multi-day-event/exclude-multi-day-event";
+import {excludeMultiDayEvent} from "@local/models/events/occupied-dates/exclude-multi-day-event";
 import {mockWithMultiDayEvents} from "@local/mocks";
 
 describe('excludeMultiDayEvent', () => {

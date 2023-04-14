@@ -1,7 +1,7 @@
 import {EventType} from "@local/api/view/events/types";
 import {filterByRange} from "@local/models/events/get-by-range/filter-by-range";
 import {getOneMonthRange} from "@local/utils";
-import {excludeMultiDayEvent} from "@local/models/events/exclude-multi-day-event/exclude-multi-day-event";
+import {excludeMultiDayEvent} from "@local/models/events/occupied-dates/exclude-multi-day-event";
 
 export async function getOneMonthRangeEvents(organizerId: string, date: undefined | Date): Promise<EventType[]> {
     if (undefined === date) {
