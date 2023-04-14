@@ -1,1 +1,1 @@
-export * from "./get-not-occupied-dates";
+export * from "./get-occupied-dates";
