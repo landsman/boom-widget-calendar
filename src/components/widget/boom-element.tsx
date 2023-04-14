@@ -8,6 +8,7 @@ import {
     buildBoomWidgetIframeUrl,
 } from "@local/configuration/boom-connect";
 import {useAppContext} from "@local/runtime";
+import {PureCssLoader} from "@local/components/loader/pure-css-loader";
 
 export function BoomWidgetElement() {
     const {
@@ -61,7 +62,9 @@ export function BoomWidgetElement() {
 
     return (
         <Wrapper>
-            <Loader visible={isWidgetLoading} />
+            <Loader visible={isWidgetLoading}>
+                <PureCssLoader size={80} />
+            </Loader>
             {/*<!-- BOOM Events Widget -->*/}
             <SalesWidget
                 visible={!isWidgetLoading}
@@ -76,11 +79,13 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-// todo
 const Loader = styled.div<{ visible: boolean }>`
   width: 100%;
-  height: 50px;
-  background: red;
+  height: 110px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+  background: transparent;
   display: none;
   
   ${({ visible }) => visible && css`
