@@ -1,8 +1,8 @@
 import {EventType} from "@local/api/view/events/types";
 
 function filterCallback(event: EventType): boolean {
-    const dateFromDay = event.dateFrom.getDate();
-    const dateToDay = event.dateTo.getDate();
+    const dateFromDay = new Date(event.dateFrom).getDate();
+    const dateToDay = new Date(event.dateTo).getDate();
     return dateFromDay === dateToDay;
 }
 

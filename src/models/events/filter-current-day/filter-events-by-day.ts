@@ -13,7 +13,8 @@ export function filterEventsByDay(
         return [];
     }
     return events.filter((event: EventType) => {
-        const eventDay = new Date(event.dateFrom.getFullYear(), event.dateFrom.getMonth(), event.dateFrom.getDate());
+        const dateFrom = new Date(event.dateFrom);
+        const eventDay = new Date(dateFrom.getFullYear(), dateFrom.getMonth(), dateFrom.getDate());
         return eventDay.getTime() === targetDate.getTime();
     });
 }

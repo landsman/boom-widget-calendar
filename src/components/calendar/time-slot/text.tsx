@@ -4,8 +4,8 @@ import {useLingui} from "@lingui/react";
 import {useLocaleContext} from "@local/configuration/i18n";
 
 type PropTypes = {
-    dateFrom: Date;
-    dateTo: Date;
+    dateFrom: string;
+    dateTo: string;
     wholeDay?: number;
 }
 
