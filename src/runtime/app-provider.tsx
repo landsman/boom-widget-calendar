@@ -4,8 +4,9 @@ import {mockConfig} from "@local/configuration/boom-connect";
 import {FeatureTypes} from "@local/configuration/features";
 import {CurrentDateType} from "@local/utils";
 import {flashMessageText} from "@local/components/flash-message";
-import {AppContext, ProviderResponseTypes, handleGetEvents} from "@local/runtime";
+import {AppContext, ProviderResponseTypes} from "@local/runtime";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {handleGetEvents} from "@local/models";
 
 type PropTypes = {
     children: ReactNode;
@@ -17,6 +18,7 @@ type PropTypes = {
 }
 
 export function AppProvider({ organizerId, features, children, currentDate, isProduction, themeConfig }: PropTypes) {
+    const [availableDates, setAvailableDates] = useState<undefined | Date[]>(undefined);
     const [selectedDate, setSelectedDate] = useState<undefined | Date>(undefined);
     const [selectedDateEvents, setSelectedDateEvents] = useState<undefined | EventType[]>(undefined);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
@@ -28,6 +30,10 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
     }
 
     const [flashMessage, setFlashMessage] = useState<undefined | string>(defaultFlashMessage);
+
+    const handleGetEventsForCurrentMonth = () => {
+
+    }
 
     /**
      * user clicked to the specific date in the calendar
