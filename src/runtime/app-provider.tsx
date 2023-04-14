@@ -18,7 +18,7 @@ type PropTypes = {
 
 export function AppProvider({ organizerId, features, children, currentDate, isProduction, themeConfig }: PropTypes) {
     const [selectedDate, setSelectedDate] = useState<undefined | Date>(undefined);
-    const [events, setEvents] = useState<undefined | EventType[]>(undefined);
+    const [selectedDateEvents, setSelectedDateEvents] = useState<undefined | EventType[]>(undefined);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
 
     /** different init message for time slots */
@@ -34,7 +34,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
      */
     const handleSetDate = async (newDateSelected: Date) => {
         setFlashMessage(undefined);
-        setEvents(undefined);
+        setSelectedDateEvents(undefined);
         setSelectedEvent(undefined);
         setSelectedDate(newDateSelected);
 
@@ -49,7 +49,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         }
 
         if (features?.allowTimeSlots) {
-            setEvents(apiEvents);
+            setSelectedDateEvents(apiEvents);
             setFlashMessage(flashMessageText.selectTime);
         } else {
             setFlashMessage(undefined);
@@ -61,7 +61,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
      * user clicked to specific event in the calendar (time slot)
      */
     const handleSetSelectedEvent = async (eventId: string) => {
-        const result = events?.filter((i) => i.id === eventId).shift();
+        const result = selectedDateEvents?.filter((i) => i.id === eventId).shift();
         setSelectedEvent(result);
     }
 
@@ -80,7 +80,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         features,
         selectedDate,
         setSelectedDate: handleSetDate,
-        events,
+        selectedDateEvents,
         setSelectedEvent: handleSetSelectedEvent,
         selectedEvent,
         flashMessage,

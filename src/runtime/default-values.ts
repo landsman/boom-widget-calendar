@@ -7,7 +7,7 @@ export const appProviderDefaultValues: ProviderResponseTypes = {
     features: featureDefaultValues,
     selectedDate: undefined,
     setSelectedDate: (_d: Date) => null,
-    events: undefined,
+    selectedDateEvents: undefined,
     setSelectedEvent: (_id: string) => null,
     selectedEvent: undefined,
     flashMessage: undefined,

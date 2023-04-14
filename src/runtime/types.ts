@@ -7,7 +7,7 @@ export type ProviderResponseTypes = {
     features: undefined | FeatureTypes,
     selectedDate: undefined | Date,
     setSelectedDate: (newDate: Date) => void;
-    events: undefined | EventType[];
+    selectedDateEvents: undefined | EventType[];
     setSelectedEvent: (eventId: string) => void;
     selectedEvent: undefined | EventType;
     flashMessage: undefined | string;

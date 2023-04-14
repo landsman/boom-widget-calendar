@@ -12,7 +12,7 @@ import {breakpoints} from "@local/components/theme/breakpoints";
 export function Calendar(): JSX.Element {
     const { i18n } = useLingui();
     const { localeDataForCalendar  } = useLocaleContext();
-    const { features, events, selectedDate, setSelectedDate } = useAppContext();
+    const { features, selectedDateEvents, selectedDate, setSelectedDate } = useAppContext();
 
     const [showFooter, setShowFooter] = useState<boolean>(true);
 
@@ -27,9 +27,9 @@ export function Calendar(): JSX.Element {
      * place under calendar with time slots
      */
     const footer = () => {
-        const anyEvents = undefined !== events && events?.length > 0;
+        const anyEvents = undefined !== selectedDateEvents && selectedDateEvents?.length > 0;
         if (showFooter && features?.allowTimeSlots && anyEvents) {
-            return <ListOfSlots events={events} />;
+            return <ListOfSlots events={selectedDateEvents} />;
         }
         return <span />;
     };
