@@ -7,8 +7,8 @@ import 'react-day-picker/dist/style.css';
 import {useAppContext} from "@local/runtime";
 import {useLocaleContext} from "@local/configuration/i18n";
 import {breakpoints} from "@local/components/theme/breakpoints";
+import {getOccupied} from "@local/components/calendar/occupied";
 import {getFooter} from "@local/components/calendar/footer";
-import {isSameDay} from "date-fns";
 
 export function Calendar(): JSX.Element {
     const { i18n } = useLingui();
@@ -48,7 +48,7 @@ export function Calendar(): JSX.Element {
         }
     };
 
-    const disabled = notOccupiedDays || [];
+    const disabled = getOccupied(notOccupiedDays);
     const footer = getFooter(showFooter, features.allowTimeSlots, selectedDateEvents);
 
     return (
@@ -56,7 +56,7 @@ export function Calendar(): JSX.Element {
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
-                disabled={(date: Date) => disabled.some((d) => isSameDay(d, date))}
+                disabled={disabled}
                 selected={selectedDate}
                 onSelect={handleSelected}
                 onMonthChange={handleOnMonthChange}
