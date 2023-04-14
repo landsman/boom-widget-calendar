@@ -40,7 +40,10 @@ function App({ organizerId, fixedLocale, features, customTheme }: PropTypes) {
                 themeConfig={widgetStyles}
             >
                 <LocaleProvider fixedLocale={fixedLocale}>
-                    <Layout bodyBackground={customTheme?.bodyBackground}>
+                    <Layout
+                        bodyBackground={customTheme?.bodyBackground}
+                        selectedDayColor={customTheme?.selectedDayColor}
+                    >
                         <Content />
                         <Footer />
                     </Layout>

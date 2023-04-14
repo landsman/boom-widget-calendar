@@ -13,9 +13,13 @@ export type BoomWidgetConfigDTO = {
  */
 export type BoomWidgetConfigThemeColors = Partial<MantineThemeColors>;
 
+/**
+ * todo: compare it with: MangoCustomizedTheme
+ */
 export type BoomWidgetConfigThemeTypes = {
     colors: BoomWidgetConfigThemeColors;
     bodyBackground?: string;
+    selectedDayColor?: string;
 };
 
 /**

@@ -39,4 +39,5 @@ const mockColors: BoomWidgetConfigThemeColors = {
 export const mockThemeKvantario: BoomWidgetConfigThemeTypes = {
     colors: mockColors,
     bodyBackground: '#1A1135',
+    selectedDayColor: '#D527D7',
 }
