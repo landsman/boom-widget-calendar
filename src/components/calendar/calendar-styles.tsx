@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   }
   
   // calendar styles overrides
-  .rdp {
+  &> div, .rdp {
     width: 100%;
     max-width: 100%;
     padding: 30px 30px;

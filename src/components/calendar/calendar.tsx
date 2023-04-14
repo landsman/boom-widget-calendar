@@ -6,6 +6,7 @@ import {getFooter} from "@local/components/calendar/footer";
 import {isSameDay} from "date-fns";
 import {CalendarStyles} from "@local/components/calendar/calendar-styles";
 import {PureCssLoader} from "@local/components/loader/pure-css-loader";
+import {CalendarSkeleton} from "@local/components/calendar/calendar-skeleton";
 
 export function Calendar(): JSX.Element {
     const {
@@ -51,9 +52,7 @@ export function Calendar(): JSX.Element {
     /** show skeleton until app context fetch locale data */
     if (undefined === localeDataForCalendar || undefined === occupiedDates) {
         return (
-            <CalendarStyles>
-                <PureCssLoader />
-            </CalendarStyles>
+            <CalendarSkeleton />
         );
     }
 

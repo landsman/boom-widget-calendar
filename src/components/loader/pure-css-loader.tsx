@@ -25,8 +25,20 @@ export function PureCssLoader({ size = 80 }: PropTypes): JSX.Element {
     );
 }
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 const Wrapper = styled.div`
   position: relative;
+  width: 100%;
+  text-align: center;
+  animation: ${fadeIn} 1.5s;
 `;
 
 const ldsSpinner = keyframes`
