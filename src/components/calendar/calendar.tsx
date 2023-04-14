@@ -5,7 +5,6 @@ import {useLocaleContext} from "@local/configuration/i18n";
 import {getFooter} from "@local/components/calendar/footer";
 import {isSameDay} from "date-fns";
 import {CalendarStyles} from "@local/components/calendar/calendar-styles";
-import {PureCssLoader} from "@local/components/loader/pure-css-loader";
 import {CalendarSkeleton} from "@local/components/calendar/calendar-skeleton";
 
 export function Calendar(): JSX.Element {

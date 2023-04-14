@@ -9,7 +9,6 @@ import {
 } from "@local/configuration/i18n";
 import {LocaleContext, LocaleResponseTypes} from "@local/configuration/i18n/context";
 import {changeLocale} from "@local/runtime/i18n/change-locale";
-import {SplashScreen} from "@local/components/loader/splash-screen";
 
 type PropTypes = {
     fixedLocale: undefined | AppLocale;
