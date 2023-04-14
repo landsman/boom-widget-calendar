@@ -20,7 +20,7 @@ msgid "footer.created_by"
 msgstr "Created by"
 
 msgid "loading"
-msgstr "Loading"
+msgstr "Loading..."
 
 msgid "select_date"
 msgstr "Choose the date of your visit"

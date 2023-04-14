@@ -19,7 +19,7 @@ export function Calendar(): JSX.Element {
         selectedDateEvents
     } = useAppContext();
     const { localeDataForCalendar  } = useLocaleContext();
-    const [showFooter, setShowFooter] = useState<boolean>(true);
+    const [showFooter, setShowFooter] = useState<boolean>(false);
     const [defaultMonth, setDefaultMonth] = useState<undefined | Date>(new Date());
 
     /** show skeleton until app context fetch locale data */

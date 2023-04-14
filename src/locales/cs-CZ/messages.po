@@ -20,7 +20,7 @@ msgid "footer.created_by"
 msgstr "Pohání"
 
 msgid "loading"
-msgstr "Načítání"
+msgstr "Načítání..."
 
 msgid "select_date"
 msgstr "Vyberte si datum své návštěvy"

@@ -1,0 +1,2 @@
+export { TimeSlot } from "./slot";
+
