@@ -10,7 +10,7 @@ import {getNotOccupiedDates, oneDayRangeEvents} from "@local/models";
 type PropTypes = {
     children: ReactNode;
     organizerId: string;
-    features?: undefined | FeatureTypes;
+    features: FeatureTypes;
     currentDate: CurrentDateType;
     isProduction: boolean;
     themeConfig: CustomizedThemeOverride;

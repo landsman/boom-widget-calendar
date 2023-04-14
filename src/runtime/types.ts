@@ -4,7 +4,7 @@ import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTh
 
 export type ProviderResponseTypes = {
     isProduction: boolean;
-    features: undefined | FeatureTypes;
+    features: FeatureTypes;
     notOccupiedDays: undefined | Date[];
     setSelectedMonth: (month: Date) => void;
     selectedDate: undefined | Date,

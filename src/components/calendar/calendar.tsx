@@ -5,10 +5,10 @@ import {t} from "@lingui/macro";
 import {DayPicker} from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import {useAppContext} from "@local/runtime";
-import {ListOfSlots} from "@local/components/calendar";
 import {useLocaleContext} from "@local/configuration/i18n";
 import {breakpoints} from "@local/components/theme/breakpoints";
 import {getOccupied} from "@local/components/calendar/occupied";
+import {getFooter} from "@local/components/calendar/footer";
 
 export function Calendar(): JSX.Element {
     const { i18n } = useLingui();
@@ -27,20 +27,9 @@ export function Calendar(): JSX.Element {
     /** show skeleton until app context fetch locale data */
     if (undefined === localeDataForCalendar) {
         return (
-            <div>{i18n._(t`loading`)}</div>
+            <div>{i18n._(t`loading`)}...</div>
         );
     }
-
-    /**
-     * place under calendar with time slots
-     */
-    const footer = () => {
-        const anyEvents = undefined !== selectedDateEvents && selectedDateEvents?.length > 0;
-        if (showFooter && features?.allowTimeSlots && anyEvents) {
-            return <ListOfSlots events={selectedDateEvents} />;
-        }
-        return <span />;
-    };
 
     /** set date to app context */
     const handleSelected = (day: Date | undefined, selectedDay: Date) => {
@@ -60,6 +49,7 @@ export function Calendar(): JSX.Element {
     };
 
     const disabled = getOccupied(notOccupiedDays);
+    const footer = getFooter(showFooter, features.allowTimeSlots, selectedDateEvents);
 
     return (
         <Wrapper>
@@ -71,7 +61,7 @@ export function Calendar(): JSX.Element {
                 onSelect={handleSelected}
                 onMonthChange={handleOnMonthChange}
                 defaultMonth={defaultMonth}
-                footer={footer()}
+                footer={footer}
                 showOutsideDays
             />
         </Wrapper>

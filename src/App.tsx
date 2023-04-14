@@ -11,7 +11,7 @@ import {FeatureTypes} from "@local/configuration/features";
 
 type PropTypes = {
     fixedLocale?: undefined | AppLocale;
-    features?: undefined | FeatureTypes;
+    features: FeatureTypes;
     organizerId: string;
     customTheme?: undefined | CustomizedThemeOverride;
 };
