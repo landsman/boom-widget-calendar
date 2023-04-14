@@ -33,10 +33,17 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
 
     const handleGetEventsForCurrentMonth = async (newMonthSelected: Date) => {
         const result = await getNotOccupiedDates(organizerId, newMonthSelected);
+        console.log("getNotOccupiedDates", result);
+
         setNotOccupiedDays(result);
     };
 
+    /**
+     * todo: make it pretty
+     */
     useEffect(() => {
+        console.log("change month triggered!")
+
         setNotOccupiedDays(undefined);
         handleGetEventsForCurrentMonth(selectedMonth);
         // eslint-disable-next-line react-hooks/exhaustive-deps

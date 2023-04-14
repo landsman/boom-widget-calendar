@@ -8,6 +8,7 @@ import {useAppContext} from "@local/runtime";
 import {ListOfSlots} from "@local/components/calendar";
 import {useLocaleContext} from "@local/configuration/i18n";
 import {breakpoints} from "@local/components/theme/breakpoints";
+import {getOccupied} from "@local/components/calendar/occupied";
 
 export function Calendar(): JSX.Element {
     const { i18n } = useLingui();
@@ -21,6 +22,7 @@ export function Calendar(): JSX.Element {
     } = useAppContext();
     const { localeDataForCalendar  } = useLocaleContext();
     const [showFooter, setShowFooter] = useState<boolean>(true);
+    const [defaultMonth, setDefaultMonth] = useState<undefined | Date>(new Date());
 
     /** show skeleton until app context fetch locale data */
     if (undefined === localeDataForCalendar) {
@@ -48,6 +50,7 @@ export function Calendar(): JSX.Element {
 
     /** hide footer when change month */
     const handleOnMonthChange = (month: Date) => {
+        setDefaultMonth(month);
         setSelectedMonth(month);
         if (selectedDate?.getMonth() === month.getMonth()) {
             setShowFooter(true);
@@ -56,17 +59,18 @@ export function Calendar(): JSX.Element {
         }
     };
 
-    // todo: show loader when setNotOccupiedDays is undefined....
+    const disabled = getOccupied(notOccupiedDays);
 
     return (
         <Wrapper>
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
-                disabled={notOccupiedDays}
+                disabled={disabled}
                 selected={selectedDate}
                 onSelect={handleSelected}
                 onMonthChange={handleOnMonthChange}
+                defaultMonth={defaultMonth}
                 footer={footer()}
                 showOutsideDays
             />
@@ -77,8 +81,7 @@ export function Calendar(): JSX.Element {
 const Wrapper = styled.div`
   width: 100%;
   max-width: 90%;
-  
-  // columns
+
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
     max-width: 700px;
