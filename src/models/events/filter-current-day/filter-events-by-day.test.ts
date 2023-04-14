@@ -1,4 +1,4 @@
-import {filterEventsByDay} from "@local/runtime";
+import {filterEventsByDay} from "@local/models";
 import {mockEvents} from "@local/mocks";
 
 describe('filterEventsByDay', () => {
