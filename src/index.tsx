@@ -13,6 +13,7 @@ const fixedLocale = AppLocale.cs;
 // todo: configuration from the outside, somehow!
 const features: FeatureTypes = {
     allowTimeSlots: true,
+    localeSwitcher: true,
 }
 
 // todo: check this

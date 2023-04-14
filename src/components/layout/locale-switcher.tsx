@@ -17,7 +17,7 @@ export function LocaleSwitcher(): JSX.Element {
                         key={item.key}
                         onClick={() => switchLocale(item.key)}
                     >
-                        {item.value}
+                        <span>{item.emoji}{' '}{item.value}</span>
                     </LocaleItem>
                 ))}
             </Navigation>
@@ -26,8 +26,14 @@ export function LocaleSwitcher(): JSX.Element {
 }
 
 const Wrapper = styled.div`
-  padding-bottom: 15px;
-  text-align: right;
+  width: 100%;
+  max-width: 90%;
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: ${(props) => props.theme.colors!.gray!['0']};
+  border-radius: 6px;
+  overflow: hidden;
 `;
 
 const Navigation = styled.div`
@@ -35,9 +41,22 @@ const Navigation = styled.div`
 `;
 
 const LocaleItem = styled.div`
+  display: block;
+  margin-top: 10px;
+  
   cursor: pointer;
+  color: ${(props) => props.theme.colors!.gray!['9']};
+  
+  &:first-child {
+    margin-top: 0;
+  }
   
   &:hover {
     text-decoration: underline;
+  }
+  
+  span {
+    padding: 15px 20px;
+    font-size: 15px;
   }
 `;
