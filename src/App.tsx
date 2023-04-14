@@ -9,6 +9,7 @@ import {isProduction} from "@local/configuration/environment";
 import {AppLocale} from "@local/configuration/i18n";
 import {FeatureTypes} from "@local/configuration/features";
 import {loadBoomScripts} from "@local/components/widget";
+import {SplashScreen} from "@local/components/loader/splash-screen";
 
 type PropTypes = {
     fixedLocale?: undefined | AppLocale;
@@ -39,6 +40,7 @@ function App({ organizerId, fixedLocale, features, customTheme }: PropTypes) {
                 organizerId={organizerId}
                 themeConfig={widgetStyles}
             >
+                <SplashScreen />
                 <LocaleProvider fixedLocale={fixedLocale}>
                     <Layout
                         bodyBackground={customTheme?.bodyBackground}

@@ -50,9 +50,8 @@ export function LocaleProvider({ fixedLocale, children }: PropTypes) {
      * do not render the app until we have everything loaded properly
      */
     if (!messageResolved) {
-        return (
-            <SplashScreen />
-        );
+        console.debug("LocaleProvider do not continue with render, until messageResolved");
+        return null;
     }
 
     return (

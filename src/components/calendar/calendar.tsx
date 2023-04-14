@@ -16,7 +16,8 @@ export function Calendar(): JSX.Element {
         setSelectedMonth,
         selectedDate,
         setSelectedDate,
-        selectedDateEvents
+        selectedDateEvents,
+        setIsLoading
     } = useAppContext();
     const { localeDataForCalendar  } = useLocaleContext();
     const [showFooter, setShowFooter] = useState<boolean>(false);
@@ -25,7 +26,7 @@ export function Calendar(): JSX.Element {
     /** show skeleton until app context fetch locale data */
     if (undefined === localeDataForCalendar) {
         return (
-            <div>{i18n._(t`loading`)}...</div>
+            <div>{i18n._(t`loading`)}</div>
         );
     }
 
@@ -48,6 +49,9 @@ export function Calendar(): JSX.Element {
 
     const footer = getFooter(showFooter, features.allowTimeSlots, selectedDateEvents);
     const disabled = occupiedDates || [];
+
+    /** hide global splash screen */
+    setIsLoading(false);
 
     return (
         <CalendarStyles>

@@ -6,6 +6,7 @@ import {flashMessageText} from "@local/components/flash-message";
 import {AppContext, ProviderResponseTypes} from "@local/runtime";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 import {getOccupiedDates, oneDayRangeEvents} from "@local/models";
+import {appProviderDefaultValues} from "@local/runtime/default-values";
 
 type PropTypes = {
     children: ReactNode;
@@ -14,15 +15,17 @@ type PropTypes = {
     currentDate: CurrentDateType;
     isProduction: boolean;
     themeConfig: CustomizedThemeOverride;
-}
+};
 
 export function AppProvider({ organizerId, features, children, currentDate, isProduction, themeConfig }: PropTypes) {
-    const [occupiedDates, setOccupiedDates] = useState<undefined | Date[]>(undefined);
+    const init = appProviderDefaultValues;
+    const [isLoading, setIsLoading] = useState<boolean>(init.isLoading);
+    const [occupiedDates, setOccupiedDates] = useState<undefined | Date[]>(init.occupiedDates);
     const [selectedMonth, setSelectedMonth] = useState<Date>(currentDate.date);
-    const [selectedDate, setSelectedDate] = useState<undefined | Date>(undefined);
-    const [selectedDateEvents, setSelectedDateEvents] = useState<undefined | EventType[]>(undefined);
-    const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
-    const [isWidgetLoading, setWidgetLoading] = useState<boolean>(true);
+    const [selectedDate, setSelectedDate] = useState<undefined | Date>(init.selectedDate);
+    const [selectedDateEvents, setSelectedDateEvents] = useState<undefined | EventType[]>(init.selectedDateEvents);
+    const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(init.selectedEvent);
+    const [isWidgetLoading, setWidgetLoading] = useState<boolean>(init.isWidgetLoading);
 
     /** different init message for time slots */
     let defaultFlashMessage = flashMessageText.selectDate;
@@ -89,6 +92,8 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
     }, [selectedEvent]);
 
     const contextValue: ProviderResponseTypes = {
+        isLoading,
+        setIsLoading,
         organizerId,
         isProduction,
         isWidgetLoading,

@@ -3,6 +3,8 @@ import {FeatureTypes} from "@local/configuration/features";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
 export type ProviderResponseTypes = {
+    isLoading: boolean;
+    setIsLoading: (state: boolean) => void;
     isProduction: boolean;
     features: FeatureTypes;
     isWidgetLoading: boolean;

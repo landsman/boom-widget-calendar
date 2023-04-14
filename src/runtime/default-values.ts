@@ -4,6 +4,8 @@ import {mangoTheme} from "@local/components/theme/lib-mango/MangoTheme";
 
 export const appProviderDefaultValues: ProviderResponseTypes = {
     isProduction: false,
+    isLoading: true,
+    setIsLoading: (_s: boolean) => null,
     isWidgetLoading: true,
     setWidgetLoading: (_s: boolean) => null,
     features: featureDefaultValues,
