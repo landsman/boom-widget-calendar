@@ -1,11 +1,12 @@
 import { MantineThemeColors } from '@mantine/styles/lib/theme/types/MantineColor'
 
-export type BoomWidgetConfigTypes = {
-    organizerId: string;
+/**
+ * my custom DTO
+ */
+export type BoomWidgetConfigDTO = {
     eventId: string;
     eventUrl: string;
-    theme: BoomWidgetConfigThemeTypes;
-}
+};
 
 /**
  * keep this abstraction to know what's going on internally
@@ -21,8 +22,6 @@ export type BoomWidgetConfigThemeTypes = {
  * possible fields
  */
 export enum BoomDataConfigProperty {
-    WIDGET_CONFIG = 'WIDGET_CONFIG',
-    WIDGET_CONFIG_PREVIEW = 'WIDGET_CONFIG_PREVIEW',
     BOOM_WIDGET_CONFIG = 'BOOM_WIDGET_CONFIG',
 }
 
@@ -30,8 +29,6 @@ export enum BoomDataConfigProperty {
  * interface of window objects
  */
 type BoomWidgetConfigWindowFieldType = {
-    [BoomDataConfigProperty.WIDGET_CONFIG]?: BoomWidgetConfigTypes;
-    [BoomDataConfigProperty.WIDGET_CONFIG_PREVIEW]?: {};
     [BoomDataConfigProperty.BOOM_WIDGET_CONFIG]?: {
         placeSalesWidget?: (
             containerElement: Element,

@@ -1,75 +1,63 @@
 import {useEffect, useState} from "react";
 import styled, {css} from "styled-components";
-import {loadBoomScripts, resetBoomScript} from '@local/components/widget/boom-script';
+import {placeBoomWidget} from '@local/components/widget/boom-script';
 import {
-    BoomDataConfigProperty,
+    BoomWidgetConfigDTO,
     BoomWidgetConfigThemeColors,
-    BoomWidgetConfigTypes,
     boomWidgetIds,
-    windowBoomWidgetConfig
+    buildBoomWidgetIframeUrl,
 } from "@local/configuration/boom-connect";
 import {useAppContext} from "@local/runtime";
-import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
-type PropTypes = {
-    eventId: string;
-    eventUrl: string;
-    theme: CustomizedThemeOverride;
-}
+export function BoomWidgetElement() {
+    const {
+        isProduction,
+        themeConfig,
+        selectedEvent,
+        isWidgetLoading,
+        setWidgetLoading
+    } = useAppContext();
 
-/**
- * @see https://github.com/boomeventsorg/frontend/blob/main/packages/app-connect/public/events/v3/example-mighty.html
- */
-export function BoomWidgetElement({ eventId, eventUrl, theme }: PropTypes) {
-    const { organizerId, isProduction, isWidgetLoading, setWidgetLoading } = useAppContext();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
-    const [config, setConfig] = useState<undefined | BoomWidgetConfigTypes>(undefined);
 
-    useEffect(() => {
-        if (undefined === config) {
-            return;
-        }
-        setOldEventId(config?.eventId);
-        setWidgetLoading(false);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [config, isProduction]);
+    // todo: prettier?
+    const _theme = {
+        colors: themeConfig.colors as BoomWidgetConfigThemeColors,
+    };
+
+    const eventId = selectedEvent!.id;
+
+    /** build url */
+    const eventUrl = buildBoomWidgetIframeUrl(
+        isProduction,
+        selectedEvent!.localization.localization,
+        selectedEvent!.localization.slug
+    );
+
+    /** build dto */
+    const config: BoomWidgetConfigDTO = {
+        eventId,
+        eventUrl,
+    }
 
     /**
      * init
      */
     useEffect(() => {
-        const _config = {
-            organizerId: organizerId!,
-            eventId: eventId,
-            eventUrl: eventUrl,
-            theme: {
-                colors: theme.colors as BoomWidgetConfigThemeColors,
-            },
-        }
-        setConfig(_config)
-
-        // todo: force to show
-        windowBoomWidgetConfig.WIDGET_CONFIG_PREVIEW = {};
-        windowBoomWidgetConfig.WIDGET_CONFIG = _config;
-
+        setOldEventId(config?.eventId);
+        placeBoomWidget(config, _theme, setWidgetLoading);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eventId, eventUrl])
 
     /**
-     * force to reload boom script, because there is no method for it
+     * switch widget
      */
     useEffect(() => {
-        if (undefined === config) {
-            return;
-        }
-        if (undefined === oldEventId) {
-            return;
-        }
         if (eventId !== oldEventId) {
-            resetBoomScript(config, setWidgetLoading);
+            placeBoomWidget(config, _theme, setWidgetLoading);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [config, eventId, oldEventId])
+    }, [eventId, oldEventId])
 
     return (
         <Wrapper>
@@ -78,7 +66,6 @@ export function BoomWidgetElement({ eventId, eventUrl, theme }: PropTypes) {
             <SalesWidget
                 visible={!isWidgetLoading}
                 className={boomWidgetIds.widgetClass}
-                data-config-property={BoomDataConfigProperty.WIDGET_CONFIG}
             />
             {/*<!-- BOOM Events Widget -->'*/}
         </Wrapper>

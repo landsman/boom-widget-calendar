@@ -1,5 +1,6 @@
 import {
-    BoomWidgetConfigTypes,
+    BoomWidgetConfigDTO,
+    BoomWidgetConfigThemeTypes,
     boomWidgetIds,
     connectEndpoints,
     connectHost,
@@ -56,7 +57,7 @@ function getWidget(): null | Element {
 function showWidgetDelay(callback: any): void {
     setTimeout(() => {
         callback();
-    }, 2000);
+    }, 1000);
 }
 
 /**
@@ -84,8 +85,9 @@ function loadBoomScript(production: boolean): Promise<boolean> {
 /**
  * replace widget iframe on the page
  */
-export function resetBoomScript(
-    config: BoomWidgetConfigTypes,
+export function placeBoomWidget(
+    config: BoomWidgetConfigDTO,
+    theme: BoomWidgetConfigThemeTypes,
     setWidgetLoading: (state: boolean) => void,
 ): void {
     const isExist = document.getElementById(boomWidgetIds.script);
@@ -120,7 +122,7 @@ export function resetBoomScript(
         internalId,
         config.eventUrl,
         config.eventId,
-        config.theme
+        theme
     );
 
     // show the widget
