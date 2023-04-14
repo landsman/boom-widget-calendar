@@ -167,7 +167,7 @@ const Wrapper = styled.div`
   }
   
   .rdp-day {
-    
+    font-weight: 500;
   }
 
   .rdp-day_today {
@@ -184,6 +184,16 @@ const Wrapper = styled.div`
 
     &:hover {
       color: white;
+    }
+  }
+  
+  .rdp-day_disabled {
+    cursor: not-allowed;
+    color: #665D78;
+    
+    &:hover {
+      // todo: client specific, move to theme!
+      color: #665D78;
     }
   }
     
