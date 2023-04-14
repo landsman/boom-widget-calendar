@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {localeWithNames, useLocaleContext} from "@local/configuration/i18n";
 import {useAppContext} from "@local/runtime";
+import {breakpoints} from "@local/components/theme/breakpoints";
 
 export function LocaleSwitcher(): JSX.Element {
     const { isProduction, features } = useAppContext();
@@ -34,6 +35,13 @@ const Wrapper = styled.div`
   background: ${(props) => props.theme.colors!.gray!['0']};
   border-radius: 6px;
   overflow: hidden;
+
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+    max-width: ${breakpoints.container};
+    margin: 0 auto 10px;
+  }
 `;
 
 const Navigation = styled.div`
