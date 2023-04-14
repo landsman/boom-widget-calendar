@@ -1,4 +1,4 @@
-import {EventType} from "../../../api/view/events/types/event-type";
+import {EventType} from "@local/api/view/events/types";
 
 export const mockEvents: EventType[] = [
     {
@@ -22,10 +22,10 @@ export const mockEvents: EventType[] = [
             metaDescription: 'An example event for testing purposes',
             metaImage: 'https://example.com/event/meta-image.jpg',
         },
-        dateFrom: new Date(2023, 3, 10, 20, 0, 0),
-        dateTo: new Date(2023, 3, 10, 23, 0, 0),
-        orderableFrom: new Date(2023, 2, 1),
-        orderableUntil: new Date(2023, 3, 9),
+        dateFrom: new Date(2023, 3, 10, 20, 0, 0).toString(),
+        dateTo: new Date(2023, 3, 10, 23, 0, 0).toString(),
+        orderableFrom: new Date(2023, 2, 1).toString(),
+        orderableUntil: new Date(2023, 3, 9).toString(),
         timezone: {
             displayName: 'Eastern Standard Time',
             id: 'America/New_York',
@@ -59,10 +59,10 @@ export const mockEvents: EventType[] = [
             metaDescription: 'An example theater show for testing purposes',
             metaImage: 'https://example.com/theater-show/meta-image.jpg',
         },
-        dateFrom: new Date(2023, 3, 5, 18, 0, 0),
-        dateTo: new Date(2023, 3, 5, 21, 0, 0),
-        orderableFrom: new Date(2023, 2, 1),
-        orderableUntil: new Date(2023, 3, 4),
+        dateFrom: new Date(2023, 3, 5, 18, 0, 0).toString(),
+        dateTo: new Date(2023, 3, 5, 21, 0, 0).toString(),
+        orderableFrom: new Date(2023, 2, 1).toString(),
+        orderableUntil: new Date(2023, 3, 4).toString(),
         timezone: {
             displayName: 'Eastern Standard Time',
             id: 'America/New_York',
@@ -96,10 +96,10 @@ export const mockEvents: EventType[] = [
             metaDescription: 'An example concert for testing purposes',
             metaImage: 'https://example.com/concert/meta-image.jpg',
         },
-        dateFrom: new Date(2023, 3, 14, 19, 30, 0),
-        dateTo: new Date(2023, 3, 14, 22, 30, 0),
-        orderableFrom: new Date(2023, 2, 15),
-        orderableUntil: new Date(2023, 3, 13),
+        dateFrom: new Date(2023, 3, 14, 19, 30, 0).toString(),
+        dateTo: new Date(2023, 3, 14, 22, 30, 0).toString(),
+        orderableFrom: new Date(2023, 2, 15).toString(),
+        orderableUntil: new Date(2023, 3, 13).toString(),
         timezone: {
             displayName: 'Eastern Standard Time',
             id: 'America/New_York',
@@ -133,10 +133,10 @@ export const mockEvents: EventType[] = [
             metaDescription: 'An example workshop for testing purposes',
             metaImage: 'https://example.com/workshop/meta-image.jpg',
         },
-        dateFrom: new Date(2023, 3, 28, 14, 0, 0),
-        dateTo: new Date(2023, 3, 28, 16, 0, 0),
-        orderableFrom: new Date(2023, 2, 20),
-        orderableUntil: new Date(2023, 3, 27),
+        dateFrom: new Date(2023, 3, 28, 14, 0, 0).toString(),
+        dateTo: new Date(2023, 3, 28, 16, 0, 0).toString(),
+        orderableFrom: new Date(2023, 2, 20).toString(),
+        orderableUntil: new Date(2023, 3, 27).toString(),
         timezone: {
             displayName: 'Eastern Standard Time',
             id: 'America/New_York',

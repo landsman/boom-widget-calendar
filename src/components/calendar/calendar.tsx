@@ -5,59 +5,63 @@ import {t} from "@lingui/macro";
 import {DayPicker} from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import {useAppContext} from "@local/runtime";
-import {ListOfSlots} from "@local/components/calendar";
 import {useLocaleContext} from "@local/configuration/i18n";
 import {breakpoints} from "@local/components/theme/breakpoints";
+import {getFooter} from "@local/components/calendar/footer";
+import {isSameDay} from "date-fns";
 
 export function Calendar(): JSX.Element {
     const { i18n } = useLingui();
+    const {
+        features,
+        occupiedDates,
+        setSelectedMonth,
+        selectedDate,
+        setSelectedDate,
+        selectedDateEvents
+    } = useAppContext();
     const { localeDataForCalendar  } = useLocaleContext();
-    const { features, events, date, setDate } = useAppContext();
-
     const [showFooter, setShowFooter] = useState<boolean>(true);
+    const [defaultMonth, setDefaultMonth] = useState<undefined | Date>(new Date());
 
     /** show skeleton until app context fetch locale data */
     if (undefined === localeDataForCalendar) {
         return (
-            <div>{i18n._(t`loading`)}</div>
+            <div>{i18n._(t`loading`)}...</div>
         );
     }
 
-    /**
-     * place under calendar with time slots
-     */
-    const footer = () => {
-        const anyEvents = undefined !== events && events?.length > 0;
-        if (showFooter && features?.allowTimeSlots && anyEvents) {
-            return <ListOfSlots events={events} />;
-        }
-        return <span />;
-    };
-
     /** set date to app context */
     const handleSelected = (day: Date | undefined, selectedDay: Date) => {
-        setDate(selectedDay!);
+        setSelectedDate(selectedDay!);
         setShowFooter(true);
     };
 
     /** hide footer when change month */
     const handleOnMonthChange = (month: Date) => {
-        if (date?.getMonth() === month.getMonth()) {
+        setDefaultMonth(month);
+        setSelectedMonth(month);
+        if (selectedDate?.getMonth() === month.getMonth()) {
             setShowFooter(true);
         } else {
             setShowFooter(false);
         }
     };
 
+    const footer = getFooter(showFooter, features.allowTimeSlots, selectedDateEvents);
+    const disabled = occupiedDates || [];
+
     return (
         <Wrapper>
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
-                selected={date}
+                disabled={(date: Date) => !disabled.some((d) => isSameDay(d, date))}
+                selected={selectedDate}
                 onSelect={handleSelected}
                 onMonthChange={handleOnMonthChange}
-                footer={footer()}
+                defaultMonth={defaultMonth}
+                footer={footer}
                 showOutsideDays
             />
         </Wrapper>
@@ -67,8 +71,7 @@ export function Calendar(): JSX.Element {
 const Wrapper = styled.div`
   width: 100%;
   max-width: 90%;
-  
-  // columns
+
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
     max-width: 700px;
@@ -164,7 +167,7 @@ const Wrapper = styled.div`
   }
   
   .rdp-day {
-    
+    font-weight: 500;
   }
 
   .rdp-day_today {
@@ -181,6 +184,16 @@ const Wrapper = styled.div`
 
     &:hover {
       color: white;
+    }
+  }
+  
+  .rdp-day_disabled {
+    cursor: not-allowed;
+    color: #665D78;
+    
+    &:hover {
+      // todo: client specific, move to theme!
+      color: #665D78;
     }
   }
     

@@ -4,8 +4,8 @@ import {SlotText} from "@local/components/calendar/time-slot/text";
 
 type PropTypes = {
     id: string;
-    dateFrom: Date;
-    dateTo: Date;
+    dateFrom: string;
+    dateTo: string;
 };
 
 export function TimeSlot({ id, dateFrom, dateTo }: PropTypes): JSX.Element {

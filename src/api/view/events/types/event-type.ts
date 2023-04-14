@@ -7,10 +7,10 @@ export type EventType = {
     organizer: string;
     location: LocationType;
     localization: LocalizationType;
-    dateFrom: Date;
-    dateTo: Date;
-    orderableFrom: Date;
-    orderableUntil: Date;
+    dateFrom: string;
+    dateTo: string;
+    orderableFrom: string;
+    orderableUntil: string;
     timezone: TimezoneType;
     published: boolean;
     publishedRestriction: boolean;
@@ -18,3 +18,13 @@ export type EventType = {
     soldOut: boolean;
     draft: boolean;
 };
+
+/**
+ * @see #EventType
+ */
+export const eventTypeIsoDateFields = [
+    'dateFrom',
+    'dateTo',
+    'orderableFrom',
+    'orderableUntil',
+];

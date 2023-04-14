@@ -1,47 +1,60 @@
 import {ReactNode, useEffect, useState} from "react";
 import {EventType} from "@local/api/view/events/types";
-import {mockConfig} from "@local/configuration/boom-connect";
 import {FeatureTypes} from "@local/configuration/features";
 import {CurrentDateType} from "@local/utils";
 import {flashMessageText} from "@local/components/flash-message";
-import {AppContext, ProviderResponseTypes, handleGetEvents} from "@local/runtime";
+import {AppContext, ProviderResponseTypes} from "@local/runtime";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {getOccupiedDates, oneDayRangeEvents} from "@local/models";
 
 type PropTypes = {
     children: ReactNode;
     organizerId: string;
-    features?: undefined | FeatureTypes;
+    features: FeatureTypes;
     currentDate: CurrentDateType;
     isProduction: boolean;
     themeConfig: CustomizedThemeOverride;
 }
 
 export function AppProvider({ organizerId, features, children, currentDate, isProduction, themeConfig }: PropTypes) {
-    const [date, setDate] = useState<undefined | Date>(undefined);
-    const [events, setEvents] = useState<undefined | EventType[]>(undefined);
+    const [occupiedDates, setOccupiedDates] = useState<undefined | Date[]>(undefined);
+    const [selectedMonth, setSelectedMonth] = useState<Date>(currentDate.date);
+    const [selectedDate, setSelectedDate] = useState<undefined | Date>(undefined);
+    const [selectedDateEvents, setSelectedDateEvents] = useState<undefined | EventType[]>(undefined);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(undefined);
 
     /** different init message for time slots */
     let defaultFlashMessage = flashMessageText.selectDate;
-    if (features?.allowTimeSlots && undefined === date) {
+    if (features?.allowTimeSlots && undefined === selectedDate) {
         defaultFlashMessage = flashMessageText.selectDateAndTime;
     }
 
     const [flashMessage, setFlashMessage] = useState<undefined | string>(defaultFlashMessage);
+
+    const handleGetEventsForCurrentMonth = async (newMonthSelected: Date) => {
+        const result = await getOccupiedDates(organizerId, newMonthSelected);
+        setOccupiedDates(result);
+    };
+
+    /**
+     * init and month switch in calendar component produce a new api request to get occupied days
+     */
+    useEffect(() => {
+        setOccupiedDates(undefined);
+        handleGetEventsForCurrentMonth(selectedMonth);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedMonth]);
 
     /**
      * user clicked to the specific date in the calendar
      */
     const handleSetDate = async (newDateSelected: Date) => {
         setFlashMessage(undefined);
-        setEvents(undefined);
+        setSelectedDateEvents(undefined);
         setSelectedEvent(undefined);
-        setDate(newDateSelected);
+        setSelectedDate(newDateSelected);
 
-        const apiEvents = await handleGetEvents(
-            mockConfig.organizerId,
-            newDateSelected || currentDate.date
-        );
+        const apiEvents = await oneDayRangeEvents(organizerId, newDateSelected || currentDate.date);
 
         if (0 === apiEvents.length) {
             setFlashMessage(flashMessageText.noEvents);
@@ -49,7 +62,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         }
 
         if (features?.allowTimeSlots) {
-            setEvents(apiEvents);
+            setSelectedDateEvents(apiEvents);
             setFlashMessage(flashMessageText.selectTime);
         } else {
             setFlashMessage(undefined);
@@ -61,7 +74,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
      * user clicked to specific event in the calendar (time slot)
      */
     const handleSetSelectedEvent = async (eventId: string) => {
-        const result = events?.filter((i) => i.id === eventId).shift();
+        const result = selectedDateEvents?.filter((i) => i.id === eventId).shift();
         setSelectedEvent(result);
     }
 
@@ -72,15 +85,17 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         if (undefined !== selectedEvent) {
             setFlashMessage(undefined);
         }
-    }, [selectedEvent])
+    }, [selectedEvent]);
 
     const contextValue: ProviderResponseTypes = {
         organizerId,
         isProduction,
         features,
-        date,
-        setDate: handleSetDate,
-        events,
+        occupiedDates,
+        setSelectedMonth,
+        selectedDate,
+        setSelectedDate: handleSetDate,
+        selectedDateEvents,
         setSelectedEvent: handleSetSelectedEvent,
         selectedEvent,
         flashMessage,

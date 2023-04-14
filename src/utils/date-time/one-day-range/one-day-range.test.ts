@@ -1,4 +1,4 @@
-import {getOneDayDateRange} from "./one-day-range";
+import {getOneDayDateRange} from "@local/utils/date-time/one-day-range";
 
 describe('getOneMonthRange', () => {
     test('returns correct date range for January 2022', () => {
