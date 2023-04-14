@@ -1,12 +1,11 @@
 import {ReactNode, useEffect, useState} from "react";
 import {EventType} from "@local/api/view/events/types";
-import {mockConfig} from "@local/configuration/boom-connect";
 import {FeatureTypes} from "@local/configuration/features";
 import {CurrentDateType} from "@local/utils";
 import {flashMessageText} from "@local/components/flash-message";
 import {AppContext, ProviderResponseTypes} from "@local/runtime";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
-import {oneDayRangeEvents} from "@local/models";
+import {getOneMonthRangeEvents, oneDayRangeEvents} from "@local/models";
 
 type PropTypes = {
     children: ReactNode;
@@ -31,9 +30,16 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
 
     const [flashMessage, setFlashMessage] = useState<undefined | string>(defaultFlashMessage);
 
-    const handleGetEventsForCurrentMonth = () => {
+    const handleGetEventsForCurrentMonth = async (newMonthSelected: undefined | Date) => {
+        const month = await getOneMonthRangeEvents(organizerId, newMonthSelected || currentDate.date);
 
+
+        console.log(month);
     }
+
+    useEffect(() => {
+        handleGetEventsForCurrentMonth(undefined);
+    }, [])
 
     /**
      * user clicked to the specific date in the calendar
@@ -44,10 +50,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         setSelectedEvent(undefined);
         setSelectedDate(newDateSelected);
 
-        const apiEvents = await oneDayRangeEvents(
-            mockConfig.organizerId,
-            newDateSelected || currentDate.date
-        );
+        const apiEvents = await oneDayRangeEvents(organizerId, newDateSelected || currentDate.date);
 
         if (0 === apiEvents.length) {
             setFlashMessage(flashMessageText.noEvents);
@@ -78,7 +81,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         if (undefined !== selectedEvent) {
             setFlashMessage(undefined);
         }
-    }, [selectedEvent])
+    }, [selectedEvent]);
 
     const contextValue: ProviderResponseTypes = {
         organizerId,
