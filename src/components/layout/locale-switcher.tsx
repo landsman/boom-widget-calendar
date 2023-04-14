@@ -4,19 +4,21 @@ import {useAppContext} from "@local/runtime";
 import {breakpoints} from "@local/components/theme/breakpoints";
 
 export function LocaleSwitcher(): JSX.Element {
-    const { isProduction, features } = useAppContext();
     const { switchLocale } = useLocaleContext();
+    const { isProduction, features } = useAppContext();
+
     // only for dev for now
     if (isProduction || !features?.localeSwitcher) {
         return <div />;
     }
+
     return (
         <Wrapper>
             <Navigation>
                 {localeWithNames.map((item) => (
                     <LocaleItem
                         key={item.key}
-                        onClick={() => switchLocale(item.key)}
+                        onClick={() => switchLocale(item.key, true)}
                     >
                         <span>{item.emoji}{' '}{item.value}</span>
                     </LocaleItem>

@@ -17,7 +17,11 @@ export async function changeLocale(
         return;
     }
 
+    console.log("new value is", newValue);
+
     const finalValue = chooseFromSupported(newValue);
+
+    console.log("final value is", finalValue);
 
     await dynamicActivate(finalValue);
     await lazyLoadLocale(finalValue, setLocaleDataForCalendar);

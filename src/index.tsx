@@ -8,7 +8,7 @@ import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTh
 import {FeatureTypes} from "@local/configuration/features";
 
 // todo, just debug
-const fixedLocale = AppLocale.cs;
+const fixedLocale = AppLocale.CS;
 
 // todo: configuration from the outside, somehow!
 const features: FeatureTypes = {

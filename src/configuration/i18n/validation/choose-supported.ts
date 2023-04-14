@@ -1,4 +1,4 @@
-import {AppLocale, defaultLocale} from "@local/configuration/i18n/index";
+import {AppLocale, defaultLocale} from "@local/configuration/i18n";
 
 /**
  * It has to be compatible between `lingui` and `date-fns`
@@ -8,10 +8,10 @@ import {AppLocale, defaultLocale} from "@local/configuration/i18n/index";
  */
 function convertLocaleToISO(locale: string): AppLocale {
     if (locale.includes("cs-")) {
-        return AppLocale.cs;
+        return AppLocale.CS;
     }
     if (locale === 'en-') {
-        return AppLocale.en;
+        return AppLocale.EN;
     }
     return locale as AppLocale;
 }
@@ -21,6 +21,10 @@ function convertLocaleToISO(locale: string): AppLocale {
  */
 export function chooseFromSupported(detectedLocale: string): AppLocale {
     const converted = convertLocaleToISO(detectedLocale);
+
+    // todo: this is a problem...
+    console.log("converted", converted);
+
     if (!(converted in AppLocale)) {
         return defaultLocale;
     }

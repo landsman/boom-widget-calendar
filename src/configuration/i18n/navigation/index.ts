@@ -8,12 +8,12 @@ type KeyValuePair = {
 
 export const localeWithNames: KeyValuePair[] = [
     {
-        key: AppLocale.en,
+        key: AppLocale.EN,
         value: "English",
         emoji: "🇬🇧",
     },
     {
-        key: AppLocale.cs,
+        key: AppLocale.CS,
         value: "Česky",
         emoji: "🇨🇿",
     },
