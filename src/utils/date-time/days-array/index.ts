@@ -1,1 +1,1 @@
-export * from "./calculate-days-array";
+export * from "./days-array";

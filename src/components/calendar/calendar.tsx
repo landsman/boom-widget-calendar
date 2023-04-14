@@ -49,11 +49,19 @@ export function Calendar(): JSX.Element {
         }
     };
 
+    // todo: change when month has changed
+    const disabledDays = [
+        new Date(2022, 5, 10),
+        new Date(2022, 5, 12),
+        new Date(2022, 5, 20),
+    ]
+
     return (
         <Wrapper>
             <DayPicker
                 mode="single"
                 locale={localeDataForCalendar}
+                disabled={disabledDays}
                 selected={selectedDate}
                 onSelect={handleSelected}
                 onMonthChange={handleOnMonthChange}

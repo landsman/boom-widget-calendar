@@ -1,5 +1,5 @@
 import {filterEventsByDay} from "@local/runtime";
-import {mockEvents} from "./mocks/events.mock";
+import {mockEvents} from "@local/mocks";
 
 describe('filterEventsByDay', () => {
     test('filters events by a specific day', () => {
