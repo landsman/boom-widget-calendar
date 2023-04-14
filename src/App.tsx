@@ -4,7 +4,7 @@ import {Content} from "@local/components/content";
 import {CustomThemeProvider} from "@local/components/theme/provider";
 import {CustomizedThemeOverride, mangoTheme} from "@local/components/theme/lib-mango/MangoTheme";
 import {AppProvider, LocaleProvider} from "@local/runtime";
-import {getCurrentDate} from "@local/utils/date-time/get-current-date";
+import {getCurrentDate} from "@local/utils/date-time";
 import {isProduction} from "@local/configuration/environment";
 import {AppLocale} from "@local/configuration/i18n";
 import {FeatureTypes} from "@local/configuration/features";
