@@ -1,2 +1,2 @@
-export * from "./slot";
+export * from "./item";
 export * from "./list";

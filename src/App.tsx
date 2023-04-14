@@ -9,6 +9,7 @@ import {isProduction} from "@local/configuration/environment";
 import {AppLocale} from "@local/configuration/i18n";
 import {FeatureTypes} from "@local/configuration/features";
 import {loadBoomScripts} from "@local/components/widget";
+import {SplashScreen} from "@local/components/loader/splash-screen";
 
 type PropTypes = {
     fixedLocale?: undefined | AppLocale;
@@ -32,23 +33,24 @@ function App({ organizerId, fixedLocale, features, customTheme }: PropTypes) {
 
     return (
         <CustomThemeProvider customTheme={widgetStyles}>
-            <AppProvider
-                features={features}
-                currentDate={getCurrentDate()}
-                isProduction={prod}
-                organizerId={organizerId}
-                themeConfig={widgetStyles}
-            >
-                <LocaleProvider fixedLocale={fixedLocale}>
-                    <Layout
-                        bodyBackground={customTheme?.bodyBackground}
-                        selectedDayColor={customTheme?.selectedDayColor}
-                    >
-                        <Content />
-                        <Footer />
-                    </Layout>
-                </LocaleProvider>
-            </AppProvider>
+            <LocaleProvider fixedLocale={fixedLocale}>
+                <AppProvider
+                    features={features}
+                    currentDate={getCurrentDate()}
+                    isProduction={prod}
+                    organizerId={organizerId}
+                    themeConfig={widgetStyles}
+                >
+                    <SplashScreen />
+                        <Layout
+                            bodyBackground={customTheme?.bodyBackground}
+                            selectedDayColor={customTheme?.selectedDayColor}
+                        >
+                            <Content />
+                            <Footer />
+                        </Layout>
+                </AppProvider>
+            </LocaleProvider>
         </CustomThemeProvider>
     );
 }

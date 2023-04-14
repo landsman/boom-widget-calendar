@@ -9,6 +9,7 @@ import {
 } from "@local/configuration/i18n";
 import {LocaleContext, LocaleResponseTypes} from "@local/configuration/i18n/context";
 import {changeLocale} from "@local/runtime/i18n/change-locale";
+import {SplashScreen} from "@local/components/loader/splash-screen";
 
 type PropTypes = {
     fixedLocale: undefined | AppLocale;
@@ -37,7 +38,7 @@ export function LocaleProvider({ fixedLocale, children }: PropTypes) {
         console.debug("💬 forceLocale:", fixedLocale);
         const newValue = fixedLocale ? fixedLocale : detectLocaleResult;
         handleSwitchLocale(newValue, false);
-    }, [fixedLocale])
+    }, [fixedLocale]);
 
     const contextValue: LocaleResponseTypes = {
         locale,
@@ -49,9 +50,8 @@ export function LocaleProvider({ fixedLocale, children }: PropTypes) {
      * do not render the app until we have everything loaded properly
      */
     if (!messageResolved) {
-        return (
-            <>Loading...</>
-        );
+        console.debug("LocaleProvider do not continue with render, until messageResolved");
+        return null;
     }
 
     return (

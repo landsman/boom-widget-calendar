@@ -26,4 +26,4 @@ export async function changeLocale(
     setMessageResolved(true);
 
     console.debug("💬 locale set to:", finalValue);
-};
+}

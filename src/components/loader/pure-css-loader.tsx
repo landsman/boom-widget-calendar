@@ -1,14 +1,14 @@
 import styled, {css, keyframes} from "styled-components";
 
 type PropTypes = {
-    size: number;
+    size?: number;
 }
 
 /**
  * credits: https://loading.io/css/
  * transformed to styled-components via chatGTP
  */
-export function PureCssLoader({ size }: PropTypes): JSX.Element {
+export function PureCssLoader({ size = 80 }: PropTypes): JSX.Element {
     return (
         <Wrapper>
             <Spinner
@@ -18,15 +18,27 @@ export function PureCssLoader({ size }: PropTypes): JSX.Element {
                 dotDistance={18}
             >
                 {Array(12).fill(null).map((_, index) => (
-                    <div />
+                    <div key={index} />
                 ))}
             </Spinner>
         </Wrapper>
     );
 }
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 const Wrapper = styled.div`
   position: relative;
+  width: 100%;
+  text-align: center;
+  animation: ${fadeIn} 1.5s;
 `;
 
 const ldsSpinner = keyframes`

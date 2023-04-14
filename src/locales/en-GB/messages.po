@@ -16,11 +16,14 @@ msgstr ""
 msgid "calendar.time_slot.whole_day"
 msgstr "whole day"
 
+msgid "error.api_general_exception"
+msgstr "There was a problem communicating with the server. Please try again in a moment."
+
 msgid "footer.created_by"
 msgstr "Created by"
 
 msgid "loading"
-msgstr "Loading"
+msgstr "Loading..."
 
 msgid "select_date"
 msgstr "Choose the date of your visit"

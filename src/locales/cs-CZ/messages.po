@@ -16,11 +16,14 @@ msgstr ""
 msgid "calendar.time_slot.whole_day"
 msgstr "celodenní"
 
+msgid "error.api_general_exception"
+msgstr "Vyskytl se problém v komunikaci se serverem. Zkuste to prosím za okamžik znovu."
+
 msgid "footer.created_by"
 msgstr "Pohání"
 
 msgid "loading"
-msgstr "Načítání"
+msgstr "Načítání..."
 
 msgid "select_date"
 msgstr "Vyberte si datum své návštěvy"
