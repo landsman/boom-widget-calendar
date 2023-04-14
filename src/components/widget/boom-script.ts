@@ -1,10 +1,34 @@
 import {
-    BoomWidgetConfigTypes,
+    BoomWidgetConfigDTO,
+    BoomWidgetConfigThemeTypes,
     boomWidgetIds,
     connectEndpoints,
     connectHost,
     windowBoomWidgetConfig
 } from "@local/configuration/boom-connect";
+
+/**
+ * place external CSS file to the page with styles for widget container
+ */
+function loadBoomCss(production: boolean): Promise<boolean> {
+    const host = connectHost(production);
+    const isExist = document.getElementById(boomWidgetIds.css);
+    if (isExist) {
+        return Promise.resolve(false);
+    }
+    return new Promise((resolve) => {
+        const el = document.createElement('link');
+        el.rel = "stylesheet"
+        el.href = host + connectEndpoints.widgetStyle;
+        el.id = boomWidgetIds.css;
+        document.body.appendChild(el);
+        el.onload = () => {
+            console.debug("👀 BOOM widget css loaded");
+            resolve(true);
+        };
+    });
+}
+
 
 /**
  * there should not be more widgets than one on the page!
@@ -28,31 +52,52 @@ function getWidget(): null | Element {
 }
 
 /**
+ * util there will be some promise / JS API from widget we have to do this delay, to prevent white color blinking
+ */
+function showWidgetDelay(callback: any): void {
+    setTimeout(() => {
+        callback();
+    }, 1000);
+}
+
+/**
  * place external JS script to the page for iframe loading & communication
  */
-export function loadBoomScript(production: boolean): void {
-    const host = connectHost(production);
+function loadBoomScript(production: boolean): Promise<boolean> {
     const isExist = document.getElementById(boomWidgetIds.script);
-    if (!isExist) {
+    if (isExist) {
+        console.debug("BOOM script already exist on the page");
+        return Promise.resolve(false);
+    }
+    return new Promise((resolve) => {
+        const host = connectHost(production);
         const el = document.createElement('script');
         el.src = host + connectEndpoints.widgetScript;
         el.id = boomWidgetIds.script;
         document.body.appendChild(el);
         el.onload = () => {
             console.debug("👀 BOOM widget script loaded");
+            resolve(true);
         };
-    }
+    });
 }
 
 /**
  * replace widget iframe on the page
  */
-export function resetBoomScript(config: BoomWidgetConfigTypes): void {
+export function placeBoomWidget(
+    config: BoomWidgetConfigDTO,
+    theme: BoomWidgetConfigThemeTypes,
+    setWidgetLoading: (state: boolean) => void,
+): void {
     const isExist = document.getElementById(boomWidgetIds.script);
     if (!isExist) {
         console.error("BOOM widget JS script not initialized");
         return;
     }
+
+    // show loader state
+    setWidgetLoading(true);
 
     const containerElement = getWidget();
     if (!containerElement) {
@@ -70,31 +115,30 @@ export function resetBoomScript(config: BoomWidgetConfigTypes): void {
         return;
     }
 
+    // do replacement
     const internalId = Math.random();
     windowBoomWidgetConfig.BOOM_WIDGET_CONFIG.placeSalesWidget(
         containerElement,
         internalId,
         config.eventUrl,
         config.eventId,
-        config.theme
+        theme
     );
 
+    // show the widget
+    showWidgetDelay(() => {
+        setWidgetLoading(false);
+    });
 }
 
 /**
- * place external CSS file to the page with styles for widget container
+ * load both necessary scripts on the page, before we show area with widget
  */
-export function loadBoomCss(production: boolean): void {
-    const host = connectHost(production);
-    const isExist = document.getElementById(boomWidgetIds.css);
-    if (!isExist) {
-        const el = document.createElement('link');
-        el.rel = "stylesheet"
-        el.href = host + connectEndpoints.widgetStyle;
-        el.id = boomWidgetIds.css;
-        document.body.appendChild(el);
-        el.onload = () => {
-            console.debug("👀 BOOM widget css loaded");
-        };
+export async function loadBoomScripts(production: boolean): Promise<void> {
+    try {
+        loadBoomCss(production);
+        await loadBoomScript(production);
+    } catch (e: any) {
+        console.error("🔥 loadBoomScripts - Error occurred", e);
     }
 }

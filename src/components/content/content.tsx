@@ -2,19 +2,15 @@ import styled from "styled-components";
 import {Calendar} from "@local/components/calendar";
 import {BoomWidget} from "@local/components/widget";
 import {breakpoints} from "@local/components/theme/breakpoints";
-import {useAppContext} from "@local/runtime";
 
 export function Content(): JSX.Element {
-    const { themeConfig } = useAppContext();
     return (
         <Grid>
             <Left>
                 <Calendar />
             </Left>
             <Right>
-                <BoomWidget
-                    themeConfig={themeConfig}
-                />
+                <BoomWidget />
             </Right>
         </Grid>
     );

@@ -1,76 +1,109 @@
 import {useEffect, useState} from "react";
-import styled from "styled-components";
-import {loadBoomCss, loadBoomScript, resetBoomScript} from '@local/components/widget/boom-script';
+import styled, {css} from "styled-components";
+import {placeBoomWidget} from '@local/components/widget/boom-script';
 import {
-    BoomDataConfigProperty, BoomWidgetConfigThemeColors, BoomWidgetConfigTypes,
+    BoomWidgetConfigDTO,
+    BoomWidgetConfigThemeColors,
     boomWidgetIds,
-    windowBoomWidgetConfig
+    buildBoomWidgetIframeUrl,
 } from "@local/configuration/boom-connect";
 import {useAppContext} from "@local/runtime";
-import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {PureCssLoader} from "@local/components/loader/pure-css-loader";
 
-type PropTypes = {
-    eventId: string;
-    eventUrl: string;
-    theme: CustomizedThemeOverride;
-}
+export function BoomWidgetElement() {
+    const {
+        isProduction,
+        themeConfig,
+        selectedEvent,
+        isWidgetLoading,
+        setWidgetLoading
+    } = useAppContext();
 
-/**
- * @see https://github.com/boomeventsorg/frontend/blob/main/packages/app-connect/public/events/v3/example-mighty.html
- */
-export function BoomWidgetElement({ eventId, eventUrl, theme }: PropTypes) {
-    const { organizerId, isProduction } = useAppContext();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
-    const [config] = useState<BoomWidgetConfigTypes>({
-        organizerId: organizerId!,
-        eventId: eventId,
-        eventUrl: eventUrl,
-        theme: {
-            colors: theme.colors as BoomWidgetConfigThemeColors,
-        },
-    });
 
-    useEffect(() => {
-        loadBoomCss(isProduction);
-        loadBoomScript(isProduction);
-        setOldEventId(eventId);
-    }, [eventId, isProduction]);
+    // todo: prettier?
+    const _theme = {
+        colors: themeConfig.colors as BoomWidgetConfigThemeColors,
+    };
+
+    const eventId = selectedEvent!.id;
+
+    /** build url */
+    const eventUrl = buildBoomWidgetIframeUrl(
+        isProduction,
+        selectedEvent!.localization.localization,
+        selectedEvent!.localization.slug
+    );
+
+    /** build dto */
+    const config: BoomWidgetConfigDTO = {
+        eventId,
+        eventUrl,
+    }
 
     /**
-     * force to reload boom script, because there is no method for it
+     * init
      */
     useEffect(() => {
-        // todo: force to show
-        windowBoomWidgetConfig.WIDGET_CONFIG_PREVIEW = {};
-        windowBoomWidgetConfig.WIDGET_CONFIG = config;
+        setOldEventId(config?.eventId);
+        placeBoomWidget(config, _theme, setWidgetLoading);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [eventId, eventUrl])
 
-        if (undefined === oldEventId) {
-            return;
-        }
+    /**
+     * switch widget
+     */
+    useEffect(() => {
         if (eventId !== oldEventId) {
-            resetBoomScript(config);
+            placeBoomWidget(config, _theme, setWidgetLoading);
         }
-    }, [config, eventId, oldEventId])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [eventId, oldEventId])
 
     return (
-        <>
+        <Wrapper>
+            <Loader visible={isWidgetLoading}>
+                <PureCssLoader size={80} />
+            </Loader>
             {/*<!-- BOOM Events Widget -->*/}
             <SalesWidget
+                visible={!isWidgetLoading}
                 className={boomWidgetIds.widgetClass}
-                data-config-property={BoomDataConfigProperty.WIDGET_CONFIG}
-            >
-                BOOM SALES WIDGET
-            </SalesWidget>
+            />
             {/*<!-- BOOM Events Widget -->'*/}
-        </>
+        </Wrapper>
     );
 }
 
-const SalesWidget = styled.div`
+const Wrapper = styled.div`
+  position: relative;
+`;
+
+const Loader = styled.div<{ visible: boolean }>`
+  width: 100%;
+  height: 110px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+  background: transparent;
+  display: none;
+  
+  ${({ visible }) => visible && css`
+    display: block;
+  `}
+`;
+
+// todo
+const SalesWidget = styled.div<{ visible: boolean }>`
   height: auto;
+  display: none;
   
   &> iframe {
     // todo: debug
     min-height: 1500px; 
   }
+
+  ${({ visible }) => visible && css`
+    display: block;
+  `}
 `;

@@ -1,6 +1,6 @@
 import {createGlobalStyle} from "styled-components";
 
-export const GlobalStyle = createGlobalStyle<{ bodyBackground?: string }>`
+export const GlobalStyle = createGlobalStyle<{ bodyBackground?: string, selectedDayColor?: string }>`
   html {
     scroll-behavior: smooth;
   }
@@ -19,5 +19,17 @@ export const GlobalStyle = createGlobalStyle<{ bodyBackground?: string }>`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: ${(props) => props.bodyBackground ? props.bodyBackground : 'transparent'};
+  }
+
+  body::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  body::-webkit-scrollbar-track {
+    background-color: ${(props) => props.bodyBackground ? props.bodyBackground : '#F5F5F5'};
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.bodyBackground ? props.selectedDayColor : '#000000'};
   }
 `;

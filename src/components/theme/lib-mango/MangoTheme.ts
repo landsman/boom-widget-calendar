@@ -9,6 +9,7 @@ type MangoCustomizedTheme = {
     };
 
     bodyBackground?: string;
+    selectedDayColor?: string;
 }
 
 export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;

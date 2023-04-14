@@ -7,12 +7,16 @@ import {breakpoints} from "@local/components/theme/breakpoints";
 type PropTypes = {
     children: React.ReactNode;
     bodyBackground?: string;
+    selectedDayColor?: string;
 }
 
-export function Layout({ children, bodyBackground }: PropTypes): JSX.Element {
+export function Layout({ children, bodyBackground, selectedDayColor }: PropTypes): JSX.Element {
     return (
         <Wrapper>
-            <GlobalStyle bodyBackground={bodyBackground} />
+            <GlobalStyle
+                bodyBackground={bodyBackground}
+                selectedDayColor={selectedDayColor}
+            />
             <LocaleSwitcher />
             <Container>
                 {children}
