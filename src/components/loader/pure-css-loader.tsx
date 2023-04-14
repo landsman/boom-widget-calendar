@@ -18,7 +18,7 @@ export function PureCssLoader({ size }: PropTypes): JSX.Element {
                 dotDistance={18}
             >
                 {Array(12).fill(null).map((_, index) => (
-                    <div />
+                    <div key={index} />
                 ))}
             </Spinner>
         </Wrapper>
