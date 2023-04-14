@@ -6,7 +6,7 @@ import {CurrentDateType} from "@local/utils";
 import {flashMessageText} from "@local/components/flash-message";
 import {AppContext, ProviderResponseTypes} from "@local/runtime";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
-import {handleGetEvents} from "@local/models";
+import {oneDayRangeEvents} from "@local/models";
 
 type PropTypes = {
     children: ReactNode;
@@ -44,7 +44,7 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         setSelectedEvent(undefined);
         setSelectedDate(newDateSelected);
 
-        const apiEvents = await handleGetEvents(
+        const apiEvents = await oneDayRangeEvents(
             mockConfig.organizerId,
             newDateSelected || currentDate.date
         );

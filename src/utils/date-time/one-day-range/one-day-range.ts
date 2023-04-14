@@ -1,7 +1,4 @@
-interface DateRange {
-    from: Date;
-    to: Date;
-}
+import {DateRange} from "@local/utils/date-time/types/date-range";
 
 export function getOneDayDateRange(date: Date): DateRange {
     const startOfMonth = new Date(date.getFullYear(), date.getMonth(), date.getDate());
