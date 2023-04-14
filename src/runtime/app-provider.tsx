@@ -33,8 +33,6 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
 
     const handleGetEventsForCurrentMonth = async (newMonthSelected: Date) => {
         const result = await getNotOccupiedDates(organizerId, newMonthSelected);
-        console.log("getNotOccupiedDates", result);
-
         setNotOccupiedDays(result);
     };
 

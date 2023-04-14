@@ -62,7 +62,6 @@ export function Calendar(): JSX.Element {
                 onMonthChange={handleOnMonthChange}
                 defaultMonth={defaultMonth}
                 footer={footer}
-                showOutsideDays
             />
         </Wrapper>
     );
