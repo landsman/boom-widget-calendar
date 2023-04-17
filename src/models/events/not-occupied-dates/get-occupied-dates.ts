@@ -20,8 +20,15 @@ export async function getOccupiedDates(
         const events = await getOneMonthRangeEvents(i18n, organizerId, currentMonthDate);
         return getOccupiedDatesFromEvents(events)
     } catch (e: any) {
+
         console.error("🔥 getFreeDatesWithoutEvent problem", e);
-        setErrorMessage(t`error.api.occupied_dates_general_issue`);
+
+        if (e?.response?.status === 404) {
+            setErrorMessage(t`error.api.org_not_exist`);
+        } else {
+            setErrorMessage(t`error.api.occupied_dates_general_issue`);
+        }
+
         return [];
     }
 }

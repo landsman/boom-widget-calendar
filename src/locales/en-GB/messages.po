@@ -19,6 +19,9 @@ msgstr "whole day"
 msgid "error.api.occupied_dates_general_issue"
 msgstr "Data for the month's events could not be retrieved. There was a problem communicating with the server. Please try again in a moment."
 
+msgid "error.api.org_not_exist"
+msgstr "An organizer with this ID does not exist, please double check the URL."
+
 msgid "error.api.time_slots_general_issue"
 msgstr "Time slots data could not be retrieved. There was a problem communicating with the server. Please try again in a moment."
 

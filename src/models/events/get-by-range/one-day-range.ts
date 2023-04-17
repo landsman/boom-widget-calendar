@@ -18,8 +18,14 @@ export async function oneDayRangeEvents(
     try {
         const range = getOneDayDateRange(date);
         return filterByRange(i18n, organizerId, range);
-    } catch (e) {
-        setErrorMessage(t`error.api.time_slots_general_issue`);
+    } catch (e: any) {
+
+        if (e?.response?.status === 404) {
+            setErrorMessage(t`error.api.org_not_exist`);
+        } else {
+            setErrorMessage(t`error.api.time_slots_general_issue`);
+        }
+
         return [];
     }
 }
