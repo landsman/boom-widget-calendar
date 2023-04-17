@@ -10,6 +10,8 @@ import {getOccupiedDates, oneDayRangeEvents} from "@local/models";
 import {appProviderDefaultValues} from "@local/runtime/default-values";
 import {buildConfigFromUrl} from "@local/configuration/organizer";
 import {loadBoomScripts} from "@local/components/widget";
+import {ErrorMessage} from "@local/components/error-message";
+import {t} from "@lingui/macro";
 
 type PropTypes = {
     children: ReactNode;
@@ -114,7 +116,7 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
      * 🛑 stop with rendering
      */
     if (null === organizerId) {
-        return <>no organizer id!!</>;
+        return <ErrorMessage text={t`error.config.organizer_id_missing`} />;
     }
 
     const contextValue: ProviderResponseTypes = {
