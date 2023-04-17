@@ -16,8 +16,14 @@ msgstr ""
 msgid "calendar.time_slot.whole_day"
 msgstr "celodenní"
 
-msgid "error.api_general_exception"
-msgstr "Vyskytl se problém v komunikaci se serverem. Zkuste to prosím za okamžik znovu."
+msgid "error.api.occupied_dates_general_issue"
+msgstr "Data o událostech v měsíci se nepodařilo získat. Vyskytl se problém v komunikaci se serverem. Zkuste to prosím za okamžik znovu."
+
+msgid "error.api.org_not_exist"
+msgstr "Organizátor s tímto ID neexistuje, prosím překontrolujte URL adresu."
+
+msgid "error.api.time_slots_general_issue"
+msgstr "Data o časových slotech se nepodařilo získat. Vyskytl se problém v komunikaci se serverem. Zkuste to prosím za okamžik znovu."
 
 msgid "error.config.organizer_id_missing"
 msgstr "V URL adrese chybí parameter `organizerId`"

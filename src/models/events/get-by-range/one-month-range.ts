@@ -7,7 +7,7 @@ import {excludeMultiDayEvent} from "@local/models/events/exclude-multi-day-event
 export async function getOneMonthRangeEvents(
     i18n: I18n,
     organizerId: string,
-    date: undefined | Date
+    date: undefined | Date,
 ): Promise<EventType[]> {
     if (undefined === date) {
         console.debug("handleGetEvents - skip because of `date` is undefined");
@@ -15,6 +15,5 @@ export async function getOneMonthRangeEvents(
     }
     const range = getOneMonthRange(date);
     const result = await filterByRange(i18n, organizerId, range);
-
     return excludeMultiDayEvent(result);
 }

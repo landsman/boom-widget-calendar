@@ -26,6 +26,7 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
 
     const init = appProviderDefaultValues;
     const [isLoading, setIsLoading] = useState<boolean>(init.isLoading);
+    const [errorMessage, setErrorMessage] = useState<undefined | string>(undefined);
     const [occupiedDates, setOccupiedDates] = useState<undefined | Date[]>(init.occupiedDates);
     const [selectedMonth, setSelectedMonth] = useState<Date>(currentDate.date);
     const [selectedDate, setSelectedDate] = useState<undefined | Date>(init.selectedDate);
@@ -48,7 +49,12 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
         if (null === organizerId) {
             return;
         }
-        const result = await getOccupiedDates(i18n, organizerId, newMonthSelected);
+        const result = await getOccupiedDates(
+            i18n,
+            organizerId,
+            newMonthSelected,
+            setErrorMessage
+        );
         setOccupiedDates(result);
     };
 
@@ -64,7 +70,8 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
         const apiEvents = await oneDayRangeEvents(
             i18n,
             organizerId!,
-            newDateSelected || currentDate.date
+            newDateSelected || currentDate.date,
+            setErrorMessage,
         );
 
         if (0 === apiEvents.length) {
@@ -123,6 +130,13 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
      */
     if (null === organizerId) {
         return <ErrorMessage text={t`error.config.organizer_id_missing`} />;
+    }
+
+    /**
+     * 🛑 stop with rendering
+     */
+    if (undefined !== errorMessage) {
+        return <ErrorMessage text={errorMessage} />;
     }
 
     const contextValue: ProviderResponseTypes = {
