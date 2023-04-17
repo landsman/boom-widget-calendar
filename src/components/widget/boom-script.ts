@@ -106,7 +106,7 @@ export function placeBoomWidget(
     }
 
     if (undefined === config) {
-        console.log("config is missing!");
+        console.error("config is missing!");
         return;
     }
 

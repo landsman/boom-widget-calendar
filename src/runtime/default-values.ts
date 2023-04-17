@@ -1,4 +1,4 @@
-import {featureDefaultValues} from "@local/configuration/features";
+import {featureDefaultValues} from "@local/api/view/organizer/detail/features";
 import {ProviderResponseTypes} from "@local/runtime/types";
 import {mangoTheme} from "@local/components/theme/lib-mango/MangoTheme";
 

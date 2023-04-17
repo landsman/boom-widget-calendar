@@ -3,12 +3,7 @@ import {render, screen} from '@testing-library/react';
 import App from './App';
 
 test('renders learn react link', () => {
-  const features = { allowTimeSlots: false };
-  render(
-      <App
-          features={features}
-      />
-  );
+  render(<App />);
   const linkElement = screen.getByText(/Boom Events/i);
   expect(linkElement).toBeInTheDocument();
 });

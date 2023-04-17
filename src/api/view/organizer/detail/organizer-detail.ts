@@ -12,27 +12,40 @@ const organizersDatabase: Organizer[] = [
         id: "e43780b9-a220-42d3-a026-cc97875a61e3",
         production: false,
         customTheme: CustomTheme.KVATARIO,
+        features: {
+            allowTimeSlots: true,
+            localeSwitcher: false,
+        },
     },
     {
         id: "123456",
         production: false,
         customTheme: CustomTheme.KVATARIO,
+        features: null,
     },
     {
         id: "1111",
         production: false,
         customTheme: CustomTheme.PRAVCICKA_BRANA,
+        features: null,
     },
 ]
 
 /**
  * this would be nice api endpoint
+ * todo: prepare app to case when we don't find organiser...
  */
-function getOrganiserDetails(production: boolean, id: string): null | Organizer {
+export async function getOrganiserDetails(
+    production: boolean,
+    organizerId: null | string
+): Promise<null | Organizer> {
+    if (null === organizerId) {
+        return null;
+    }
 
-    const result = organizersDatabase.filter((org: Organizer): boolean => {
-        return production === org.production && id === org.id;
-    }).shift();
+    //const byEnv = organizersDatabase.filter((org: Organizer) => production === org.production);
+    const result = organizersDatabase.filter((org) => org.id === organizerId).shift();
+    console.log("Result", result);
 
     return result || null;
 }
@@ -41,7 +54,7 @@ function getOrganiserDetails(production: boolean, id: string): null | Organizer 
  * lazy import file corresponding with theme name
  * todo!!!
  */
-function getOrganiserCustomThemeData(theme: null | CustomTheme): null | CustomizedThemeOverride {
+export async function getOrganiserCustomThemeData(theme: null | CustomTheme): Promise<null | CustomizedThemeOverride> {
     switch (theme) {
         case CustomTheme.KVATARIO:
             // todo: get rid of type casting
@@ -52,27 +65,7 @@ function getOrganiserCustomThemeData(theme: null | CustomTheme): null | Customiz
             return null;
 
         default:
-            return null;
+            // todo: prepare default data!
+            return kvantarioTheme as CustomizedThemeOverride;
     }
-}
-
-/**
- * simulate api endpoint
- */
-export function getCustomThemeDataByOrganiserId(
-    production: boolean,
-    id: null | string
-): null | CustomizedThemeOverride {
-
-    if (null == id) {
-        return null;
-    }
-
-    const details = getOrganiserDetails(production, id);
-
-    if (null == details) {
-        return null;
-    }
-
-    return getOrganiserCustomThemeData(details.customTheme);
 }

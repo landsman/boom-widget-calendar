@@ -5,9 +5,13 @@
  */
 export enum CustomTheme {
 
-    /** @see https://www.kvantario.com/ */
+    /**
+     * @see https://www.kvantario.com/
+     * */
     KVATARIO = 'kvantario',
 
-    /** @see https://www.pbrana.cz/  */
+    /**
+     * @see https://www.pbrana.cz/
+     * */
     PRAVCICKA_BRANA = 'pbrana',
 }

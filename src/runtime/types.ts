@@ -1,12 +1,12 @@
 import {EventType} from "@local/api/view/events/types";
-import {FeatureTypes} from "@local/configuration/features";
+import {FeatureTypes} from "@local/api/view/organizer/detail/features";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
 export type ProviderResponseTypes = {
     isLoading: boolean;
     setIsLoading: (state: boolean) => void;
     isProduction: boolean;
-    features: FeatureTypes;
+    features: null | FeatureTypes;
     isWidgetLoading: boolean;
     setWidgetLoading: (state: boolean) => void;
     occupiedDates: undefined | Date[];
