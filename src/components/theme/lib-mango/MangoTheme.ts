@@ -2,6 +2,7 @@ import { DEFAULT_THEME, MantineThemeOverride } from '@mantine/core'
 
 import { mangoThemeConfig } from './MangoThemeConfig'
 
+// todo: somehow merge with: BoomWidgetConfigThemeTypes
 type MangoCustomizedTheme = {
     borderRadius: {
         xs: number
@@ -10,6 +11,7 @@ type MangoCustomizedTheme = {
 
     bodyBackground?: string;
     selectedDayColor?: string;
+    calendarBorder?: string;
 }
 
 export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;

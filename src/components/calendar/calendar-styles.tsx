@@ -38,7 +38,7 @@ const Wrapper = styled.div`
     max-width: 100%;
     padding: 30px 30px;
     background: ${(props) => props.theme.colors!.gray!['0']};
-    border-radius: 6px;
+    border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
     
     margin: 0 auto;
 
@@ -49,6 +49,8 @@ const Wrapper = styled.div`
       margin: 0 auto;
       padding: 10px 0;
     }
+    
+    border: ${(props) => props.theme?.calendarBorder ? props.theme?.calendarBorder : 'unset'};
   }
 
   .rdp-months {
@@ -60,8 +62,7 @@ const Wrapper = styled.div`
   }
   
   .rdp-button_reset {
-    // todo: this is specific for client!
-    border-radius: 4px;
+    border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.xs + `px` : 'unset'};
   }
   
   .rdp-head_cell {

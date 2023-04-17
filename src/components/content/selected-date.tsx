@@ -51,7 +51,7 @@ const Wrapper = styled.div`
 
   background: #251D3F;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 `;
 
 const Text = styled.p`

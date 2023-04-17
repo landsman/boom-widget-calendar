@@ -1,4 +1,4 @@
-import {BoomWidgetConfigThemeTypes} from "@local/configuration/boom-connect";
+import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
 const clientKvantario = {
     main: '#1F1940',
@@ -7,8 +7,7 @@ const clientKvantario = {
     background: '#1A1135',
 };
 
-// todo: resolve how to inject this from window object or other config outside this project
-export const kvantarioTheme: BoomWidgetConfigThemeTypes = {
+export const kvantarioTheme: CustomizedThemeOverride = {
     colors: {
         gray: [
             clientKvantario.main, // Icon white
@@ -35,7 +34,13 @@ export const kvantarioTheme: BoomWidgetConfigThemeTypes = {
             '#FFF', // Button background hover
         ],
     },
+
     // ⚠️ customs...
     bodyBackground: '#1A1135',
     selectedDayColor: '#D527D7',
+
+    borderRadius: {
+        xs: 4,
+        sm: 6,
+    }
 }

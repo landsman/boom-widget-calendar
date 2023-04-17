@@ -20,6 +20,7 @@ export type BoomWidgetConfigThemeTypes = {
     colors: BoomWidgetConfigThemeColors;
     bodyBackground?: string;
     selectedDayColor?: string;
+    calendarBorder?: string;
 };
 
 /**

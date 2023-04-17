@@ -15,7 +15,7 @@ export const SlotWrapper = styled.div<PropTypes>`
   // todo: client-specific! move it to theme!
   background: #363152;
   color: white;
-  border-radius: 6px;
+  border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 
   &:hover {
     background: white;

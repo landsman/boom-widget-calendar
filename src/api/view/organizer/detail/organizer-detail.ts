@@ -1,7 +1,8 @@
 import {Organizer} from "@local/api/view/organizer/detail/type";
 import {CustomTheme} from "@local/api/view/organizer/detail/custom-theme";
-import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {CustomizedThemeOverride, mangoTheme} from "@local/components/theme/lib-mango/MangoTheme";
 import {kvantarioTheme} from "@local/api/view/organizer/detail/themes/kvantario";
+import {pravcickaBranaTheme} from "@local/api/view/organizer/detail/themes/pbrana";
 
 /**
  * this would be nice API!
@@ -11,7 +12,7 @@ const organizersDatabase: Organizer[] = [
         // michal landsman @ stage
         id: "e43780b9-a220-42d3-a026-cc97875a61e3",
         production: false,
-        customTheme: CustomTheme.KVATARIO,
+        customTheme: CustomTheme.PRAVCICKA_BRANA,
         features: {
             allowTimeSlots: true,
             localeSwitcher: false,
@@ -52,20 +53,17 @@ export async function getOrganiserDetails(
 
 /**
  * lazy import file corresponding with theme name
- * todo!!!
  */
 export async function getOrganiserCustomThemeData(theme: null | CustomTheme): Promise<null | CustomizedThemeOverride> {
     switch (theme) {
         case CustomTheme.KVATARIO:
-            // todo: get rid of type casting
-            return kvantarioTheme as CustomizedThemeOverride;
+            return kvantarioTheme;
 
-        // todo
         case CustomTheme.PRAVCICKA_BRANA:
-            return null;
+            return pravcickaBranaTheme;
 
         default:
-            // todo: prepare default data!
-            return kvantarioTheme as CustomizedThemeOverride;
+            // todo: prepare default!
+            return mangoTheme;
     }
 }
