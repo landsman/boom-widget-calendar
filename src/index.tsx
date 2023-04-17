@@ -17,7 +17,6 @@ const features: FeatureTypes = {
 
 // todo: check this
 const customTheme = mockThemeKvantario as CustomizedThemeOverride;
-const organizerId = mockOrganizerId;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -29,7 +28,6 @@ root.render(
         fixedLocale={fixedLocale}
         features={features}
         customTheme={customTheme}
-        organizerId={organizerId}
     />
   </React.StrictMode>
 );

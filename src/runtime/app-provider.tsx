@@ -8,18 +8,19 @@ import {AppContext, ProviderResponseTypes} from "@local/runtime";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 import {getOccupiedDates, oneDayRangeEvents} from "@local/models";
 import {appProviderDefaultValues} from "@local/runtime/default-values";
+import {buildConfigFromUrl} from "@local/configuration/organizer";
 
 type PropTypes = {
     children: ReactNode;
-    organizerId: string;
     features: FeatureTypes;
     currentDate: CurrentDateType;
     isProduction: boolean;
     themeConfig: CustomizedThemeOverride;
 };
 
-export function AppProvider({ organizerId, features, children, currentDate, isProduction, themeConfig }: PropTypes) {
+export function AppProvider({ features, children, currentDate, isProduction, themeConfig }: PropTypes) {
     const { i18n } = useLingui();
+    const { organizerId } = buildConfigFromUrl();
 
     const init = appProviderDefaultValues;
     const [isLoading, setIsLoading] = useState<boolean>(init.isLoading);
@@ -38,19 +39,13 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
 
     const [flashMessage, setFlashMessage] = useState<undefined | string>(defaultFlashMessage);
 
+    /**
+     * get a new data from api when user change the month
+     */
     const handleGetEventsForCurrentMonth = async (newMonthSelected: Date) => {
-        const result = await getOccupiedDates(i18n, organizerId, newMonthSelected);
+        const result = await getOccupiedDates(i18n, organizerId!, newMonthSelected);
         setOccupiedDates(result);
     };
-
-    /**
-     * init and month switch in calendar component produce a new api request to get occupied days
-     */
-    useEffect(() => {
-        setOccupiedDates(undefined);
-        handleGetEventsForCurrentMonth(selectedMonth);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedMonth]);
 
     /**
      * user clicked to the specific date in the calendar
@@ -61,7 +56,11 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
         setSelectedEvent(undefined);
         setSelectedDate(newDateSelected);
 
-        const apiEvents = await oneDayRangeEvents(i18n, organizerId, newDateSelected || currentDate.date);
+        const apiEvents = await oneDayRangeEvents(
+            i18n,
+            organizerId!,
+            newDateSelected || currentDate.date
+        );
 
         if (0 === apiEvents.length) {
             setFlashMessage(flashMessageText.noEvents);
@@ -86,6 +85,16 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
     }
 
     /**
+     * init and month switch in calendar component produce a new api request to get occupied days
+     */
+    useEffect(() => {
+        setOccupiedDates(undefined);
+        handleGetEventsForCurrentMonth(selectedMonth);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedMonth]);
+
+
+    /**
      * hide flash message when its specific event selected
      */
     useEffect(() => {
@@ -93,6 +102,13 @@ export function AppProvider({ organizerId, features, children, currentDate, isPr
             setFlashMessage(undefined);
         }
     }, [selectedEvent]);
+
+    /**
+     * 🛑 stop with rendering
+     */
+    if (null === organizerId) {
+        return <>no organizer id!!</>;
+    }
 
     const contextValue: ProviderResponseTypes = {
         isLoading,

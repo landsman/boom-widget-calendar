@@ -14,13 +14,12 @@ import {SplashScreen} from "@local/components/loader/splash-screen";
 type PropTypes = {
     fixedLocale?: undefined | AppLocale;
     features: FeatureTypes;
-    organizerId: string;
     customTheme?: undefined | CustomizedThemeOverride;
 };
 
 const prod = isProduction();
 
-function App({ organizerId, fixedLocale, features, customTheme }: PropTypes) {
+function App({ fixedLocale, features, customTheme }: PropTypes) {
     const widgetStyles = {
         ...mangoTheme,
         ...customTheme || {},
@@ -29,7 +28,7 @@ function App({ organizerId, fixedLocale, features, customTheme }: PropTypes) {
     /** load boom external files */
     useEffect(() => {
         loadBoomScripts(prod);
-    }, [])
+    }, []);
 
     return (
         <CustomThemeProvider customTheme={widgetStyles}>
@@ -38,7 +37,6 @@ function App({ organizerId, fixedLocale, features, customTheme }: PropTypes) {
                     features={features}
                     currentDate={getCurrentDate()}
                     isProduction={prod}
-                    organizerId={organizerId}
                     themeConfig={widgetStyles}
                 >
                     <SplashScreen />
