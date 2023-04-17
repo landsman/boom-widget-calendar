@@ -7,13 +7,19 @@ import {AppProvider, LocaleProvider} from "@local/runtime";
 import {getCurrentDate} from "@local/utils/date-time";
 import {FeatureTypes} from "@local/configuration/features";
 import {SplashScreen} from "@local/components/loader/splash-screen";
+import {buildConfigFromUrl} from "@local/configuration/organizer";
+import {getCustomThemeDataByOrganiserId} from "@local/api/view/organizer/detail/organizer-detail";
 
 type PropTypes = {
     features: FeatureTypes;
-    customTheme?: undefined | CustomizedThemeOverride;
+    customTheme1?: undefined | CustomizedThemeOverride;
 };
 
-function App({ features, customTheme }: PropTypes) {
+function App({ features }: PropTypes) {
+    const { isProduction, organizerId } = buildConfigFromUrl();
+    const customTheme = getCustomThemeDataByOrganiserId(isProduction, organizerId);
+
+    // merge themes
     const widgetStyles = {
         ...mangoTheme,
         ...customTheme || {},
@@ -29,8 +35,8 @@ function App({ features, customTheme }: PropTypes) {
                 >
                     <SplashScreen />
                         <Layout
-                            bodyBackground={customTheme?.bodyBackground}
-                            selectedDayColor={customTheme?.selectedDayColor}
+                            bodyBackground={widgetStyles?.bodyBackground}
+                            selectedDayColor={widgetStyles?.selectedDayColor}
                         >
                             <Content />
                             <Footer />

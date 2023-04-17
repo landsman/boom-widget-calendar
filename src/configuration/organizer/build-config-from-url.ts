@@ -19,6 +19,5 @@ export function buildConfigFromUrl(): OrganizerConfiguration {
         organizerId,
         isProduction: prod,
         fixedLocale: localeFinal,
-        customTheme: undefined,
     }
 }
