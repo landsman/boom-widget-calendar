@@ -9,18 +9,18 @@ import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTh
 import {getOccupiedDates, oneDayRangeEvents} from "@local/models";
 import {appProviderDefaultValues} from "@local/runtime/default-values";
 import {buildConfigFromUrl} from "@local/configuration/organizer";
+import {loadBoomScripts} from "@local/components/widget";
 
 type PropTypes = {
     children: ReactNode;
     features: FeatureTypes;
     currentDate: CurrentDateType;
-    isProduction: boolean;
     themeConfig: CustomizedThemeOverride;
 };
 
-export function AppProvider({ features, children, currentDate, isProduction, themeConfig }: PropTypes) {
+export function AppProvider({ features, children, currentDate, themeConfig }: PropTypes) {
     const { i18n } = useLingui();
-    const { organizerId } = buildConfigFromUrl();
+    const { organizerId, isProduction } = buildConfigFromUrl();
 
     const init = appProviderDefaultValues;
     const [isLoading, setIsLoading] = useState<boolean>(init.isLoading);
@@ -102,6 +102,13 @@ export function AppProvider({ features, children, currentDate, isProduction, the
             setFlashMessage(undefined);
         }
     }, [selectedEvent]);
+
+
+    /** load boom external files */
+    useEffect(() => {
+        loadBoomScripts(isProduction);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     /**
      * 🛑 stop with rendering

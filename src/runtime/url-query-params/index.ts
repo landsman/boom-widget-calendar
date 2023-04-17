@@ -1,1 +1,1 @@
-export * from "./get-organizer-id";
+export * from "./get-value";

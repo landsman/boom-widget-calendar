@@ -1,3 +1,6 @@
+import {getIsProduction} from "@local/runtime/url-query-params/get-value";
+
 export function isProduction(): boolean {
-    return "true" === process.env.REACT_APP_IS_PRODUCTION;
+    const fromUrl = getIsProduction();
+    return "false" !== fromUrl;
 }

@@ -3,5 +3,6 @@
  */
 export const localQueryParams = {
     organizerId: 'organizerId',
+    isProduction: 'isProduction',
 };
 

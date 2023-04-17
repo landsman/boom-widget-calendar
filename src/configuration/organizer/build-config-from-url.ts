@@ -1,5 +1,6 @@
 import {getOrganizerId} from "@local/runtime/url-query-params";
 import {OrganizerConfiguration} from "@local/configuration/organizer/types";
+import {isProduction} from "@local/configuration/environment";
 
 /**
  * get and build object to be used in test of the app as main configuration for the organizer
@@ -7,8 +8,10 @@ import {OrganizerConfiguration} from "@local/configuration/organizer/types";
  */
 export function buildConfigFromUrl(): OrganizerConfiguration {
     const organizerId = getOrganizerId();
+    const prod = isProduction();
 
     return {
         organizerId,
+        isProduction: prod,
     }
 }
