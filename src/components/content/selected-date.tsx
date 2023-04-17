@@ -33,10 +33,6 @@ const Wrapper = styled.div`
   max-width: ${breakpoints.container};
   margin: 10px auto;
   text-align: center;
-
-  // todo: sticky
-  //position: fixed;
-  //top: 0;
   
   @media (min-width: ${breakpoints.tablet}) {
     width: 100%;
@@ -45,11 +41,9 @@ const Wrapper = styled.div`
     margin-top: 0;
   }
 
-  // todo: client specific, move to theme!
-  color: #FFFFFF;
-  font-size: 16px;
-
-  background: #251D3F;
+  color: ${(props) => props.theme.colors!.gray!['4']};
+  background: ${(props) => props.theme.colors!.gray!['0']};
+  
   border: 1px solid transparent;
   border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 `;

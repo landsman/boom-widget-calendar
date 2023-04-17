@@ -10,8 +10,14 @@ type MangoCustomizedTheme = {
     };
 
     bodyBackground?: string;
+    disabledDayColor?: string;
     selectedDayColor?: string;
+    calendarTodayBorder?: string;
+    calendarMonthArrowBg?: string;
+    calendarMonthArrowIcon?: string;
+    calendarMonthArrowBorder?: string;
     calendarBorder?: string;
+    calendarShadow?: string;
 }
 
 export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;

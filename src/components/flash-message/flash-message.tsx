@@ -30,12 +30,11 @@ const Wrapper = styled.div`
   }
   
   
-  
-  // todo: client specific, move to theme, somehow!
-  color: #FFFFFF;
+  color: ${(props) => props.theme.colors!.gray!['4']};
   font-size: 16px;
+
+  background: ${(props) => props.theme.colors!.gray!['0']};
   
-  background: #251D3F;
   border: 1px solid transparent;
   border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 `;

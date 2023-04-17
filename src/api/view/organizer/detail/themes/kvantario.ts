@@ -37,7 +37,12 @@ export const kvantarioTheme: CustomizedThemeOverride = {
 
     // ⚠️ customs...
     bodyBackground: '#1A1135',
+
+    disabledDayColor: '#665D78',
+    calendarTodayBorder: '1px solid #D527D7',
     selectedDayColor: '#D527D7',
+
+    calendarMonthArrowBg: '#363053',
 
     borderRadius: {
         xs: 4,

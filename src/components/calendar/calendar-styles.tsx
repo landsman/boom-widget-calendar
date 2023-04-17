@@ -51,6 +51,7 @@ const Wrapper = styled.div`
     }
     
     border: ${(props) => props.theme?.calendarBorder ? props.theme?.calendarBorder : 'unset'};
+    box-shadow:  ${(props) => props.theme?.calendarShadow ? props.theme?.calendarShadow : 'unset'};;
   }
 
   .rdp-months {
@@ -82,15 +83,15 @@ const Wrapper = styled.div`
     height: 36px;
     overflow: hidden;
     
-    // todo: specific for client!
-    background: #363053;
+    background: ${(props) => props.theme?.calendarMonthArrowBg ? props.theme?.calendarMonthArrowBg : 'unset'};
+    border: ${(props) => props.theme?.calendarMonthArrowBorder ? props.theme?.calendarMonthArrowBorder : 'unset'};
 
     svg {
       height: 10px;
       width: auto;
       
       &> path {
-        fill: white;
+        fill: ${(props) => props.theme?.calendarMonthArrowIcon ? props.theme?.calendarMonthArrowIcon : 'unset'};
       }
     }
     
@@ -105,7 +106,6 @@ const Wrapper = styled.div`
     }
   }
   
-  // todo: specic for client
   .rdp-nav_icon {
 
   }
@@ -123,16 +123,13 @@ const Wrapper = styled.div`
   }
 
   .rdp-day_today {
-    // todo: client specific, move to theme!
-    border: 1px solid #D527D7;
+    border: ${(props) => props.theme?.calendarTodayBorder ? props.theme?.calendarTodayBorder : 'unset'};
   }
 
   .rdp-day_selected {
     font-weight: bold;
-    // todo: client specific, move to theme!
-    background: #D527D7;
+    background: ${(props) => props.theme?.selectedDayColor ? props.theme?.selectedDayColor : 'unset'};
     border: 1px solid transparent;
-    //background: props => props.widgetTheme.colors.violet[0]
 
     &:hover {
       color: white;
@@ -141,11 +138,10 @@ const Wrapper = styled.div`
   
   .rdp-day_disabled {
     cursor: not-allowed;
-    color: #665D78;
+    color: ${(props) => props.theme?.disabledDayColor ? props.theme?.disabledDayColor : 'unset'};
     
     &:hover {
-      // todo: client specific, move to theme!
-      color: #665D78;
+      color: ${(props) => props.theme?.disabledDayColor ? props.theme?.disabledDayColor : 'unset'};
     }
   }
     
