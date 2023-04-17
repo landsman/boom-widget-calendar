@@ -45,7 +45,10 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
      * get a new data from api when user change the month
      */
     const handleGetEventsForCurrentMonth = async (newMonthSelected: Date) => {
-        const result = await getOccupiedDates(i18n, organizerId!, newMonthSelected);
+        if (null === organizerId) {
+            return;
+        }
+        const result = await getOccupiedDates(i18n, organizerId, newMonthSelected);
         setOccupiedDates(result);
     };
 
@@ -108,6 +111,9 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
 
     /** load boom external files */
     useEffect(() => {
+        if (null === organizerId) {
+            return;
+        }
         loadBoomScripts(isProduction);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
