@@ -30,7 +30,7 @@ export function SelectedDate(): JSX.Element {
 const Wrapper = styled.div`
   display: block;
   width: 100%;
-  max-width: 700px;
+  max-width: ${breakpoints.container};
   margin: 10px auto;
   text-align: center;
 

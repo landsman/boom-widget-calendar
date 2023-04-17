@@ -7,7 +7,7 @@ test('renders learn react link', () => {
   const features = { allowTimeSlots: false };
   render(
       <App
-          fixedLocale={AppLocale.en}
+          fixedLocale={AppLocale.EN}
           features={features}
       />
   );

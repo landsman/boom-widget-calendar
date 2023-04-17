@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
-    max-width: 700px;
+    max-width: ${breakpoints.container};
     margin: 0 auto;
     padding: 10px 0;
 

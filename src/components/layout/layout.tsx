@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import {GlobalStyle} from "@local/components/layout/theme";
-import {LocaleSwitcher} from "@local/components/layout/locale-switcher";
 import {breakpoints} from "@local/components/theme/breakpoints";
 
 type PropTypes = {
@@ -17,7 +16,6 @@ export function Layout({ children, bodyBackground, selectedDayColor }: PropTypes
                 bodyBackground={bodyBackground}
                 selectedDayColor={selectedDayColor}
             />
-            <LocaleSwitcher />
             <Container>
                 {children}
             </Container>

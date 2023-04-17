@@ -27,7 +27,7 @@ export function LocaleProvider({ fixedLocale, children }: PropTypes) {
         if (manual) {
             console.debug("💬 switching locale to:", newValue);
         }
-        return changeLocale(newValue, setLocaleDataForCalendar, setLocale, setMessageResolved);
+        await changeLocale(newValue, setLocaleDataForCalendar, setLocale, setMessageResolved);
     }
 
     /**

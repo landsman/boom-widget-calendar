@@ -1,23 +1,26 @@
 import styled from "styled-components";
 import {localeWithNames, useLocaleContext} from "@local/configuration/i18n";
 import {useAppContext} from "@local/runtime";
+import {breakpoints} from "@local/components/theme/breakpoints";
 
 export function LocaleSwitcher(): JSX.Element {
-    const { isProduction, features } = useAppContext();
     const { switchLocale } = useLocaleContext();
+    const { isProduction, features } = useAppContext();
+
     // only for dev for now
     if (isProduction || !features?.localeSwitcher) {
         return <div />;
     }
+
     return (
         <Wrapper>
             <Navigation>
                 {localeWithNames.map((item) => (
                     <LocaleItem
                         key={item.key}
-                        onClick={() => switchLocale(item.key)}
+                        onClick={() => switchLocale(item.key, true)}
                     >
-                        {item.value}
+                        <span>{item.emoji}{' '}{item.value}</span>
                     </LocaleItem>
                 ))}
             </Navigation>
@@ -26,8 +29,21 @@ export function LocaleSwitcher(): JSX.Element {
 }
 
 const Wrapper = styled.div`
-  padding-bottom: 15px;
-  text-align: right;
+  width: 100%;
+  max-width: 90%;
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: ${(props) => props.theme.colors!.gray!['0']};
+  border-radius: 6px;
+  overflow: hidden;
+
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+    max-width: ${breakpoints.container};
+    margin: 0 auto 10px;
+  }
 `;
 
 const Navigation = styled.div`
@@ -35,9 +51,22 @@ const Navigation = styled.div`
 `;
 
 const LocaleItem = styled.div`
+  display: block;
+  margin-top: 10px;
+  
   cursor: pointer;
+  color: ${(props) => props.theme.colors!.gray!['9']};
+  
+  &:first-child {
+    margin-top: 0;
+  }
   
   &:hover {
     text-decoration: underline;
+  }
+  
+  span {
+    padding: 15px 20px;
+    font-size: 15px;
   }
 `;

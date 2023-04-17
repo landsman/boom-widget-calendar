@@ -1,12 +1,15 @@
+import React from "react";
 import styled from "styled-components";
 import {Calendar} from "@local/components/calendar";
 import {BoomWidget} from "@local/components/widget";
 import {breakpoints} from "@local/components/theme/breakpoints";
+import {LocaleSwitcher} from "@local/components/layout/locale-switcher";
 
 export function Content(): JSX.Element {
     return (
         <Grid>
             <Left>
+                <LocaleSwitcher />
                 <Calendar />
             </Left>
             <Right>
@@ -36,7 +39,7 @@ const Column = styled.div`
   
   @media (min-width: ${breakpoints.tablet}) {
     width: auto;
-    display: inherit;
+    display: block;
   }
 `;
 
