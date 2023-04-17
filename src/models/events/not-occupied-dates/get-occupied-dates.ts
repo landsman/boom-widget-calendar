@@ -2,6 +2,8 @@ import {I18n} from "@lingui/core";
 import {getOneMonthRangeEvents} from "@local/models";
 import {EventType} from "@local/api/view/events/types";
 import {excludeMultiDayEvent} from "@local/models/events/exclude-multi-day-event/exclude-multi-day-event";
+import {Dispatch, SetStateAction} from "react";
+import {t} from "@lingui/macro";
 
 function getOccupiedDatesFromEvents(events: EventType[]): Date[] {
     const filteredEvents = excludeMultiDayEvent(events);
@@ -11,13 +13,15 @@ function getOccupiedDatesFromEvents(events: EventType[]): Date[] {
 export async function getOccupiedDates(
     i18n: I18n,
     organizerId: string,
-    currentMonthDate: Date
+    currentMonthDate: Date,
+    setErrorMessage: Dispatch<SetStateAction<undefined | string>>,
 ): Promise<Date[]> {
     try {
         const events = await getOneMonthRangeEvents(i18n, organizerId, currentMonthDate);
         return getOccupiedDatesFromEvents(events)
     } catch (e: any) {
         console.error("🔥 getFreeDatesWithoutEvent problem", e);
+        setErrorMessage(t`error.api.occupied_dates_general_issue`);
         return [];
     }
 }
