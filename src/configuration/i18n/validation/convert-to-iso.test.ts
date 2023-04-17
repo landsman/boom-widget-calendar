@@ -4,10 +4,10 @@ import {convertLocaleToISO} from "@local/configuration/i18n/validation/convert-t
 describe('convertLocaleToISO', () => {
     test('validate', () => {
         expect(convertLocaleToISO('cs')).toEqual(AppLocale.CS);
-        expect(convertLocaleToISO('cs')).toEqual('cs-CZ');
+        expect(convertLocaleToISO('cs')).toEqual('cs');
 
-        expect(convertLocaleToISO('cs-CZ')).toEqual('cs-CZ');
-        expect(convertLocaleToISO('cs-SK')).toEqual('cs-CZ');
+        expect(convertLocaleToISO('cs-CZ')).toEqual('cs');
+        expect(convertLocaleToISO('cs-SK')).toEqual('cs');
 
         expect(convertLocaleToISO('en')).toEqual('en-GB');
         expect(convertLocaleToISO('en-GB')).toEqual('en-GB');

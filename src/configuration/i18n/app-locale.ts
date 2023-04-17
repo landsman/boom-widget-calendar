@@ -5,5 +5,5 @@
  */
 export enum AppLocale {
     EN = 'en-GB',
-    CS = 'cs-CZ',
+    CS = 'cs',
 }
