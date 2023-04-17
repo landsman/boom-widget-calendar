@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {AppLocale} from "@local/configuration/i18n";
-import {mockOrganizerId, mockThemeKvantario} from "@local/configuration/boom-connect";
+import {mockThemeKvantario} from "@local/configuration/boom-connect";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 import {FeatureTypes} from "@local/configuration/features";
 
@@ -17,7 +17,6 @@ const features: FeatureTypes = {
 
 // todo: check this
 const customTheme = mockThemeKvantario as CustomizedThemeOverride;
-const organizerId = mockOrganizerId;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -29,7 +28,6 @@ root.render(
         fixedLocale={fixedLocale}
         features={features}
         customTheme={customTheme}
-        organizerId={organizerId}
     />
   </React.StrictMode>
 );

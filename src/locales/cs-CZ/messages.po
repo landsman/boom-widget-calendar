@@ -19,6 +19,9 @@ msgstr "celodenní"
 msgid "error.api_general_exception"
 msgstr "Vyskytl se problém v komunikaci se serverem. Zkuste to prosím za okamžik znovu."
 
+msgid "error.config.organizer_id_missing"
+msgstr "V URL adrese chybí parameter `organizerId`"
+
 msgid "footer.created_by"
 msgstr "Pohání"
 

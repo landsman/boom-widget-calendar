@@ -19,6 +19,9 @@ msgstr "whole day"
 msgid "error.api_general_exception"
 msgstr "There was a problem communicating with the server. Please try again in a moment."
 
+msgid "error.config.organizer_id_missing"
+msgstr "You are missing `organizerId` parameter in the URL"
+
 msgid "footer.created_by"
 msgstr "Created by"
 
