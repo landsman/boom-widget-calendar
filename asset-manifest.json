@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/boom-widget-calendar/static/css/main.c91beb81.css",
-    "main.js": "/boom-widget-calendar/static/js/main.d948e99d.js",
-    "static/js/4312.ba12f3d7.chunk.js": "/boom-widget-calendar/static/js/4312.ba12f3d7.chunk.js",
+    "main.js": "/boom-widget-calendar/static/js/main.dfb62fb7.js",
+    "static/js/9845.2a1b265c.chunk.js": "/boom-widget-calendar/static/js/9845.2a1b265c.chunk.js",
     "static/js/6318.85627025.chunk.js": "/boom-widget-calendar/static/js/6318.85627025.chunk.js",
     "df-0.js": "/boom-widget-calendar/static/js/df-0.c501d738.chunk.js",
     "df-1.js": "/boom-widget-calendar/static/js/df-1.a194f8f9.chunk.js",
@@ -101,6 +101,6 @@
   },
   "entrypoints": [
     "static/css/main.c91beb81.css",
-    "static/js/main.d948e99d.js"
+    "static/js/main.dfb62fb7.js"
   ]
 }
