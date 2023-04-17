@@ -43,6 +43,7 @@ export function LocaleProvider({ children }: PropTypes) {
 
     const contextValue: LocaleResponseTypes = {
         locale,
+        isFixed: (null !== fixedLocale),
         switchLocale: handleSwitchLocale,
         localeDataForCalendar,
     }

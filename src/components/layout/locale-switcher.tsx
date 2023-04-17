@@ -4,11 +4,11 @@ import {useAppContext} from "@local/runtime";
 import {breakpoints} from "@local/components/theme/breakpoints";
 
 export function LocaleSwitcher(): JSX.Element {
-    const { switchLocale } = useLocaleContext();
+    const { isFixed, switchLocale } = useLocaleContext();
     const { isProduction, features } = useAppContext();
 
     // only for dev for now
-    if (isProduction || !features?.localeSwitcher) {
+    if (isProduction || !features?.localeSwitcher || isFixed) {
         return <div />;
     }
 

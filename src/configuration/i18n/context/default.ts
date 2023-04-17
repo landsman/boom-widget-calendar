@@ -1,7 +1,8 @@
-import {defaultLocale} from "@local/configuration/i18n";
+import {defaultLocale, LocaleResponseTypes} from "@local/configuration/i18n";
 
-export const localeContextDefaultValues = {
+export const localeContextDefaultValues: LocaleResponseTypes = {
     locale: defaultLocale,
+    isFixed: false,
     switchLocale: (_l: string) => null,
     localeDataForCalendar: undefined,
 };

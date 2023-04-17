@@ -9,7 +9,7 @@ The basic configuration is made via URL query params
 
 - `organizerId`
 - `isProduction` by default true, use it with false to switch to staging
-- `locale` if you want to skip locale detection, have fixed value [cs, en-GB]
+- `locale` if you want to skip locale detection, have fixed value [cs, en-GB]. It also hides locale switcher.
 
 ## Devstack
 
