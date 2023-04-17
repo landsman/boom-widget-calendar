@@ -1,7 +1,7 @@
 /** @type {import('@lingui/conf').LinguiConfig} */
 module.exports = {
     /** @see AppLocale */
-    locales: ["en-GB", "cs-CZ"],
+    locales: ["en-GB", "cs"],
     catalogs: [{
         path: "src/locales/{locale}/messages",
         include: ["src"]

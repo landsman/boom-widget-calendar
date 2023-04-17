@@ -9,6 +9,7 @@ import {
 } from "@local/configuration/boom-connect";
 import {useAppContext} from "@local/runtime";
 import {PureCssLoader} from "@local/components/loader/pure-css-loader";
+import {useLocaleContext} from "@local/configuration/i18n";
 
 export function BoomWidgetElement() {
     const {
@@ -18,7 +19,7 @@ export function BoomWidgetElement() {
         isWidgetLoading,
         setWidgetLoading
     } = useAppContext();
-
+    const { locale } = useLocaleContext();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
 
     // todo: prettier?
@@ -31,7 +32,7 @@ export function BoomWidgetElement() {
     /** build url */
     const eventUrl = buildBoomWidgetIframeUrl(
         isProduction,
-        selectedEvent!.localization.localization,
+        locale,
         selectedEvent!.localization.slug
     );
 
