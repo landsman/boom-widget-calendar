@@ -1,0 +1,29 @@
+name: 'Run tests'
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  tests:
+    name: 'Run tests'
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - name: 'Install dependencies'
+        env:
+          GENERATE_SOURCEMAP: true
+        run: |
+          npm ci
+          npm run pre-deploy
+
+      - name: 'Run tests'
+        run: npm run test
+
