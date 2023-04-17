@@ -1,4 +1,4 @@
-import {getIsProduction, getOrganizerId} from "@local/runtime/url-query-params/get-value";
+import {getFixedLocale, getIsProduction, getOrganizerId} from "@local/runtime/url-query-params/get-value";
 import mockLocation from './mock/window.location.mock';
 
 describe('getOrganizerId', () => {
@@ -25,7 +25,19 @@ describe('getOrganizerId', () => {
         const url = new URL(mockLocation.href);
         url.searchParams.set('isProduction', 'false');
         mockLocation.href = url.toString();
-        mockLocation.href = url.toString();
         expect(getIsProduction()).toBe('false');
+    });
+
+    test('locale is not present in url', () => {
+        const url = new URL(mockLocation.href);
+        mockLocation.href = url.toString();
+        expect(getFixedLocale()).toBe(null);
+    });
+
+    test('locale is CS', () => {
+        const url = new URL(mockLocation.href);
+        url.searchParams.set('locale', 'cs');
+        mockLocation.href = url.toString();
+        expect(getFixedLocale()).toBe('cs');
     });
 });
