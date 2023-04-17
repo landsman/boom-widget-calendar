@@ -5,17 +5,15 @@ import {CustomThemeProvider} from "@local/components/theme/provider";
 import {CustomizedThemeOverride, mangoTheme} from "@local/components/theme/lib-mango/MangoTheme";
 import {AppProvider, LocaleProvider} from "@local/runtime";
 import {getCurrentDate} from "@local/utils/date-time";
-import {AppLocale} from "@local/configuration/i18n";
 import {FeatureTypes} from "@local/configuration/features";
 import {SplashScreen} from "@local/components/loader/splash-screen";
 
 type PropTypes = {
-    fixedLocale?: undefined | AppLocale;
     features: FeatureTypes;
     customTheme?: undefined | CustomizedThemeOverride;
 };
 
-function App({ fixedLocale, features, customTheme }: PropTypes) {
+function App({ features, customTheme }: PropTypes) {
     const widgetStyles = {
         ...mangoTheme,
         ...customTheme || {},
@@ -23,7 +21,7 @@ function App({ fixedLocale, features, customTheme }: PropTypes) {
 
     return (
         <CustomThemeProvider customTheme={widgetStyles}>
-            <LocaleProvider fixedLocale={fixedLocale}>
+            <LocaleProvider>
                 <AppProvider
                     features={features}
                     currentDate={getCurrentDate()}

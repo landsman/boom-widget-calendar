@@ -8,3 +8,7 @@ export function getOrganizerId(): null | string {
 export function getIsProduction(): null | string {
     return getQueryParamValue(localQueryParams.isProduction, window.location.href);
 }
+
+export function getFixedLocale(): null | string {
+    return getQueryParamValue(localQueryParams.locale, window.location.href);
+}

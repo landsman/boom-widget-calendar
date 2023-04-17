@@ -9,13 +9,15 @@ import {
 } from "@local/configuration/i18n";
 import {LocaleContext, LocaleResponseTypes} from "@local/configuration/i18n/context";
 import {changeLocale} from "@local/runtime/i18n/change-locale";
+import {buildConfigFromUrl} from "@local/configuration/organizer";
 
 type PropTypes = {
-    fixedLocale: undefined | AppLocale;
     children: ReactNode;
 }
 
-export function LocaleProvider({ fixedLocale, children }: PropTypes) {
+export function LocaleProvider({ children }: PropTypes) {
+    const { fixedLocale } = buildConfigFromUrl();
+
     const [locale, setLocale] = useState<AppLocale>(defaultLocale);
     const [localeDataForCalendar, setLocaleDataForCalendar] = useState<undefined | Locale>(undefined);
     const [messageResolved, setMessageResolved] = useState<boolean>(false);
