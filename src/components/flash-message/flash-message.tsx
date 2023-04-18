@@ -12,11 +12,11 @@ export function FlashMessage({ text }: PropTypes): JSX.Element {
         return <div />;
     }
     return (
-        <Wrapper>{i18n._(text)}</Wrapper>
+        <FlashMessageWrapper>{i18n._(text)}</FlashMessageWrapper>
     );
 }
 
-const Wrapper = styled.div`
+export const FlashMessageWrapper = styled.div`
   padding: 10px;
   text-align: center;
 
@@ -35,6 +35,6 @@ const Wrapper = styled.div`
 
   background: ${(props) => props.theme.colors!.gray!['0']};
   
-  border: 1px solid transparent;
+  border: ${(props) => props.theme.calendarBorder ? props.theme.calendarBorder: 'unset'};
   border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 `;

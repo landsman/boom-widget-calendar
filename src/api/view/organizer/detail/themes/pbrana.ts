@@ -12,7 +12,7 @@ export const pravcickaBranaTheme: CustomizedThemeOverride = {
         gray: [
             clientPravcickaBrana.main, // Icon white
             clientPravcickaBrana.background, // ticket type in order
-            'transparent', // currency switcher,
+            clientPravcickaBrana.main, // currency switcher,
             clientPravcickaBrana.secondary, // Border a icons
             clientPravcickaBrana.labels, // input borders,
             '#6C6C6C',
