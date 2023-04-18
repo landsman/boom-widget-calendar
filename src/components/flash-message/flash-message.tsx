@@ -17,7 +17,7 @@ export function FlashMessage({ text }: PropTypes): JSX.Element {
 }
 
 export const FlashMessageWrapper = styled.div`
-  padding: 10px;
+  padding: 16px 24px;
   text-align: center;
 
   max-width: ${breakpoints.container};
