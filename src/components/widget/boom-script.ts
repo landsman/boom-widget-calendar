@@ -110,20 +110,37 @@ export function placeBoomWidget(
         return;
     }
 
-    if (undefined === windowBoomWidgetConfig.BOOM_WIDGET_CONFIG?.placeSalesWidget) {
+    if (
+        undefined === windowBoomWidgetConfig.BOOM_WIDGET_CONFIG?.placeSalesWidget &&
+        undefined === windowBoomWidgetConfig.BOOM_WIDGET_API?.placeSalesWidget
+    ) {
         console.error("placeSalesWidget is not in window object!");
         return;
     }
 
     // do replacement
     const internalId = Math.random();
-    windowBoomWidgetConfig.BOOM_WIDGET_CONFIG.placeSalesWidget(
-        containerElement,
-        internalId,
-        config.eventUrl,
-        config.eventId,
-        theme
-    );
+
+    /** deprecated */
+    if (undefined !== windowBoomWidgetConfig.BOOM_WIDGET_CONFIG?.placeSalesWidget) {
+        windowBoomWidgetConfig.BOOM_WIDGET_CONFIG.placeSalesWidget(
+            containerElement,
+            internalId,
+            config.eventUrl,
+            config.eventId,
+            theme
+        );
+    }
+
+    if (undefined !== windowBoomWidgetConfig.BOOM_WIDGET_API?.placeSalesWidget) {
+        windowBoomWidgetConfig.BOOM_WIDGET_API.placeSalesWidget(
+            containerElement,
+            internalId,
+            config.eventUrl,
+            config.eventId,
+            theme
+        );
+    }
 
     // show the widget
     showWidgetDelay(() => {
