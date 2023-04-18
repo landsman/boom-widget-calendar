@@ -49,8 +49,7 @@ const Wrapper = styled.div`
 
     border: ${(props) => props.theme?.calendarBorder ? props.theme?.calendarBorder : 'unset'};
     box-shadow:  ${(props) => props.theme?.calendarShadow ? props.theme?.calendarShadow : 'unset'};
-
-    // columns
+    
     @media (max-width: ${breakpoints.tablet}) {
       width: 290px;
       max-width: 100%;
