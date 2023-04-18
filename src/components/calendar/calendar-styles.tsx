@@ -32,8 +32,13 @@ const Wrapper = styled.div`
     background: ${(props) => props.theme.colors!.gray!['0']};
   }
   
+  .rdp {
+    font-family: ${(props) => props.theme.customFontFamilySafeValue ? props.theme.customFontFamilySafeValue : 'inherit'};
+  }
+  
   // calendar styles overrides
   &> div, .rdp {
+    
     width: 100%;
     max-width: 100%;
     padding: 30px 30px;
@@ -67,14 +72,14 @@ const Wrapper = styled.div`
   }
   
   .rdp-head_cell {
-    color: ${(props) => props.theme.colors!.gray!['4']};
+    color: ${(props) => props.theme.calendarDayNameColor ? props.theme.calendarDayNameColor : props.theme.colors!.gray!['4']};
   }
   
   .rdp-button {
     color: ${(props) => props.theme.colors!.gray!['4']};
     
-    &:hover {
-      color: black;
+    &:hover:not([disabled]):not(.rdp-day_selected) {
+      background: ${(props) => props.theme?.calendarMonthArrowBgHover ? props.theme?.calendarMonthArrowBgHover : 'unset'}!important;
     }
   }
   
@@ -96,11 +101,11 @@ const Wrapper = styled.div`
     }
     
     &:hover {
-      background: black;
+      background: ${(props) => props.theme?.calendarMonthArrowBgHover ? props.theme?.calendarMonthArrowBgHover : 'unset'}!important;
 
       svg {
         &> path {
-          fill: black;
+          fill: ${(props) => props.theme?.calendarMonthArrowIconHover ? props.theme?.calendarMonthArrowIconHover : 'unset'};;
         }
       }
     }

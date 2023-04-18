@@ -1,10 +1,12 @@
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {getSafeFontFamily} from "@local/components/theme/fonts/safe-font";
 
 const clientPravcickaBrana = {
     main: '#FFFFFF',
     secondary: '#94795D',
     labels: '#262626',
     background: '#FFFFFF',
+    googleFont: 'Poppins', // in figma is "Gotham" font :(
 };
 
 export const pravcickaBranaTheme: CustomizedThemeOverride = {
@@ -35,16 +37,22 @@ export const pravcickaBranaTheme: CustomizedThemeOverride = {
         ],
     },
 
+    customFontFamilyName: clientPravcickaBrana.googleFont,
+    customFontFamilySafeValue: getSafeFontFamily(clientPravcickaBrana.googleFont),
+
     // ⚠️ customs...
-    bodyBackground: '#E5E5E5',
+    bodyBackground: '#F4F2EF',
 
     disabledDayColor: '#665D78',
     selectedDayColor: '#94795D',
     calendarTodayBorder: '1px solid #94795D',
 
-    calendarMonthArrowBg: 'transparent',
-    calendarMonthArrowBorder: '1px solid #D9D9D9',
-    calendarMonthArrowIcon: '#000000',
+    calendarDayNameColor: '#4A4A4A',
+    calendarMonthArrowBg: '#FFFFFF',
+    calendarMonthArrowBgHover: '#E7E2DC',
+    calendarMonthArrowBorder: '1px solid #94795D',
+    calendarMonthArrowIcon: '#94795D',
+    calendarMonthArrowIconHover: '#94795D',
 
     calendarBorder: '1px solid #94795D',
     calendarShadow: '0px 10px 10px -5px rgba(33, 33, 33, 0.04), 0px 20px 25px -5px rgba(33, 33, 33, 0.05), 0px 1px 3px rgba(33, 33, 33, 0.05);',

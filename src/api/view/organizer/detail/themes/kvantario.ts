@@ -36,6 +36,10 @@ export const kvantarioTheme: CustomizedThemeOverride = {
     },
 
     // ⚠️ customs...
+
+    // todo
+    //customFontFamilyName: "",
+
     bodyBackground: '#1A1135',
 
     disabledDayColor: '#665D78',
