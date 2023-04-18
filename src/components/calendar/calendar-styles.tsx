@@ -47,16 +47,17 @@ const Wrapper = styled.div`
     
     margin: 0 auto;
 
-    // columns
+    border: ${(props) => props.theme?.calendarBorder ? props.theme?.calendarBorder : 'unset'};
+    box-shadow:  ${(props) => props.theme?.calendarShadow ? props.theme?.calendarShadow : 'unset'};
+    
     @media (max-width: ${breakpoints.tablet}) {
       width: 290px;
       max-width: 100%;
       margin: 0 auto;
       padding: 10px 0;
+      border: 0;
+      box-shadow: unset;
     }
-    
-    border: ${(props) => props.theme?.calendarBorder ? props.theme?.calendarBorder : 'unset'};
-    box-shadow:  ${(props) => props.theme?.calendarShadow ? props.theme?.calendarShadow : 'unset'};;
   }
 
   .rdp-months {
@@ -65,6 +66,7 @@ const Wrapper = styled.div`
   
   .rdp-caption_label {
     color: ${(props) => props.theme.colors!.gray!['9']};
+    text-transform: capitalize;
   }
   
   .rdp-button_reset {
