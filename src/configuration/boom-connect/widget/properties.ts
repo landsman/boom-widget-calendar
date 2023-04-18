@@ -36,7 +36,7 @@ type BoomWidgetConfigWindowFieldType = {
             eventWidgetInternalId: number,
             eventUrl: string,
             eventId: string,
-            theme: BoomWidgetConfigThemeTypes
+            theme: CustomizedThemeOverride
         ) => void,
     }
 };
