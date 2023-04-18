@@ -66,6 +66,7 @@ const Wrapper = styled.div`
   
   .rdp-caption_label {
     color: ${(props) => props.theme.colors!.gray!['9']};
+    text-transform: capitalize;
   }
   
   .rdp-button_reset {
