@@ -1,7 +1,7 @@
 import {ReactNode, useEffect, useState} from "react";
 import {useLingui} from "@lingui/react";
 import {EventType} from "@local/api/view/events/types";
-import {FeatureTypes} from "@local/configuration/features";
+import {FeatureTypes} from "@local/api/view/organizer/detail/features";
 import {CurrentDateType} from "@local/utils";
 import {flashMessageText} from "@local/components/flash-message";
 import {AppContext, ProviderResponseTypes} from "@local/runtime";
@@ -15,7 +15,7 @@ import {t} from "@lingui/macro";
 
 type PropTypes = {
     children: ReactNode;
-    features: FeatureTypes;
+    features: null | FeatureTypes;
     currentDate: CurrentDateType;
     themeConfig: CustomizedThemeOverride;
 };

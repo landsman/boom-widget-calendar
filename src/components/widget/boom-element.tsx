@@ -3,7 +3,6 @@ import styled, {css} from "styled-components";
 import {placeBoomWidget} from '@local/components/widget/boom-script';
 import {
     BoomWidgetConfigDTO,
-    BoomWidgetConfigThemeColors,
     boomWidgetIds,
     buildBoomWidgetIframeUrl,
 } from "@local/configuration/boom-connect";
@@ -21,11 +20,6 @@ export function BoomWidgetElement() {
     } = useAppContext();
     const { locale } = useLocaleContext();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
-
-    // todo: prettier?
-    const _theme = {
-        colors: themeConfig.colors as BoomWidgetConfigThemeColors,
-    };
 
     const eventId = selectedEvent!.id;
 
@@ -47,7 +41,7 @@ export function BoomWidgetElement() {
      */
     useEffect(() => {
         setOldEventId(config?.eventId);
-        placeBoomWidget(config, _theme, setWidgetLoading);
+        placeBoomWidget(config, themeConfig, setWidgetLoading);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eventId, eventUrl])
 
@@ -56,7 +50,7 @@ export function BoomWidgetElement() {
      */
     useEffect(() => {
         if (eventId !== oldEventId) {
-            placeBoomWidget(config, _theme, setWidgetLoading);
+            placeBoomWidget(config, themeConfig, setWidgetLoading);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eventId, oldEventId])
@@ -100,7 +94,7 @@ const SalesWidget = styled.div<{ visible: boolean }>`
   display: none;
   
   &> iframe {
-    // todo: debug
+    // todo: debug sizes
     min-height: 1500px; 
   }
 

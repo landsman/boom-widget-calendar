@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   padding: 10px;
   margin-bottom: 10px;
   background: ${(props) => props.theme.colors!.gray!['0']};
-  border-radius: 6px;
+  border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
   overflow: hidden;
 
 

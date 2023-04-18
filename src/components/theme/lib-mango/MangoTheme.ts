@@ -3,17 +3,47 @@ import { DEFAULT_THEME, MantineThemeOverride } from '@mantine/core'
 import { mangoThemeConfig } from './MangoThemeConfig'
 
 type MangoCustomizedTheme = {
-    borderRadius: {
+    // todo: change to optional in "lib-mango", boom mono-repo as well
+    borderRadius?: {
         xs: number
         sm: number
     };
 
+    /**
+     * this value is used in loading google fonts, so put here pure name pls!
+     */
+    customFontFamilyName?: string;
+
+    /**
+     * this value have to generated via util function getSafeFontFamily() to give you ready-to-use value
+     */
+    customFontFamilySafeValue?: string;
+
+    // todo: wrap to some calendar-related field?
+    bodyFontFamily?: string;
     bodyBackground?: string;
+    disabledDayColor?: string;
     selectedDayColor?: string;
+    calendarTodayBorder?: string;
+    calendarDayNameColor?: string;
+    calendarMonthArrowBg?: string;
+    calendarMonthArrowBgHover?: string;
+    calendarMonthArrowIcon?: string;
+    calendarMonthArrowIconHover?: string;
+    calendarMonthArrowBorder?: string;
+    calendarBorder?: string;
+    calendarShadow?: string;
+    calendarTimeSlotBg?: string;
+    calendarTimeSlotColor?: string;
+
+    flashMessageBg?: string;
 }
 
 export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;
 
+/**
+ * https://github.com/boomeventsorg/frontend/blob/main/packages/lib-mango/src/theme/MangoTheme.ts
+ */
 export const mangoTheme: CustomizedThemeOverride = {
     white: mangoThemeConfig.colors.gray?.[0] || DEFAULT_THEME.white,
     black: mangoThemeConfig.colors.gray?.[9] || DEFAULT_THEME.black,
@@ -71,11 +101,5 @@ export const mangoTheme: CustomizedThemeOverride = {
 
     // Customize Mantine default components with Styles API
     // https://mantine.dev/theming/mantine-provider/#styles-on-mantineprovider
-    // todo: is this needed there? probably not
-    components: {
-        // ...MantineButton,
-        // ...MantineBadge,
-        // ...MantineCard,
-        // ...MantineCheckbox,
-    },
+    components: {},
 };

@@ -1,11 +1,11 @@
 import {
     BoomWidgetConfigDTO,
-    BoomWidgetConfigThemeTypes,
     boomWidgetIds,
     connectEndpoints,
     connectHost,
     windowBoomWidgetConfig
 } from "@local/configuration/boom-connect";
+import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
 /**
  * place external CSS file to the page with styles for widget container
@@ -87,7 +87,7 @@ function loadBoomScript(production: boolean): Promise<boolean> {
  */
 export function placeBoomWidget(
     config: BoomWidgetConfigDTO,
-    theme: BoomWidgetConfigThemeTypes,
+    theme: CustomizedThemeOverride,
     setWidgetLoading: (state: boolean) => void,
 ): void {
     const isExist = document.getElementById(boomWidgetIds.script);
@@ -95,6 +95,8 @@ export function placeBoomWidget(
         console.error("BOOM widget JS script not initialized");
         return;
     }
+
+    console.log("theme", theme);
 
     // show loader state
     setWidgetLoading(true);
@@ -106,41 +108,24 @@ export function placeBoomWidget(
     }
 
     if (undefined === config) {
-        console.log("config is missing!");
+        console.error("config is missing!");
         return;
     }
 
-    if (
-        undefined === windowBoomWidgetConfig.BOOM_WIDGET_CONFIG?.placeSalesWidget &&
-        undefined === windowBoomWidgetConfig.BOOM_WIDGET_API?.placeSalesWidget
-    ) {
+    if (undefined === windowBoomWidgetConfig.BOOM_WIDGET_API?.placeSalesWidget) {
         console.error("placeSalesWidget is not in window object!");
         return;
     }
 
     // do replacement
     const internalId = Math.random();
-
-    /** deprecated */
-    if (undefined !== windowBoomWidgetConfig.BOOM_WIDGET_CONFIG?.placeSalesWidget) {
-        windowBoomWidgetConfig.BOOM_WIDGET_CONFIG.placeSalesWidget(
-            containerElement,
-            internalId,
-            config.eventUrl,
-            config.eventId,
-            theme
-        );
-    }
-
-    if (undefined !== windowBoomWidgetConfig.BOOM_WIDGET_API?.placeSalesWidget) {
-        windowBoomWidgetConfig.BOOM_WIDGET_API.placeSalesWidget(
-            containerElement,
-            internalId,
-            config.eventUrl,
-            config.eventId,
-            theme
-        );
-    }
+    windowBoomWidgetConfig.BOOM_WIDGET_API.placeSalesWidget(
+        containerElement,
+        internalId,
+        config.eventUrl,
+        config.eventId,
+        theme
+    );
 
     // show the widget
     showWidgetDelay(() => {
