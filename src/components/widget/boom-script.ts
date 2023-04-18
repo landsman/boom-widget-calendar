@@ -1,11 +1,11 @@
 import {
     BoomWidgetConfigDTO,
-    BoomWidgetConfigThemeTypes,
     boomWidgetIds,
     connectEndpoints,
     connectHost,
     windowBoomWidgetConfig
 } from "@local/configuration/boom-connect";
+import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
 /**
  * place external CSS file to the page with styles for widget container
@@ -87,7 +87,7 @@ function loadBoomScript(production: boolean): Promise<boolean> {
  */
 export function placeBoomWidget(
     config: BoomWidgetConfigDTO,
-    theme: BoomWidgetConfigThemeTypes,
+    theme: CustomizedThemeOverride,
     setWidgetLoading: (state: boolean) => void,
 ): void {
     const isExist = document.getElementById(boomWidgetIds.script);

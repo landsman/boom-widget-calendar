@@ -3,7 +3,6 @@ import styled, {css} from "styled-components";
 import {placeBoomWidget} from '@local/components/widget/boom-script';
 import {
     BoomWidgetConfigDTO,
-    BoomWidgetConfigThemeColors,
     boomWidgetIds,
     buildBoomWidgetIframeUrl,
 } from "@local/configuration/boom-connect";
@@ -23,9 +22,7 @@ export function BoomWidgetElement() {
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
 
     // todo: prettier?
-    const _theme = {
-        colors: themeConfig.colors as BoomWidgetConfigThemeColors,
-    };
+    const _theme = themeConfig;
 
     const eventId = selectedEvent!.id;
 
