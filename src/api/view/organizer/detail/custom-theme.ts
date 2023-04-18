@@ -8,7 +8,7 @@ export enum CustomTheme {
     /**
      * @see https://www.kvantario.com/
      * */
-    KVATARIO = 'kvantario',
+    KVANTARIO = 'kvantario',
 
     /**
      * @see https://www.pbrana.cz/

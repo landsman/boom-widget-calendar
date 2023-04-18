@@ -12,7 +12,7 @@ const organizersDatabase: Organizer[] = [
         // michal landsman @ stage
         id: "e43780b9-a220-42d3-a026-cc97875a61e3",
         production: false,
-        customTheme: CustomTheme.KVATARIO,
+        customTheme: CustomTheme.KVANTARIO,
         features: {
             allowTimeSlots: true,
         },
@@ -56,7 +56,7 @@ export async function getOrganiserDetails(
  */
 export async function getOrganiserCustomThemeData(theme: null | CustomTheme): Promise<null | CustomizedThemeOverride> {
     switch (theme) {
-        case CustomTheme.KVATARIO:
+        case CustomTheme.KVANTARIO:
             return kvantarioTheme;
 
         case CustomTheme.PRAVCICKA_BRANA:
