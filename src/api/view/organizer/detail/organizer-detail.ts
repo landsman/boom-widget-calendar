@@ -12,15 +12,16 @@ const organizersDatabase: Organizer[] = [
         // michal landsman @ stage
         id: "e43780b9-a220-42d3-a026-cc97875a61e3",
         production: false,
-        customTheme: CustomTheme.PRAVCICKA_BRANA,
+        customTheme: CustomTheme.KVATARIO,
         features: {
-            allowTimeSlots: false,
+            allowTimeSlots: true,
         },
     },
     {
-        id: "123456",
+        // michal landsman 2 @ stage
+        id: "37b08079-4066-4156-be9d-a5637d0d0ee7",
         production: false,
-        customTheme: CustomTheme.KVATARIO,
+        customTheme: CustomTheme.PRAVCICKA_BRANA,
         features: null,
     },
     {
