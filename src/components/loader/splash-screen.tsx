@@ -3,10 +3,13 @@ import {PureCssLoader} from "@local/components/loader/pure-css-loader";
 import {useAppContext} from "@local/runtime";
 
 export function SplashScreen(): JSX.Element {
-    const { isLoading } = useAppContext();
+    const { isLoading, themeConfig } = useAppContext();
     return (
         <Wrapper active={isLoading}>
-            <PureCssLoader size={80} />
+            <PureCssLoader
+                size={80}
+                color={themeConfig.loaderColor}
+            />
         </Wrapper>
     );
 }

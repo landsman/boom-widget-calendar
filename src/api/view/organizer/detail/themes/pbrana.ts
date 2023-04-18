@@ -37,6 +37,8 @@ export const pravcickaBranaTheme: CustomizedThemeOverride = {
         ],
     },
 
+    loaderColor: '#000000',
+
     customFontFamilyName: clientPravcickaBrana.googleFont,
     customFontFamilySafeValue: getSafeFontFamily(clientPravcickaBrana.googleFont),
 

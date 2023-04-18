@@ -5,7 +5,6 @@ import {chooseFromSupported} from "@local/configuration/i18n";
 
 /**
  * get and build object to be used in test of the app as main configuration for the organizer
- * todo: add: "features" load from static file config based on org id
  */
 export function buildConfigFromUrl(): OrganizerConfiguration {
     const organizerId = getOrganizerId();

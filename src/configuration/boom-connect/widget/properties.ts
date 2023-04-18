@@ -12,8 +12,6 @@ export type BoomWidgetConfigDTO = {
  * possible fields
  */
 export enum BoomDataConfigProperty {
-    /** @deprecated */
-    BOOM_WIDGET_CONFIG = 'BOOM_WIDGET_CONFIG',
     BOOM_WIDGET_API = 'BOOM_WIDGET_API',
 }
 
@@ -21,15 +19,6 @@ export enum BoomDataConfigProperty {
  * interface of window objects
  */
 type BoomWidgetConfigWindowFieldType = {
-    [BoomDataConfigProperty.BOOM_WIDGET_CONFIG]?: {
-        placeSalesWidget: (
-            containerElement: Element,
-            eventWidgetInternalId: number,
-            eventUrl: string,
-            eventId: string,
-            theme: CustomizedThemeOverride
-        ) => void,
-    };
     [BoomDataConfigProperty.BOOM_WIDGET_API]?: {
         placeSalesWidget?: (
             containerElement: Element,
