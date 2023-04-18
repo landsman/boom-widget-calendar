@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/boom-widget-calendar/static/css/main.c91beb81.css",
-    "main.js": "/boom-widget-calendar/static/js/main.342eac7e.js",
+    "main.js": "/boom-widget-calendar/static/js/main.cc6f569e.js",
     "static/js/9845.2a1b265c.chunk.js": "/boom-widget-calendar/static/js/9845.2a1b265c.chunk.js",
     "static/js/6318.85627025.chunk.js": "/boom-widget-calendar/static/js/6318.85627025.chunk.js",
     "df-0.js": "/boom-widget-calendar/static/js/df-0.c501d738.chunk.js",
@@ -97,10 +97,11 @@
     "df-91.js": "/boom-widget-calendar/static/js/df-91.2b0d65c6.chunk.js",
     "df-92.js": "/boom-widget-calendar/static/js/df-92.2dc92581.chunk.js",
     "static/js/4027.02781ad8.chunk.js": "/boom-widget-calendar/static/js/4027.02781ad8.chunk.js",
+    "static/media/flash-message-tickets-icon.svg": "/boom-widget-calendar/static/media/flash-message-tickets-icon.fb3fc0842cfad41683ee50a93d942ce2.svg",
     "index.html": "/boom-widget-calendar/index.html"
   },
   "entrypoints": [
     "static/css/main.c91beb81.css",
-    "static/js/main.342eac7e.js"
+    "static/js/main.cc6f569e.js"
   ]
 }
