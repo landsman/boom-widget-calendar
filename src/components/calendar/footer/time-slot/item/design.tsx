@@ -12,9 +12,8 @@ export const SlotWrapper = styled.div<PropTypes>`
   cursor: pointer;
   font-size: 13px;
   
-  // todo: client-specific! move it to theme!
-  background: #363152;
-  color: white;
+  background: ${(props) => props.theme.calendarTimeSlotBg ? props.theme.calendarTimeSlotBg : 'unset'};
+  color: ${(props) => props.theme.calendarTimeSlotColor ? props.theme.calendarTimeSlotColor : 'unset'};
   border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 
   &:hover {
@@ -24,7 +23,7 @@ export const SlotWrapper = styled.div<PropTypes>`
 
   ${({ active }) => active && css`
     background: ${(props) => props.theme.colors!.gray!['3']};
-    color: white;
+    color: ${(props) => props.theme.colors!.gray!['4']};
     
     &:hover {
       cursor: not-allowed;

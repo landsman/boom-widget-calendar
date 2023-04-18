@@ -18,6 +18,8 @@ type MangoCustomizedTheme = {
     calendarMonthArrowBorder?: string;
     calendarBorder?: string;
     calendarShadow?: string;
+    calendarTimeSlotBg?: string;
+    calendarTimeSlotColor?: string;
 }
 
 export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;

@@ -12,7 +12,7 @@ const organizersDatabase: Organizer[] = [
         // michal landsman @ stage
         id: "e43780b9-a220-42d3-a026-cc97875a61e3",
         production: false,
-        customTheme: CustomTheme.PRAVCICKA_BRANA,
+        customTheme: CustomTheme.KVATARIO,
         features: {
             allowTimeSlots: true,
             localeSwitcher: false,

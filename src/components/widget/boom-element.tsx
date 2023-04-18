@@ -100,7 +100,7 @@ const SalesWidget = styled.div<{ visible: boolean }>`
   display: none;
   
   &> iframe {
-    // todo: debug
+    // todo: debug sizes
     min-height: 1500px; 
   }
 
