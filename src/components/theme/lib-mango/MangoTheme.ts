@@ -2,13 +2,14 @@ import { DEFAULT_THEME, MantineThemeOverride } from '@mantine/core'
 
 import { mangoThemeConfig } from './MangoThemeConfig'
 
-// todo: somehow merge with: BoomWidgetConfigThemeTypes
 type MangoCustomizedTheme = {
-    borderRadius: {
+    // todo: change to optional in "lib-mango", boom mono-repo as well
+    borderRadius?: {
         xs: number
         sm: number
     };
 
+    // todo: wrap to some calendar-related field?
     bodyBackground?: string;
     disabledDayColor?: string;
     selectedDayColor?: string;
