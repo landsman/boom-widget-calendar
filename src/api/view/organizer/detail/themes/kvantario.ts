@@ -52,6 +52,8 @@ export const kvantarioTheme: CustomizedThemeOverride = {
     calendarTimeSlotBg: '#363152',
     calendarTimeSlotColor: '#FFFFFF',
 
+    flashMessageBg: '#251D3F',
+
     borderRadius: {
         xs: 4,
         sm: 6,

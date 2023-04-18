@@ -35,6 +35,8 @@ type MangoCustomizedTheme = {
     calendarShadow?: string;
     calendarTimeSlotBg?: string;
     calendarTimeSlotColor?: string;
+
+    flashMessageBg?: string;
 }
 
 export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;
