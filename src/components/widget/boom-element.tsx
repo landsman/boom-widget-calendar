@@ -21,9 +21,6 @@ export function BoomWidgetElement() {
     const { locale } = useLocaleContext();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
 
-    // todo: prettier?
-    const _theme = themeConfig;
-
     const eventId = selectedEvent!.id;
 
     /** build url */
@@ -44,7 +41,7 @@ export function BoomWidgetElement() {
      */
     useEffect(() => {
         setOldEventId(config?.eventId);
-        placeBoomWidget(config, _theme, setWidgetLoading);
+        placeBoomWidget(config, themeConfig, setWidgetLoading);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eventId, eventUrl])
 
@@ -53,7 +50,7 @@ export function BoomWidgetElement() {
      */
     useEffect(() => {
         if (eventId !== oldEventId) {
-            placeBoomWidget(config, _theme, setWidgetLoading);
+            placeBoomWidget(config, themeConfig, setWidgetLoading);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eventId, oldEventId])
