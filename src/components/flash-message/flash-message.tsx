@@ -47,5 +47,9 @@ export const FlashMessageWrapper = styled.div`
 
     vertical-align: middle;
     display: inline-block;
+    
+    path {
+      fill: ${(props) => props.theme.colors!.gray!['4']};
+    }
   }
 `;
