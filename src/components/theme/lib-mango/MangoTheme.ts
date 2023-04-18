@@ -9,6 +9,8 @@ type MangoCustomizedTheme = {
         sm: number
     };
 
+    loaderColor: string,
+
     /**
      * this value is used in loading google fonts, so put here pure name pls!
      */
@@ -102,4 +104,7 @@ export const mangoTheme: CustomizedThemeOverride = {
     // Customize Mantine default components with Styles API
     // https://mantine.dev/theming/mantine-provider/#styles-on-mantineprovider
     components: {},
+
+    // todo: my default!
+    loaderColor: '#FFFFFF',
 };

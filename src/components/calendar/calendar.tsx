@@ -46,7 +46,7 @@ export function Calendar(): JSX.Element {
         }
     };
 
-    const footer = getFooter(showFooter, features!.allowTimeSlots, selectedDateEvents);
+    const footer = getFooter(showFooter, features?.allowTimeSlots, selectedDateEvents);
 
     /** show skeleton until app context fetch locale data */
     if (undefined === localeDataForCalendar || undefined === occupiedDates) {

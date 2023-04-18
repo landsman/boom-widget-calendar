@@ -7,7 +7,7 @@ import {EventType} from "@local/api/view/events/types";
  */
 export function getFooter(
     showFooter: boolean,
-    allowTimeSlots: boolean,
+    allowTimeSlots: undefined | null | boolean,
     selectedDateEvents: undefined | EventType[],
 ): JSX.Element {
     const anyEvents = undefined !== selectedDateEvents && selectedDateEvents?.length > 0;

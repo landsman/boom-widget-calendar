@@ -2,18 +2,19 @@ import styled, {css, keyframes} from "styled-components";
 
 type PropTypes = {
     size?: number;
+    color: string;
 }
 
 /**
  * credits: https://loading.io/css/
  * transformed to styled-components via chatGTP
  */
-export function PureCssLoader({ size = 80 }: PropTypes): JSX.Element {
+export function PureCssLoader({ size = 80, color }: PropTypes): JSX.Element {
     return (
         <Wrapper>
             <Spinner
-                color={'#ffffff'}
-                size={size}
+                myColor={color}
+                mySize={size}
                 dotSize={6}
                 dotDistance={18}
             >
@@ -50,23 +51,21 @@ const ldsSpinner = keyframes`
   }
 `;
 
-type SpinnerTypes = {
-    color: string,
-    size: number,
+const Spinner = styled.div<{
+    myColor: string,
+    mySize: number,
     dotSize: number,
     dotDistance: number
-};
-
-const Spinner = styled.div<SpinnerTypes>`
+}>`
   color: transparent;
   display: inline-block;
   position: relative;
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
+  width: ${(props) => props.mySize}px;
+  height: ${(props) => props.mySize}px;
 
   div {
     transform-origin: ${(props) => {
-        const result = props.size / 2;
+        const result = props.mySize / 2;
         return css`${result}px ${result}px`;
     }};
     
@@ -79,14 +78,14 @@ const Spinner = styled.div<SpinnerTypes>`
       top: 3px;
       
       left: ${(props) => {
-        const result = props.size / 2 - props.dotSize / 2;
+        const result = props.mySize / 2 - props.dotSize / 2;
         return css`${result}px`;
       }};
       
       width: ${(props) => props.dotSize}px;
       height: ${(props) => props.dotDistance}px;
       border-radius: 20%;
-      background: ${(props) => props.color};
+      background: ${(props) => props.myColor};
     }
   }
 

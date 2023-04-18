@@ -58,7 +58,10 @@ export function BoomWidgetElement() {
     return (
         <Wrapper>
             <Loader visible={isWidgetLoading}>
-                <PureCssLoader size={80} />
+                <PureCssLoader
+                    size={80}
+                    color={themeConfig.loaderColor}
+                />
             </Loader>
             {/*<!-- BOOM Events Widget -->*/}
             <SalesWidget

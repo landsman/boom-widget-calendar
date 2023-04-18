@@ -36,6 +36,7 @@ export const kvantarioTheme: CustomizedThemeOverride = {
     },
 
     // ⚠️ customs...
+    loaderColor: '#FFFFFF',
 
     // todo
     //customFontFamilyName: "",
