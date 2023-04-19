@@ -10,13 +10,17 @@ type PropTypes = {
 };
 
 export function TimeSlot({ id, dateFrom, dateTo }: PropTypes): JSX.Element {
-    const { selectedEvent, setSelectedEvent } = useAppContext();
+    const { selectedEvent, setSelectedTimeSlot, setSelectedEvent } = useAppContext();
     const isActive = selectedEvent?.id === id;
 
     const handleSelectItem = (eventId: string): void => {
         if (isActive) {
             return;
         }
+        setSelectedTimeSlot({
+            from: dateFrom,
+            to: dateTo,
+        });
         setSelectedEvent(eventId);
     }
 

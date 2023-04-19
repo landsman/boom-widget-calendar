@@ -1,5 +1,6 @@
 import {ReactNode, useEffect, useState} from "react";
 import {useLingui} from "@lingui/react";
+import {t} from "@lingui/macro";
 import {EventType} from "@local/api/view/events/types";
 import {FeatureTypes} from "@local/api/view/organizer/detail";
 import {CurrentDateType} from "@local/utils";
@@ -11,7 +12,7 @@ import {appProviderDefaultValues} from "@local/runtime/default-values";
 import {buildConfigFromUrl} from "@local/configuration/organizer";
 import {loadBoomScripts} from "@local/components/widget";
 import {ErrorMessage} from "@local/components/error-message";
-import {t} from "@lingui/macro";
+import {DateRangeString} from "@local/utils/date-time/types/date-range";
 
 type PropTypes = {
     children: ReactNode;
@@ -30,6 +31,7 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
     const [occupiedDates, setOccupiedDates] = useState<undefined | Date[]>(init.occupiedDates);
     const [selectedMonth, setSelectedMonth] = useState<Date>(currentDate.date);
     const [selectedDate, setSelectedDate] = useState<undefined | Date>(init.selectedDate);
+    const [selectedTimeSlot, setSelectedTimeSlot] = useState<undefined | DateRangeString>(undefined);
     const [selectedDateEvents, setSelectedDateEvents] = useState<undefined | EventType[]>(init.selectedDateEvents);
     const [selectedEvent, setSelectedEvent] = useState<undefined | EventType>(init.selectedEvent);
     const [isWidgetLoading, setWidgetLoading] = useState<boolean>(init.isWidgetLoading);
@@ -65,6 +67,7 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
         setFlashMessage(undefined);
         setSelectedDateEvents(undefined);
         setSelectedEvent(undefined);
+        setSelectedTimeSlot(undefined);
         setSelectedDate(newDateSelected);
 
         const apiEvents = await oneDayRangeEvents(
@@ -86,6 +89,13 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
             setFlashMessage(undefined);
             setSelectedEvent(apiEvents[0]);
         }
+    }
+
+    /**
+     * if the feature is allowed, put the info to app context
+     */
+    const handleSetSelectedTimeSlot = async (dateRange: undefined | DateRangeString) => {
+        setSelectedTimeSlot(dateRange);
     }
 
     /**
@@ -151,6 +161,8 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
         setSelectedMonth,
         selectedDate,
         setSelectedDate: handleSetDate,
+        selectedTimeSlot,
+        setSelectedTimeSlot: handleSetSelectedTimeSlot,
         selectedDateEvents,
         setSelectedEvent: handleSetSelectedEvent,
         selectedEvent,
