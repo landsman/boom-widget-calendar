@@ -1,5 +1,5 @@
 import {EventType} from "@local/api/view/events/types";
-import {FeatureTypes} from "@local/api/view/organizer/detail/features";
+import {FeatureTypes} from "@local/api/view/organizer/detail";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
 
 export type ProviderResponseTypes = {

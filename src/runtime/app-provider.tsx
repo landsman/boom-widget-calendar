@@ -1,7 +1,7 @@
 import {ReactNode, useEffect, useState} from "react";
 import {useLingui} from "@lingui/react";
 import {EventType} from "@local/api/view/events/types";
-import {FeatureTypes} from "@local/api/view/organizer/detail/features";
+import {FeatureTypes} from "@local/api/view/organizer/detail";
 import {CurrentDateType} from "@local/utils";
 import {flashMessageText} from "@local/components/flash-message";
 import {AppContext, ProviderResponseTypes} from "@local/runtime";

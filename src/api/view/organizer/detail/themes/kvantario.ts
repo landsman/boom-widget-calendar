@@ -7,7 +7,7 @@ const clientKvantario = {
     background: '#1A1135',
 };
 
-export const kvantarioTheme: CustomizedThemeOverride = {
+const kvantarioTheme: CustomizedThemeOverride = {
     colors: {
         gray: [
             clientKvantario.main, // Icon white
@@ -59,4 +59,6 @@ export const kvantarioTheme: CustomizedThemeOverride = {
         xs: 4,
         sm: 6,
     }
-}
+};
+
+export default kvantarioTheme;

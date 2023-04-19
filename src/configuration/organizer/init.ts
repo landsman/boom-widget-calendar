@@ -1,9 +1,9 @@
 import {buildConfigFromUrl} from "@local/configuration/organizer/build-config-from-url";
 import {
+    featureDefaultValues,
     getOrganiserCustomThemeData,
     getOrganiserDetails
-} from "@local/api/view/organizer/detail/organizer-detail";
-import {featureDefaultValues} from "@local/api/view/organizer/detail/features";
+} from "@local/api/view/organizer/detail";
 import {OrganisationDTO} from "@local/configuration/organizer/types";
 
 /**
