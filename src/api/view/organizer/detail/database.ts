@@ -29,6 +29,15 @@ export const organizersDatabase: Organizer[] = [
         },
     },
     {
+        // kvantario @ production
+        id: "e637ebde-913c-4339-bb45-615293ef191c",
+        production: true,
+        customTheme: CustomTheme.KVANTARIO,
+        features: {
+            allowTimeSlots: true,
+        },
+    },
+    {
         // michal landsman 2 @ stage
         id: "37b08079-4066-4156-be9d-a5637d0d0ee7",
         production: false,
