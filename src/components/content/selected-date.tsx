@@ -21,7 +21,7 @@ export function SelectedDate(): JSX.Element {
 
     return (
         <FlashMessageWrapper>
-            {i18n._(t`selected_date_is`)}{': '}{formattedDate}.
+            {i18n._(t`selected_date_is`)}{': '}{formattedDate}
         </FlashMessageWrapper>
     );
 }
