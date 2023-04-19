@@ -1,6 +1,7 @@
 import {featureDefaultValues} from "@local/api/view/organizer/detail";
 import {ProviderResponseTypes} from "@local/runtime/types";
 import {mangoTheme} from "@local/components/theme/lib-mango/MangoTheme";
+import {DateRangeString} from "@local/utils/date-time/types/date-range";
 
 export const appProviderDefaultValues: ProviderResponseTypes = {
     isProduction: false,
@@ -13,6 +14,8 @@ export const appProviderDefaultValues: ProviderResponseTypes = {
     setSelectedMonth: (_m: Date) => null,
     selectedDate: undefined,
     setSelectedDate: (_d: Date) => null,
+    selectedTimeSlot: undefined,
+    setSelectedTimeSlot: (_range: undefined | DateRangeString) => null,
     selectedDateEvents: undefined,
     setSelectedEvent: (_id: string) => null,
     selectedEvent: undefined,

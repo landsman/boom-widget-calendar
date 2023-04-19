@@ -1,6 +1,7 @@
 import {EventType} from "@local/api/view/events/types";
 import {FeatureTypes} from "@local/api/view/organizer/detail";
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {DateRangeString} from "@local/utils/date-time/types/date-range";
 
 export type ProviderResponseTypes = {
     isLoading: boolean;
@@ -12,6 +13,8 @@ export type ProviderResponseTypes = {
     occupiedDates: undefined | Date[];
     setSelectedMonth: (month: Date) => void;
     selectedDate: undefined | Date,
+    selectedTimeSlot: undefined | DateRangeString;
+    setSelectedTimeSlot: (dateRange: undefined | DateRangeString) => void,
     setSelectedDate: (newDate: Date) => void;
     selectedDateEvents: undefined | EventType[];
     setSelectedEvent: (eventId: string) => void;
