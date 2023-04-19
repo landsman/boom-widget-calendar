@@ -2,6 +2,7 @@ import {differenceInHours, format, parseISO} from "date-fns";
 import {t} from "@lingui/macro";
 import {useLingui} from "@lingui/react";
 import {useLocaleContext} from "@local/configuration/i18n";
+import styled from "styled-components";
 
 type PropTypes = {
     dateFrom: string;
@@ -29,7 +30,7 @@ export function SlotText({ dateFrom, dateTo, wholeDay = 8 }: PropTypes): JSX.Ele
     // show localised message instead of hours
     let text: JSX.Element;
     if (eventDuration >= wholeDay) {
-        text = <span>{i18n._(t`calendar.time_slot.whole_day`)}</span>;
+        text = <WholeDay>{i18n._(t`calendar.time_slot.whole_day`)}</WholeDay>;
     } else {
         const fromFormatted = format(fromParsed, 'p', opts);
         const toFormatted = format(toParsed, 'p', opts);
@@ -37,3 +38,7 @@ export function SlotText({ dateFrom, dateTo, wholeDay = 8 }: PropTypes): JSX.Ele
     }
     return text;
 }
+
+const WholeDay = styled.span`
+    text-transform: uppercase;
+`;
