@@ -96,8 +96,6 @@ export function placeBoomWidget(
         return;
     }
 
-    console.log("theme", theme);
-
     // show loader state
     setWidgetLoading(true);
 
