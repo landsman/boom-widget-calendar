@@ -9,7 +9,7 @@ const clientPravcickaBrana = {
     googleFont: 'Poppins', // in figma is "Gotham" font :(
 };
 
-export const pravcickaBranaTheme: CustomizedThemeOverride = {
+const pravcickaBranaTheme: CustomizedThemeOverride = {
     colors: {
         gray: [
             clientPravcickaBrana.main, // Icon white
@@ -68,4 +68,6 @@ export const pravcickaBranaTheme: CustomizedThemeOverride = {
         xs: 0,
         sm: 0,
     }
-}
+};
+
+export default pravcickaBranaTheme;
