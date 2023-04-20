@@ -12,3 +12,14 @@ export function getIsProduction(): null | string {
 export function getFixedLocale(): null | string {
     return getQueryParamValue(localQueryParams.locale, window.location.href);
 }
+
+export function getScrolling(): boolean {
+    const val = getQueryParamValue(localQueryParams.scrolling, window.location.href);
+    if (null == val) {
+        return true;
+    }
+    if ("false" === val) {
+        return false;
+    }
+    return true;
+}

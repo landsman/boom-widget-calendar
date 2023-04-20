@@ -33,7 +33,10 @@ function App() {
     };
 
     return (
-        <CustomThemeProvider customTheme={widgetStyles}>
+        <CustomThemeProvider
+            customTheme={widgetStyles}
+            scrolling={organisation.scrolling}
+        >
             <LocaleProvider>
                 <AppProvider
                     features={organisation!.features}
