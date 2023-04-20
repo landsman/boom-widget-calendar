@@ -1,4 +1,4 @@
-import {getFixedLocale, getOrganizerId} from "@local/runtime/url-query-params";
+import {getFixedLocale, getOrganizerId, getScrolling} from "@local/runtime/url-query-params";
 import {OrganizerConfiguration} from "@local/configuration/organizer/types";
 import {isProduction} from "@local/configuration/environment";
 import {chooseFromSupported} from "@local/configuration/i18n";
@@ -14,9 +14,13 @@ export function buildConfigFromUrl(): OrganizerConfiguration {
     const localeParamValue = getFixedLocale();
     const localeFinal = localeParamValue ? chooseFromSupported(localeParamValue) : null;
 
+    // disable scrolling for iframe
+    const scrolling = getScrolling();
+
     return {
         organizerId,
         isProduction: prod,
         fixedLocale: localeFinal,
+        scrolling,
     }
 }

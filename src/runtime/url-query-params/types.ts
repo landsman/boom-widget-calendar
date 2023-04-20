@@ -4,6 +4,7 @@
 export const localQueryParams = {
     organizerId: 'organizerId',
     isProduction: 'isProduction',
+    scrolling: 'scrolling',
     locale: 'locale',
 };
 

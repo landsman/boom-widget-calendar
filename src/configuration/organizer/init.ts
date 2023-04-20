@@ -10,7 +10,7 @@ import {OrganisationDTO} from "@local/configuration/organizer/types";
  * agregate business logic to one place
  */
 export async function organizerInit(): Promise<null | OrganisationDTO> {
-    const {isProduction, organizerId} = buildConfigFromUrl();
+    const {isProduction, organizerId, scrolling} = buildConfigFromUrl();
     const organizerData = await getOrganiserDetails(isProduction, organizerId);
 
     // case when org is not configured, special
@@ -19,6 +19,7 @@ export async function organizerInit(): Promise<null | OrganisationDTO> {
         return {
             customTheme: null,
             features: featureDefaultValues,
+            scrolling,
         };
     }
 
@@ -27,5 +28,6 @@ export async function organizerInit(): Promise<null | OrganisationDTO> {
     return {
         customTheme,
         features: organizerData.features,
+        scrolling,
     }
 }

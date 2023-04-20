@@ -1,8 +1,9 @@
-import {createGlobalStyle} from "styled-components";
+import {createGlobalStyle, css} from "styled-components";
 import {mangoGlobalResetStyles} from "@local/components/theme/lib-mango/MangoGlobalReset";
 
 type PropTypes = {
     mainFontSafeValue: string;
+    scrolling?: boolean;
 };
 
 export const GlobalStyle = createGlobalStyle<PropTypes>`
@@ -24,4 +25,11 @@ export const GlobalStyle = createGlobalStyle<PropTypes>`
       padding: 0;
       margin: 0;
   }
+
+  // support to disable scrolling inside iframe
+  ${({ scrolling }) => scrolling && css`
+    html, body {
+      overflow: ${( scrolling ) => scrolling ? 'auto' : ' hidden'};
+    }
+  `}
 `;
