@@ -223,7 +223,37 @@
                     <div class="article mt-30">
                         <h3 class="article__heading article__heading--beige">Vstupné</h3>
                         <div class="article__text">
-                            <p>Dospělí 95 CZK / 4 EUR</p><p>Děti (6-14 let) 30 CZK / 1,5 EUR</p><p>Studenti/důchodci 30 CZK / 1,5 EUR</p><p>Vstupné spojené s provozem areálu se vybírá od konce 19. století a v přepočtu zůstává pořád přibližně ve stejné výši.</p>
+                            <p>Dospělí 95 CZK / 4 EUR</p><p>Děti (6-14 let) 30 CZK / 1,5 EUR</p><p>Studenti/důchodci 30 CZK / 1,5 EUR</p>
+                            <p>
+                                <style>
+                                    #boom-events-cta-button {
+                                        color: #fff;
+                                        background: #649b0d linear-gradient(180deg,#7baa31,#649b0d) repeat-x;
+                                        box-shadow: inset 0 1px 0 hsla(0,0%,100%,.15), 0 1px 1px rgba(0,0,0,.075);
+                                        border: 1px solid transparent;
+
+                                        text-align: center;
+                                        vertical-align: middle;
+                                        user-select: none;
+                                        display: inline-block;
+                                        font-weight: 400;
+                                        text-decoration: none;
+
+                                        padding: 0.5rem 1rem;
+                                        font-size: 1.25rem;
+                                        line-height: 1.5;
+                                        border-radius: 0.3rem;
+                                    }
+                                    #boom-events-cta-button:hover {
+                                        color: #fff;
+                                        background: #4d780a linear-gradient(180deg,#688c2f,#4d780a) repeat-x;
+                                        border-color: #466c09;
+                                    }
+                                </style>
+                                <a href="#boom-events-org-calendar" id="boom-events-cta-button">Zakoupit vstupenky online</a>
+                            </p>
+
+                            <p style="font-style: italic">Vstupné spojené s provozem areálu se vybírá od konce 19. století a v přepočtu zůstává pořád přibližně ve stejné výši.</p>
                         </div>
                     </div>
                     <div class="col-block__full">
@@ -263,6 +293,32 @@
                 <p><strong>Parkování</strong><br>Auto musíme nechat na parkovišti ve Hřensku (placené parkoviště za restaurací Klepáč) nebo dojet na parkoviště na Mezní Louku (u hotelu Mezní Louka), toto jsou dva výchozí body pro výlet na Pravčickou bránu (mimo tato místa je přísný zákaz parkování).</p>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="wrapper__container wrapper__container--padded" data-alias="information">
+
+            <div class="col-block__two-thirds col-block__two-thirds--right info__block-right">
+
+                    <div class="article mt-30">
+                        <h3 class="article__heading article__heading--beige">Vstupenky</h3>
+                    </div>
+                    <div>
+                        <!-- BoomEvents.org calendar -->
+                        <style type="text/css">
+                            #boom-events-org-calendar {
+                                width: 100%;
+                                height: 2050px;
+                                border: 0;
+                            }
+                        </style>
+                        <iframe id="boom-events-org-calendar" src="https://landsman.github.io/boom-widget-calendar/?organizerId=8fabf06c-0078-47e4-9c30-3f17827da0ab"></iframe>
+                        <!-- /BoomEvents.org calendar -->
+                    </div>
+
+            </div>
+
     </div>
 </div>
 
