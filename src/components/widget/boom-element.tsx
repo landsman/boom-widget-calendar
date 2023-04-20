@@ -39,17 +39,14 @@ export function BoomWidgetElement() {
         eventUrl,
     };
 
-    const handleResize = (entries: ResizeObserverEntry[]) => {
+    const handleResize = (_entries: ResizeObserverEntry[]) => {
         handleContentResize(organizerId!);
     }
 
     /** Run after page init necessarily steps to handle widget on 3rd party website */
     const handleWidgetMessageBroker = () => {
         handleContentInitialized(organizerId!);
-
         const element = document.getElementsByClassName(boomWidgetIds.widgetClass)[0];
-        console.log("element", element);
-
         if (element) {
             new ResizeObserver(handleResize).observe(element);
         }
