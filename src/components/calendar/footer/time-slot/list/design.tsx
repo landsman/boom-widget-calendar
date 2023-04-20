@@ -6,8 +6,7 @@ export const ListWrapper = styled.div`
   
   display: flex;
   flex-wrap: wrap;
-  margin-top: -10px;
-  margin-left: -10px;
+  margin-top: 10px;
   
   justify-content: flex-start;
 `;
