@@ -192,29 +192,10 @@
                                                         data-id="e637ebde-913c-4339-bb45-615293ef191c"
                                                         data-prod="true"
                                                         data-cdn="http://localhost:3000/boom-widget-calendar/"
-                                                        data-manual="true"
                                                 >
-                                                    (function(_window, _document) {
-                                                        const prefix = 'boom-events-org-calendar';
-
-                                                        // find place where is installed script
-                                                        const install = _document.getElementById(prefix);
-                                                        const loader = _document.createElement('script');
-
-                                                        const date = new Date();
-                                                        const unixTimeStamp = Math.floor(date.getTime() / 1000);
-
-                                                        loader.async = true;
-                                                        loader.id = prefix + '__loader-js';
-                                                        loader.src = install.getAttribute('data-cdn') + 'api/loader.js?v=' + unixTimeStamp;
-
-                                                        // insert a new external javascript file to load
-                                                        install.after(loader);
-
-                                                    })(window, document);
+                                                    !function(e,t){const a="boom-events-org-calendar",n=t.getElementById(a),o=t.createElement("script"),r=new Date,c=Math.floor(r.getTime()/1e3);o.async=!0,o.id=a+"__loader-js",o.src=n.getAttribute("data-cdn")+"api/loader.js?v="+c,n.after(o)}(window,document);
                                                 </script>
                                                 <!-- /BoomEvents.org calendar -->
-
                                             </div>
                                             <img decoding="async" src="http://www.kvantario.com/wp-content/uploads/2022/10/features-shape-1.png" class="shape shape-1" alt="Shape1">
                                             <img decoding="async" src="http://www.kvantario.com/wp-content/uploads/2022/10/features-shape-2.png" class="shape shape-2" alt="Shape2">

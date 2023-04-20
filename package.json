@@ -12,14 +12,16 @@
     "extract": "lingui extract",
     "compile": "lingui compile",
     "start": "craco start",
-    "build": "craco build",
+    "build:app": "craco build",
+    "prepare:minify_snippet": "terser ./public/api/snippet.js -c -m --output ./build/api/snippet.min.js",
+    "prepare:minify_loader": "terser ./public/api/loader.js -c -m --output ./build/api/loader.min.js",
+    "prepare:snippet": "node ./src/build/snippet.js",
+    "build:snippet": "npm run prepare:minify_snippet && npm run prepare:minify_loader && npm run prepare:snippet",
     "eslint": "eslint ./src/**/*",
     "test": "craco test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "craco eject",
     "prepare": "husky install",
-    "uglify": "node ./src/build/uglify.js",
-    "minify": "terser ./public/api/loader-script.js -c -m --output ./build/api/loader.min.js --booleans_as_integers=true",
-    "pre-deploy": "npm run compile && npm run build"
+    "pre-deploy": "npm run compile && npm run build:app && npm run build:snippet"
   },
   "dependencies": {
     "@lingui/detect-locale": "^3.17.2",
