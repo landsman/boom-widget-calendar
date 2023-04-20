@@ -1,29 +1,29 @@
 <!-- BoomEvents.org calendar -->
-<script type="text/javascript" id="boom-events-org-calendar">
-    (function(_window, _document, _organizerId, _production, _cdnHostname) {
-
-        const idPrefix = 'boom-events-org-calendar';
-        const fieldName = 'BOOM_WIDGET_API_CALENDAR';
-
-        _window[fieldName] = _window[fieldName] || {};
-        _window[fieldName].organizerId = _organizerId;
-        _window[fieldName].isProduction = _production;
-        _window[fieldName].cdnHostname = _cdnHostname;
+<script
+    type="text/javascript"
+    id="boom-events-org-calendar"
+    data-id="e637ebde-913c-4339-bb45-615293ef191c"
+    data-prod="true"
+    data-cdn="http://localhost:3000/boom-widget-calendar/"
+    data-manual="true"
+>
+    (function(_window, _document) {
+        const prefix = 'boom-events-org-calendar';
 
         // find place where is installed script
-        const install = _document.getElementById(idPrefix);
+        const install = _document.getElementById(prefix);
         const loader = _document.createElement('script');
 
         const date = new Date();
         const unixTimeStamp = Math.floor(date.getTime() / 1000);
 
         loader.async = true;
-        loader.id = idPrefix + '__loader-js';
-        loader.src = _cdnHostname + '/api/loader.js?v=' + unixTimeStamp;
+        loader.id = prefix + '__loader-js';
+        loader.src = install.getAttribute('data-cdn') + 'api/loader.js?v=' + unixTimeStamp;
 
         // insert a new external javascript file to load
         install.after(loader);
 
-    })(window, document, '__INSERT_ID__', true, 'https://landsman.github.io/boom-widget-calendar/');
+    })(window, document);
 </script>
 <!-- /BoomEvents.org calendar -->
