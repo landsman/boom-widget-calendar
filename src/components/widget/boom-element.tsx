@@ -40,7 +40,6 @@ export function BoomWidgetElement() {
     };
 
     const handleResize = (entries: ResizeObserverEntry[]) => {
-        console.log("resize!!!!", entries);
         handleContentResize(organizerId!);
     }
 

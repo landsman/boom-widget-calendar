@@ -1,10 +1,9 @@
-alert("yep its working");
-
 /**
  * hosting
  * todo: replace!
  */
-const cdnHostname = '//localhost:3000/boom-widget-calendar/';
+const cdnHostname = 'http://localhost:3000/boom-widget-calendar/';
+const pathCss = 'api/loader.css';
 
 /**
  * api object to be used bellow
@@ -59,9 +58,13 @@ function stylesInstall() {
     element.id = getIdValue('css');
 
     // build url
-    element.href= cdnHostname +
-        '/api/loader.css?v=' +
-        getUnixTime();
+    let url = new URL(cdnHostname + pathCss);
+    url.search = new URLSearchParams({
+        v: getUnixTime(),
+    });
+
+    // set url
+    element.href = url.toString();
 
     // insert a new external style file to load
     install.after(element);
@@ -90,13 +93,15 @@ function iframeInstall() {
     element.id = getIdValue('iframe');
 
     // build url
-    element.src = cdnHostname +
-        '?v=' +
-        getUnixTime() +
-        '&isProduction='+
-        api[field.isProduction] +
-        '&organizerId=' +
-        api[field.organizerId];
+    let url = new URL(cdnHostname);
+    url.search = new URLSearchParams({
+        v: getUnixTime(),
+        [field.isProduction]: api[field.isProduction],
+        [field.organizerId]: api[field.organizerId],
+    });
+
+    // set url
+    element.src = url.toString();
 
     // put iframe inside the element
     containerElement.innerHTML = '';
@@ -115,8 +120,6 @@ function iframeInstall() {
  */
 function listenIframeMessages(iframeElement) {
     const messageHandler = (event) => {
-        console.log("♥️♥️♥️♥️♥️♥️♥️♥️ event data!", event.data);
-
         const source = event.data?.source;
         const ourSource = getIdValueEventListener('origin');
         const eventType = event.data?.type;
