@@ -43,15 +43,8 @@ function getIdValue(what) {
 /**
  * util
  */
-function getIdValueMessage(what) {
-    return idPrefix + '__message-' + what;
-}
-
-/**
- * util
- */
-function getIdValueClassIframe(what) {
-    return idPrefix + '__iframe-' + what;
+function getIdValueEventListener(what) {
+    return idPrefix + '__event-listener-' + what;
 }
 
 /**
@@ -108,13 +101,23 @@ function iframeInstall() {
     // put iframe inside the element
     containerElement.innerHTML = '';
     containerElement.appendChild(element);
+
+    // start talking each other guys
+    listenIframeMessages(element);
 }
 
 
-/** Message broker receiving and sending messages to origin, check if message is for current eventId */
-function handleSalesWidgetMessageQueue(iframeElement, containerElement) {
+/**
+ * communication between parent page and iframe
+ * very important to be working because of scrollbar issue
+ */
+function listenIframeMessages(iframeElement) {
+    console.log("init communication");
+
     const messageHandler = (event) => {
-        if (event.data?.source === getIdValueMessage('origin')) {
+        console.log("event data!", event);
+
+        if (event.data?.source === getIdValueEventListener('origin')) {
             const eventType = event.data?.type; // Type of message event
 
             // In some cases windows of iframe can be timidity closed and replaced, then just ignore sending of message
@@ -127,8 +130,8 @@ function handleSalesWidgetMessageQueue(iframeElement, containerElement) {
             if (eventType === 'initialized') {
                 iframeElement.contentWindow.postMessage(
                     {
-                        source: getIdValueMessage('consumer'),
-                        type: getIdValueMessage('discovered'),
+                        source: getIdValueEventListener('consumer'),
+                        type: getIdValueEventListener('discovered'),
                         currentUrl: window.location.href
 
                     },
@@ -138,43 +141,15 @@ function handleSalesWidgetMessageQueue(iframeElement, containerElement) {
 
             /** Handle origin window resize (ticket to checkout added...) */
             if (eventType === 'resize') {
-                iframeElement.height = event.data?.height
-            }
-
-            /** Handle widget fullscreen mode */
-            if (eventType === 'fullscreen') {
-                const state = event.data?.state // opened | closed
-                const bodyElement = window.document.querySelector('body')
-
-                // Overlay used for modal (full-screen) mode
-                if (state === 'opened') {
-                    // Find current scrolling point, after modal is closed port viewport back in place
-                    const currentScrollTop = document.documentElement.scrollTop || document.body.scrollTop
-
-                    containerElement.setAttribute(
-                        'scroll-viewport', currentScrollTop.toString()
-                    );
-
-                    // Activate modal overlay
-                    containerElement.classList.add(getIdValueClassIframe('overlay'));
-                    bodyElement.classList.add(getIdValueClassIframe('overlay-body'));
-                } else {
-                    // Deactivate modal overlay
-                    bodyElement.classList.remove(getIdValueClassIframe('overlay-body'));
-                    containerElement.classList.remove(getIdValueClassIframe('overlay'));
-
-                    // Recover user's viewport before modal was opened
-                    const viewportRecoveryScroll = containerElement.getAttribute('scroll-viewport')
-
-                    document.documentElement.scrollTop = Number(viewportRecoveryScroll)
-                    document.body.scrollTop = Number(viewportRecoveryScroll)
-                }
+                iframeElement.height = event.data?.height;
             }
         }
-    }
+    };
 
-    // Receive messages from origin website
-    window.addEventListener(getIdValueMessage('event-name'), messageHandler, false)
+    // Receive messages from iframe
+    const listerName = getIdValueEventListener('name');
+    console.log("listerName", listerName);
+    window.addEventListener(getIdValueEventListener(listerName), messageHandler, false);
 }
 
 /**
