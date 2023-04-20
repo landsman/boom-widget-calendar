@@ -39,10 +39,18 @@ function replaceInFile(fileName, replacement) {
         }
         const result = data.replace(/<!-- @loader -->/g, replacement);
 
-        const newFile = path.join(configuration.destination, 'api', 'snippet.min.html');
-        ensureDirectoryExistence(newFile);
+        const file = fileName.replace(".html", ".min.html");
 
-        fs.writeFile(newFile, result, 'utf8', function (err) {
+        const filePath = path.join(configuration.destination, 'api', file);
+        ensureDirectoryExistence(filePath);
+        fs.writeFile(filePath, result, 'utf8', function (err) {
+            if (err) return console.log(err);
+        });
+
+        const filePathDev = path.join(configuration.source, file);
+        ensureDirectoryExistence(filePathDev);
+
+        fs.writeFile(filePathDev, result, 'utf8', function (err) {
             if (err) return console.log(err);
         });
     });
@@ -51,12 +59,13 @@ function replaceInFile(fileName, replacement) {
 /**
  * ⚠️ to get this file you have to run first:
  *
- * npm run build:minify_snippet
+ * npm run build:minify
  *
  */
 function run() {
     const snippetJs = fs.readFileSync(path.join(configuration.destination, 'api', 'snippet.min.js'));
-    replaceInFile('snippet.html', snippetJs.toString());
+    replaceInFile('snippet-script.html', snippetJs.toString());
+    replaceInFile('snippet-div.html', snippetJs.toString());
 }
 
 
