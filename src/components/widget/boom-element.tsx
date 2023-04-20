@@ -113,14 +113,13 @@ const Loader = styled.div<{ visible: boolean }>`
   `}
 `;
 
-// todo
 const SalesWidget = styled.div<{ visible: boolean }>`
   height: auto;
   display: none;
   
   &> iframe {
-    // todo: debug sizes
-    min-height: 1500px; 
+    min-height: 200px;
+    border: 0;
   }
 
   ${({ visible }) => visible && css`
