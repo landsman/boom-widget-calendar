@@ -1,0 +1,21 @@
+<!-- Google Tag Manager -->
+<script type="text/javascript" id="boom-events-org-calendar">
+    (function(_window, _document, _organizerId) {
+
+        _window[_organizerId] = _window[_organizerId] || [];
+
+        _window[_organizerId].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js',
+        });
+
+        const firstScriptOnThePage = _document.getElementsByTagName('script')[0],
+            j = _document.createElement('script');
+
+        j.async=true;
+        j.src= '//localhost:3000/boom-widget-calendar/api/loader.js';
+        firstScriptOnThePage.parentNode.insertBefore(j, firstScriptOnThePage);
+
+    })(window, document, 'GTM-THBLNN');
+</script>
+<!-- End Google Tag Manager -->
