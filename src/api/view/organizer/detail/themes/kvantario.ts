@@ -48,7 +48,9 @@ const kvantarioTheme: CustomizedThemeOverride = {
     selectedDayColor: '#D527D7',
 
     calendarMonthArrowBg: '#363053',
+    calendarMonthArrowBgHover: '#D527D7',
     calendarMonthArrowIcon: '#FFFFFF',
+    calendarMonthArrowIconHover: '#FFFFFF',
 
     calendarTimeSlotBg: '#363152',
     calendarTimeSlotColor: '#FFFFFF',
