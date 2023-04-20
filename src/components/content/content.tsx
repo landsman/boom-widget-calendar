@@ -18,11 +18,7 @@ export function Content(): JSX.Element {
 
     /** Run after page init necessarily steps to handle widget on 3rd party website */
     const handleWidgetMessageBroker = () => {
-        // Post information to website where widget code is used about init operation
         handleContentInitialized(organizerId!);
-
-        // Send resize message after window height change
-        // todo: this is probably not working!
         new ResizeObserver(handleResize).observe(window.document.body);
     }
 

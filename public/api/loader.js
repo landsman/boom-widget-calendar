@@ -110,24 +110,25 @@ function iframeInstall() {
 /**
  * communication between parent page and iframe
  * very important to be working because of scrollbar issue
+ *
+ * @see #useIframeMessenger
  */
 function listenIframeMessages(iframeElement) {
-    console.log("init communication");
-
     const messageHandler = (event) => {
-        console.log("event data!", event);
+        console.log("♥️♥️♥️♥️♥️♥️♥️♥️ event data!", event.data);
 
-        if (event.data?.source === getIdValueEventListener('origin')) {
-            const eventType = event.data?.type; // Type of message event
+        const source = event.data?.source;
+        const ourSource = getIdValueEventListener('origin');
+        const eventType = event.data?.type;
 
-            // In some cases windows of iframe can be timidity closed and replaced, then just ignore sending of message
-            // This case can occur when you are initializing widget windows on your own whit directly call of init method
-            if (iframeElement.contentWindow === null) {
-                return;
-            }
+        // disable unknown source!
+        if (source !== ourSource) {
+            console.warn("listenIframeMessages - disabled", source);
+            return;
+        }
 
-            /** Handle widget page initialized */
-            if (eventType === 'initialized') {
+        switch (eventType) {
+            case 'initialized':
                 iframeElement.contentWindow.postMessage(
                     {
                         source: getIdValueEventListener('consumer'),
@@ -136,20 +137,18 @@ function listenIframeMessages(iframeElement) {
 
                     },
                     '*',
-                )
-            }
+                );
+                break;
 
-            /** Handle origin window resize (ticket to checkout added...) */
-            if (eventType === 'resize') {
+            case 'resize':
                 iframeElement.height = event.data?.height;
-            }
+                break;
+
+            default:
+                console.log("Unsupported eventType!", eventType);
         }
     };
-
-    // Receive messages from iframe
-    const listerName = getIdValueEventListener('name');
-    console.log("listerName", listerName);
-    window.addEventListener(getIdValueEventListener(listerName), messageHandler, false);
+    window.addEventListener('message', messageHandler, false);
 }
 
 /**
