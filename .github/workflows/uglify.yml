@@ -1,0 +1,33 @@
+name: "Uglify"
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  uglify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - name: 'Install dependencies'
+        env:
+          GENERATE_SOURCEMAP: false
+        run: |
+          npm ci
+          npm run pre-deploy
+          npm run uglify
+          cd build && ls -la
