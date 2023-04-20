@@ -185,17 +185,33 @@
 
                                         <div class="team-area pt-100 pb-70">
                                             <div class="container">
-                                                <!-- BoomEvents.org calendar -->
-                                                <script type="text/javascript">
-                                                    var _boomEventsCalendar = _boomEventsCalendar || {};
-                                                    _boomEventsCalendar.organizerId = 'e637ebde-913c-4339-bb45-615293ef191c';
-                                                    window.BOOM_WIDGET_API_CALENDAR || (function(d) {
-                                                        var s,c,o=BOOM_WIDGET_API_CALENDAR=function(){ o._.push(arguments)};o._=[];
-                                                        s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-                                                        c.type='text/javascript';c.charset='utf-8';c.async=true;
-                                                        c.src='//localhost:3000/boom-widget-calendar/api/loader.js?';s.parentNode.insertBefore(c,s);
-                                                    })(document);
+                                                <!-- Google Tag Manager -->
+                                                <script type="text/javascript" id="boom-events-org-calendar">
+                                                    (function(_window, _document, _organizerId, _production) {
+
+                                                        const fieldName = 'BOOM_WIDGET_API_CALENDAR';
+                                                        _window[fieldName] = _window[fieldName] || {};
+                                                        _window[fieldName].organizerId = _organizerId;
+                                                        _window[fieldName].isProduction = _production;
+
+                                                        // find place where is installed script
+                                                        const install = _document.getElementById('boom-events-org-calendar');
+                                                        const loader = _document.createElement('script');
+
+                                                        const date = new Date();
+                                                        const unixTimeStamp = Math.floor(date.getTime() / 1000);
+
+                                                        loader.async = true;
+                                                        loader.id = 'boom-events-org-calendar-loader-js';
+                                                        loader.src = '//localhost:3000/boom-widget-calendar/api/loader.js?v=' + unixTimeStamp;
+
+                                                        // insert a new external javascript file to load
+                                                        install.parentNode.insertBefore(loader, install);
+
+                                                    })(window, document, 'e637ebde-913c-4339-bb45-615293ef191c', true);
                                                 </script>
+                                                <!-- End Google Tag Manager -->
+
                                             </div>
                                             <img decoding="async" src="http://www.kvantario.com/wp-content/uploads/2022/10/features-shape-1.png" class="shape shape-1" alt="Shape1">
                                             <img decoding="async" src="http://www.kvantario.com/wp-content/uploads/2022/10/features-shape-2.png" class="shape shape-2" alt="Shape2">

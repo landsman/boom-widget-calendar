@@ -1,21 +1,26 @@
 <!-- Google Tag Manager -->
 <script type="text/javascript" id="boom-events-org-calendar">
-    (function(_window, _document, _organizerId) {
+    (function(_window, _document, _organizerId, _production) {
 
-        _window[_organizerId] = _window[_organizerId] || [];
+        const fieldName = 'BOOM_WIDGET_API_CALENDAR';
+        _window[fieldName] = _window[fieldName] || {};
+        _window[fieldName].organizerId = _organizerId;
+        _window[fieldName].isProduction = _production;
 
-        _window[_organizerId].push({
-            'gtm.start': new Date().getTime(),
-            event: 'gtm.js',
-        });
+        // find place where is installed script
+        const install = _document.getElementById('boom-events-org-calendar');
+        const loader = _document.createElement('script');
 
-        const firstScriptOnThePage = _document.getElementsByTagName('script')[0],
-            j = _document.createElement('script');
+        const date = new Date();
+        const unixTimeStamp = Math.floor(date.getTime() / 1000);
 
-        j.async=true;
-        j.src= '//localhost:3000/boom-widget-calendar/api/loader.js';
-        firstScriptOnThePage.parentNode.insertBefore(j, firstScriptOnThePage);
+        loader.async = true;
+        loader.id = 'boom-events-org-calendar-loader-js';
+        loader.src = '//localhost:3000/boom-widget-calendar/api/loader.js?v=' + unixTimeStamp;
 
-    })(window, document, 'GTM-THBLNN');
+        // insert a new external javascript file to load
+        install.parentNode.insertBefore(loader, install);
+
+    })(window, document, 'e637ebde-913c-4339-bb45-615293ef191c', true);
 </script>
 <!-- End Google Tag Manager -->
