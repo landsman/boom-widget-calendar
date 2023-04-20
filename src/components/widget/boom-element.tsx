@@ -9,16 +9,19 @@ import {
 import {useAppContext} from "@local/runtime";
 import {PureCssLoader} from "@local/components/loader/pure-css-loader";
 import {useLocaleContext} from "@local/configuration/i18n";
+import {useIframeMessenger} from "@local/hooks/iframe-messenger";
 
 export function BoomWidgetElement() {
     const {
         isProduction,
+        organizerId,
         themeConfig,
         selectedEvent,
         isWidgetLoading,
         setWidgetLoading
     } = useAppContext();
     const { locale } = useLocaleContext();
+    const { handleContentInitialized, handleContentResize  } = useIframeMessenger();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
 
     const eventId = selectedEvent!.id;
@@ -34,6 +37,23 @@ export function BoomWidgetElement() {
     const config: BoomWidgetConfigDTO = {
         eventId,
         eventUrl,
+    };
+
+    const handleResize = (entries: ResizeObserverEntry[]) => {
+        console.log("resize!!!!", entries);
+        handleContentResize(organizerId!);
+    }
+
+    /** Run after page init necessarily steps to handle widget on 3rd party website */
+    const handleWidgetMessageBroker = () => {
+        handleContentInitialized(organizerId!);
+
+        const element = document.getElementsByClassName(boomWidgetIds.widgetClass)[0];
+        console.log("element", element);
+
+        if (element) {
+            new ResizeObserver(handleResize).observe(element);
+        }
     }
 
     /**
@@ -43,7 +63,7 @@ export function BoomWidgetElement() {
         setOldEventId(config?.eventId);
         placeBoomWidget(config, themeConfig, setWidgetLoading);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [eventId, eventUrl])
+    }, [eventId, eventUrl]);
 
     /**
      * switch widget
@@ -53,7 +73,10 @@ export function BoomWidgetElement() {
             placeBoomWidget(config, themeConfig, setWidgetLoading);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [eventId, oldEventId])
+    }, [eventId, oldEventId]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(handleWidgetMessageBroker, []);
 
     return (
         <Wrapper>
