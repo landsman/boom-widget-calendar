@@ -25,8 +25,11 @@ export function TimeSlot({ id, dateFrom, dateTo }: PropTypes): JSX.Element {
     }
 
     return (
-        <SlotWrapper active={isActive}>
-            <SlotContent active={isActive} onClick={() => handleSelectItem(id)}>
+        <SlotWrapper>
+            <SlotContent
+                active={isActive}
+                onClick={() => handleSelectItem(id)}
+            >
                 <SlotText
                     dateFrom={dateFrom}
                     dateTo={dateTo}

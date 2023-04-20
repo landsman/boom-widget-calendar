@@ -1,7 +1,6 @@
 import styled, {css} from "styled-components";
 
 type PropTypes = {
-  active?: boolean;
   disabled?: true;
 }
 

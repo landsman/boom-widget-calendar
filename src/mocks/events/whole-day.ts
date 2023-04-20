@@ -1,6 +1,6 @@
 import {EventType} from "@local/api/view/events/types";
 
-export const mockEvents: EventType[] = [
+export const mockWholeDayEvents: EventType[] = [
     {
         id: '1',
         type: 'concert',
@@ -22,8 +22,8 @@ export const mockEvents: EventType[] = [
             metaDescription: 'An example event for testing purposes',
             metaImage: 'https://example.com/event/meta-image.jpg',
         },
-        dateFrom: new Date(2023, 3, 10, 20, 0).toISOString(),
-        dateTo: new Date(2023, 3, 10, 23, 0).toISOString(),
+        dateFrom: new Date(2023, 3, 10, 1, 0).toISOString(),
+        dateTo: new Date(2023, 3, 10, 10, 0).toISOString(),
         orderableFrom: new Date(2023, 2, 1).toISOString(),
         orderableUntil: new Date(2023, 3, 9).toISOString(),
         timezone: {
@@ -59,8 +59,8 @@ export const mockEvents: EventType[] = [
             metaDescription: 'An example theater show for testing purposes',
             metaImage: 'https://example.com/theater-show/meta-image.jpg',
         },
-        dateFrom: new Date(2023, 3, 5, 18, 0, 0).toISOString(),
-        dateTo: new Date(2023, 3, 5, 21, 0, 0).toISOString(),
+        dateFrom: new Date(2023, 3, 5, 10, 0, 0).toISOString(),
+        dateTo: new Date(2023, 3, 5, 20, 0, 0).toISOString(),
         orderableFrom: new Date(2023, 2, 1).toISOString(),
         orderableUntil: new Date(2023, 3, 4).toISOString(),
         timezone: {

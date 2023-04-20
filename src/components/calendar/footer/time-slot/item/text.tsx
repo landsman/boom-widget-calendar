@@ -1,19 +1,19 @@
-import {differenceInHours, format, parseISO} from "date-fns";
+import {format} from "date-fns";
 import {t} from "@lingui/macro";
 import {useLingui} from "@lingui/react";
-import {useLocaleContext} from "@local/configuration/i18n";
 import styled from "styled-components";
+import {useLocaleContext} from "@local/configuration/i18n";
+import {getEventDuration} from "@local/models/events/duration";
 
 type PropTypes = {
     dateFrom: string;
     dateTo: string;
-    wholeDay?: number;
-}
+};
 
 /**
  * Prepare localised date or text
  */
-export function SlotText({ dateFrom, dateTo, wholeDay = 8 }: PropTypes): JSX.Element {
+export function SlotText({ dateFrom, dateTo }: PropTypes): JSX.Element {
     const { i18n } = useLingui();
     const { localeDataForCalendar } = useLocaleContext();
 
@@ -21,22 +21,21 @@ export function SlotText({ dateFrom, dateTo, wholeDay = 8 }: PropTypes): JSX.Ele
         locale: localeDataForCalendar,
     };
 
-    // convert for date-fns
-    const fromParsed = parseISO(dateFrom.toString());
-    const toParsed = parseISO(dateTo.toString());
-
-    const eventDuration = differenceInHours(fromParsed, toParsed) * -1;
-
-    // show localised message instead of hours
-    let text: JSX.Element;
-    if (eventDuration >= wholeDay) {
-        text = <WholeDay>{i18n._(t`calendar.time_slot.whole_day`)}</WholeDay>;
-    } else {
-        const fromFormatted = format(fromParsed, 'p', opts);
-        const toFormatted = format(toParsed, 'p', opts);
-        text = <span>{fromFormatted} - {toFormatted}</span>;
+    try {
+        const duration = getEventDuration(dateFrom, dateTo);
+        let text: JSX.Element;
+        if (duration.isItWholeDayEvent) {
+            text = <WholeDay>{i18n._(t`calendar.time_slot.whole_day`)}</WholeDay>;
+        } else {
+            const fromFormatted = format(duration.fromParsed, 'p', opts);
+            const toFormatted = format(duration.toParsed, 'p', opts);
+            text = <span>{fromFormatted} - {toFormatted}</span>;
+        }
+        return text;
+    } catch (e: any) {
+        console.error("SlotText issue!", e);
+        return <span>{dateFrom} - {dateTo}</span>;
     }
-    return text;
 }
 
 const WholeDay = styled.span`
