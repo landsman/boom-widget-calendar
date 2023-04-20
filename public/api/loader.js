@@ -1,11 +1,29 @@
 alert("yep its working");
 
 /**
+ * hosting
+ * todo: replace!
+ */
+const cdnHostname = '//localhost:3000/boom-widget-calendar/';
+
+/**
  * api object to be used bellow
  */
 const api = window?.BOOM_WIDGET_API_CALENDAR;
+
+/**
+ * catalog with field names
+ */
+const field = {
+    organizerId: 'organizerId',
+    isProduction: 'isProduction',
+    manualRun: 'manualRun',
+}
+
+/**
+ * this is anchor you want to work with
+ */
 const snippetId = 'boom-events-org-calendar';
-const host = '//localhost:3000/boom-widget-calendar/';
 
 /**
  * util
@@ -32,7 +50,11 @@ function stylesInstall() {
     const element = document.createElement('link');
     element.rel = 'stylesheet';
     element.id = getIdValue('css');
-    element.href= host + '/api/loader.css?v=' + getUnixTime();
+
+    // build url
+    element.href= cdnHostname +
+        '/api/loader.css?v=' +
+        getUnixTime();
 
     // insert a new external style file to load
     install.parentNode.insertBefore(element, install);
@@ -48,7 +70,15 @@ function iframeInstall() {
 
     const element = document.createElement('iframe');
     element.id = getIdValue('iframe');
-    element.src = host + '?v=' + getUnixTime() + '&isProduction='+ api.isProduction + '&organizerId=' + api.organizerId;
+
+    // build url
+    element.src = cdnHostname +
+        '?v=' +
+        getUnixTime() +
+        '&isProduction='+
+        api[field.isProduction] +
+        '&organizerId=' +
+        api[field.organizerId];
 
     // insert a new external style file to load
     install.parentNode.insertBefore(element, install);
@@ -60,21 +90,14 @@ function iframeInstall() {
 if (null !== api) {
     console.log("BOOM_WIDGET_API_CALENDAR", api);
     stylesInstall();
-    iframeInstall();
+
+    // client want to show iframe on his own
+    if (api.hasOwnProperty(field.manualRun)) {
+        // todo: this would be a nice feature
+    } else {
+        iframeInstall();
+    }
+
 } else {
     console.error("BOOM_WIDGET_API_CALENDAR is null!");
 }
-
-
-
-
-//
-// <style type="text/css">
-//     #boom-events-org-calendar {
-//     width: 100%;
-//     height: 50px;
-//     border: 0;
-// }
-// </style>
-// <iframe id="boom-events-org-calendar" src="https://landsman.github.io/boom-widget-calendar/?organizerId=e637ebde-913c-4339-bb45-615293ef191c"></iframe>
-// <!-- /BoomEvents.org calendar -->
