@@ -10,6 +10,8 @@ const field = {
     cdnHostname: 'cdnHostname',
     organizerId: 'organizerId',
     isProduction: 'isProduction',
+    scrolling: 'scrolling',
+    locale: 'locale',
     manualRun: 'manualRun',
 }
 
@@ -78,7 +80,6 @@ function elementInstall() {
 
 /**
  * install iframe
- * todo: move api paras to object
  */
 function iframeInstall() {
     // find place where is installed script
@@ -86,14 +87,23 @@ function iframeInstall() {
 
     const element = document.createElement('iframe');
     element.id = getIdValue('iframe');
+    element.scrolling = "no";
 
     // build url
     let url = new URL(api.cdnHostname);
-    url.search = new URLSearchParams({
+    let params = {
         v: getUnixTime(),
+        [field.scrolling]: false,
         [field.isProduction]: api[field.isProduction],
         [field.organizerId]: api[field.organizerId],
-    });
+    };
+
+    // optional params with fixed locale
+    if (api[field.locale]) {
+        params[field.locale] = api[field.locale];
+    }
+
+    url.search = new URLSearchParams(params);
 
     // set url
     element.src = url.toString();
