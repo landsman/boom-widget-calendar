@@ -1,11 +1,4 @@
 /**
- * hosting
- * todo: replace!
- */
-const cdnHostname = 'http://localhost:3000/boom-widget-calendar/';
-const pathCss = 'api/loader.css';
-
-/**
  * api object to be used bellow
  */
 const api = window?.BOOM_WIDGET_API_CALENDAR;
@@ -14,6 +7,7 @@ const api = window?.BOOM_WIDGET_API_CALENDAR;
  * catalog with field names
  */
 const field = {
+    cdnHostname: 'cdnHostname',
     organizerId: 'organizerId',
     isProduction: 'isProduction',
     manualRun: 'manualRun',
@@ -58,7 +52,8 @@ function stylesInstall() {
     element.id = getIdValue('css');
 
     // build url
-    let url = new URL(cdnHostname + pathCss);
+    const pathCss = 'api/loader.css';
+    let url = new URL(api.cdnHostname + pathCss);
     url.search = new URLSearchParams({
         v: getUnixTime(),
     });
@@ -93,7 +88,7 @@ function iframeInstall() {
     element.id = getIdValue('iframe');
 
     // build url
-    let url = new URL(cdnHostname);
+    let url = new URL(api.cdnHostname);
     url.search = new URLSearchParams({
         v: getUnixTime(),
         [field.isProduction]: api[field.isProduction],

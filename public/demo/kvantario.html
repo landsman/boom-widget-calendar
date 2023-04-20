@@ -187,7 +187,7 @@
                                             <div class="container">
                                                 <!-- BoomEvents.org calendar -->
                                                 <script type="text/javascript" id="boom-events-org-calendar">
-                                                    (function(_window, _document, _organizerId, _production) {
+                                                    (function(_window, _document, _organizerId, _production, _cdnHostname) {
 
                                                         const idPrefix = 'boom-events-org-calendar';
                                                         const fieldName = 'BOOM_WIDGET_API_CALENDAR';
@@ -195,6 +195,7 @@
                                                         _window[fieldName] = _window[fieldName] || {};
                                                         _window[fieldName].organizerId = _organizerId;
                                                         _window[fieldName].isProduction = _production;
+                                                        _window[fieldName].cdnHostname = _cdnHostname;
 
                                                         // find place where is installed script
                                                         const install = _document.getElementById(idPrefix);
@@ -205,12 +206,12 @@
 
                                                         loader.async = true;
                                                         loader.id = idPrefix + '__loader-js';
-                                                        loader.src = '//localhost:3000/boom-widget-calendar/api/loader.js?v=' + unixTimeStamp;
+                                                        loader.src = _cdnHostname + '/api/loader.js?v=' + unixTimeStamp;
 
                                                         // insert a new external javascript file to load
                                                         install.after(loader);
 
-                                                    })(window, document, 'e637ebde-913c-4339-bb45-615293ef191c', true);
+                                                    })(window, document, 'e637ebde-913c-4339-bb45-615293ef191c', true, 'http://localhost:3000/boom-widget-calendar/');
                                                 </script>
                                                 <!-- /BoomEvents.org calendar -->
                                             </div>
