@@ -7,9 +7,17 @@
 
 The basic configuration is made via URL query params
 
-- `organizerId`
+- `organizerId` id from boom api database
 - `isProduction` by default true, use it with false to switch to staging
 - `locale` if you want to skip locale detection, have fixed value [cs, en-GB]. It also hides locale switcher.
+
+## Organizers & themes
+
+Themes and features are used by `organizerId`. 
+If you need add a new organizer, theme, or change theirs ids, check following files.
+
+- `./src/api/view/organizer/detail/database.ts`
+- `./src/api/view/organizer/detail/themes/*`
 
 ## Devstack
 
