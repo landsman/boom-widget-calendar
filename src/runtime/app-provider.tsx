@@ -13,6 +13,7 @@ import {buildConfigFromUrl} from "@local/configuration/organizer";
 import {loadBoomScripts} from "@local/components/widget";
 import {ErrorMessage} from "@local/components/error-message";
 import {DateRangeString} from "@local/utils/date-time/types/date-range";
+import {sortEventsByDuration} from "@local/models/events/sort-by-duration";
 
 type PropTypes = {
     children: ReactNode;
@@ -83,7 +84,8 @@ export function AppProvider({ features, children, currentDate, themeConfig }: Pr
         }
 
         if (features?.allowTimeSlots) {
-            setSelectedDateEvents(apiEvents);
+            const sortData = sortEventsByDuration(apiEvents);
+            setSelectedDateEvents(sortData);
             setFlashMessage(flashMessageText.selectTime);
         } else {
             setFlashMessage(undefined);
