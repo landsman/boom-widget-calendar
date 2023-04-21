@@ -6,6 +6,7 @@ const fs = require("fs");
  */
 const root = path.join(__dirname, '..', '..');
 const configuration = {
+    customDomain: process.env.CUSTOM_DOMAIN || 'http://localhost:3000/boom-widget-calendar/',
     source: process.env.SOURCE || path.join(root, 'public', 'api'),
     destination: process.env.DESTINATION || path.join(root, 'build'),
 }
@@ -37,7 +38,9 @@ function replaceInFile(fileName, replacement) {
         if (err) {
             return console.log(err);
         }
-        const result = data.replace(/<!-- @loader -->/g, replacement);
+        const result = data
+            .replace(/<!-- @loader -->/g, replacement)
+            .replace('/http://localhost:3000/boom-widget-calendar//g', configuration.customDomain);
 
         const file = fileName.replace(".html", ".min.html");
 
