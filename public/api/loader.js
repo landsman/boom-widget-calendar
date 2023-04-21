@@ -40,7 +40,6 @@ async function loadFieldsFromDataAttributes() {
     return new Promise((resolve, reject) => {
         /** get init tag */
         const tag = document.querySelector('#' + state.tagId);
-        console.log("data set", tag.dataset);
 
         /** set organizer is must have */
         const orgId = tag.dataset[attributes.id];

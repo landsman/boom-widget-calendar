@@ -4,6 +4,7 @@
 # build
 public/api/*.min.html
 public/api/*.min.js
+public/api/*.min.js.map
 
 # locales
 src/locales/*/messages.js
