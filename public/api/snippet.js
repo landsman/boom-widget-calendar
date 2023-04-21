@@ -1,3 +1,6 @@
+/**
+ * this script have to be part of client HTML, with tag element, see: "snippet-script.html" or "snippet-div.html"
+ */
 (function(_window, _document) {
     const prefix = 'boom-events-org-calendar';
 
