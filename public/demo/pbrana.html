@@ -282,32 +282,8 @@
                     </div>
                     <div>
                         <!-- BoomEvents.org calendar -->
-                        <script type="text/javascript" id="boom-events-org-calendar">
-                            (function(_window, _document, _organizerId, _production, _cdnHostname) {
-
-                                const idPrefix = 'boom-events-org-calendar';
-                                const fieldName = 'BOOM_WIDGET_API_CALENDAR';
-
-                                _window[fieldName] = _window[fieldName] || {};
-                                _window[fieldName].organizerId = _organizerId;
-                                _window[fieldName].isProduction = _production;
-                                _window[fieldName].cdnHostname = _cdnHostname;
-
-                                // find place where is installed script
-                                const install = _document.getElementById(idPrefix);
-                                const loader = _document.createElement('script');
-
-                                const date = new Date();
-                                const unixTimeStamp = Math.floor(date.getTime() / 1000);
-
-                                loader.async = true;
-                                loader.id = idPrefix + '__loader-js';
-                                loader.src = _cdnHostname + '/api/loader.js?v=' + unixTimeStamp;
-
-                                // insert a new external javascript file to load
-                                install.after(loader);
-
-                            })(window, document, '8fabf06c-0078-47e4-9c30-3f17827da0ab', true, 'https://landsman.github.io/boom-widget-calendar/');
+                        <script type="text/javascript" id="boom-events-org-calendar" data-cdn="https://landsman.github.io/boom-widget-calendar/" data-id="8fabf06c-0078-47e4-9c30-3f17827da0ab">
+                            !function(e,t){const n="boom-events-org-calendar";const a=t.getElementById(n),o=t.createElement("script"),c=new Date,r=Math.floor(c.getTime()/1e3);o.async=!0,o.id=n+"__loader-"+"js";const s=a.getAttribute("data-cdn");var d;o.src=((d=s).endsWith("/")?d.slice(0,-1):d)+"/api/loader.min.js?v="+r,a.after(o)}(window,document);
                         </script>
                         <!-- /BoomEvents.org calendar -->
                     </div>

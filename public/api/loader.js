@@ -4,21 +4,78 @@
 const api = window?.BOOM_WIDGET_API_CALENDAR;
 
 /**
- * catalog with field names
+ * app state
  */
-const field = {
-    cdnHostname: 'cdnHostname',
+let state = {
+    tagId: 'boom-events-org-calendar',
+    id: null,
+    cdn: 'https://landsman.github.io/boom-widget-calendar/',
+    prod: true,
+    locale: null,
+    manual: false,
+};
+
+/**
+ * data attributes on tag
+ */
+const attributes = {
+    id: 'id',
+    cdn: 'cdn',
+    prod: 'prod',
+    locale: 'locale',
+    manual: 'manual',
+}
+
+/**
+ * query params on iframe
+ */
+const queryParams = {
     organizerId: 'organizerId',
     isProduction: 'isProduction',
     scrolling: 'scrolling',
     locale: 'locale',
-    manualRun: 'manualRun',
 }
 
-/**
- * this is anchor you want to work with
- */
-const idPrefix = 'boom-events-org-calendar';
+async function loadFieldsFromDataAttributes() {
+    return new Promise((resolve, reject) => {
+        /** get init tag */
+        const tag = document.querySelector('#' + state.tagId);
+
+        /** set organizer is must have */
+        const orgId = tag.dataset[attributes.id];
+        if (!orgId) {
+            reject("organizerId id is not defined!");
+        } else {
+            state[attributes.id] = orgId;
+        }
+
+        /** run code manually? */
+        const manual = tag.dataset[attributes.manual];
+        if (manual) {
+            state[attributes.manual] = manual;
+        }
+
+        /** override cdn? */
+        const cdn = tag.dataset[attributes.cdn];
+        if (cdn) {
+            state[attributes.cdn] = stripTrailingSlash(cdn);
+        }
+
+        /** stage? */
+        const prod = tag.dataset[attributes.isProduction];
+        if (prod) {
+            state[attributes.production] = prod;
+        }
+
+        /** override locale */
+        const locale = tag.dataset[attributes.locale];
+        if (locale) {
+            state[attributes.locale] = locale;
+        }
+
+        resolve();
+    });
+}
 
 /**
  * util
@@ -32,14 +89,23 @@ function getUnixTime() {
  * util
  */
 function getIdValue(what) {
-    return idPrefix + '__loader-' + what;
+    return state.tagId + '__loader-' + what;
 }
 
 /**
  * util
  */
 function getIdValueEventListener(what) {
-    return idPrefix + '__event-listener-' + what;
+    return state.tagId + '__event-listener-' + what;
+}
+
+/**
+ * util
+ */
+function stripTrailingSlash(str) {
+    return str.endsWith('/') ?
+        str.slice(0, -1) :
+        str;
 }
 
 /**
@@ -47,15 +113,18 @@ function getIdValueEventListener(what) {
  */
 function stylesInstall() {
     // find place where is installed script
-    const install = document.getElementById(idPrefix);
+    const install = document.getElementById(state.tagId);
+    if (!install) {
+        console.error("Tag not found!", state.tagId);
+        return;
+    }
 
     const element = document.createElement('link');
     element.rel = 'stylesheet';
     element.id = getIdValue('css');
 
     // build url
-    const pathCss = 'api/loader.css';
-    let url = new URL(api.cdnHostname + pathCss);
+    let url = new URL(state[attributes.cdn] + '/api/loader.css');
     url.search = new URLSearchParams({
         v: getUnixTime(),
     });
@@ -68,39 +137,47 @@ function stylesInstall() {
 }
 
 function elementInstall() {
-    // find place where is installed script
-    const install = document.getElementById(getIdValue('js'));
+    const id = getIdValue('js');
+    const tag = document.getElementById(id);
+    if (!tag) {
+        console.error("Tag not found!", id);
+        return;
+    }
 
     const element = document.createElement('div');
     element.id = getIdValue('element');
 
     // insert a new external style file to load
-    install.after(element);
+    tag.after(element);
 }
 
 /**
  * install iframe
  */
 function iframeInstall() {
-    // find place where is installed script
-    const containerElement = document.getElementById(getIdValue('element'));
+    const id = getIdValue('element');
+    const tag = document.getElementById(id);
+    if (!tag) {
+        console.error("Tag not found!", id);
+        return;
+    }
 
     const element = document.createElement('iframe');
     element.id = getIdValue('iframe');
     element.scrolling = "no";
 
     // build url
-    let url = new URL(api.cdnHostname);
+    let url = new URL(state[attributes.cdn] + '/');
     let params = {
         v: getUnixTime(),
-        [field.scrolling]: false,
-        [field.isProduction]: api[field.isProduction],
-        [field.organizerId]: api[field.organizerId],
+        [queryParams.scrolling]: false,
+        [queryParams.isProduction]: state[attributes.production],
+        [queryParams.organizerId]: state[attributes.id],
     };
 
     // optional params with fixed locale
-    if (api[field.locale]) {
-        params[field.locale] = api[field.locale];
+    if (state[attributes.locale]) {
+        params[queryParams.locale] = state[attributes.locale];
     }
 
     url.search = new URLSearchParams(params);
@@ -109,8 +186,8 @@ function iframeInstall() {
     element.src = url.toString();
 
     // put iframe inside the element
-    containerElement.innerHTML = '';
-    containerElement.appendChild(element);
+    tag.innerHTML = '';
+    tag.appendChild(element);
 
     // start talking each other guys
     listenIframeMessages(element);
@@ -163,15 +240,23 @@ function listenIframeMessages(iframeElement) {
  * run the whole thing
  */
 if (null !== api) {
-    console.log("BOOM_WIDGET_API_CALENDAR", api);
-    stylesInstall();
 
-    // client want to show iframe on his own
-    if (api.hasOwnProperty(field.manualRun)) {
-        // todo: this would be a nice feature
-    } else {
-        elementInstall();
-        iframeInstall();
+    /** propagate methods to public object */
+    // todo!
+    // window.BOOM_WIDGET_API_CALENDAR.methods = {
+    //     stylesInstall: stylesInstall,
+    //     elementInstall: elementInstall,
+    //     iframeInstall: iframeInstall,
+    //     loadFieldsFromDataAttributes: loadFieldsFromDataAttributes,
+    // }
+
+    /** client want to show iframe on his own */
+    if (!state.manual) {
+        loadFieldsFromDataAttributes().then(() => {
+            stylesInstall();
+            elementInstall();
+            iframeInstall();
+        });
     }
 
 } else {

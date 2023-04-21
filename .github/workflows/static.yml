@@ -37,6 +37,7 @@ jobs:
       - name: 'Install dependencies'
         env:
           GENERATE_SOURCEMAP: false
+          CUSTOM_DOMAIN: 'https://landsman.github.io/boom-widget-calendar/'
         run: |
           npm ci
           npm run pre-deploy
