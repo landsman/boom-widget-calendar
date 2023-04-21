@@ -13,7 +13,9 @@
 
     loader.async = true;
     loader.id = prefix + '__loader-js';
-    loader.src = install.getAttribute('data-cdn') + 'api/loader.min.js?v=' + unixTimeStamp;
+    const cdn = install.getAttribute('data-cdn');
+    const pathWithQuery = cdn + '/api/loader.min.js?v=' + unixTimeStamp;
+    loader.src = cdn + pathWithQuery.replace('//api', '/api');
 
     // insert a new external javascript file to load
     install.after(loader);
