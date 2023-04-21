@@ -58,7 +58,7 @@ async function loadFieldsFromDataAttributes() {
         /** override cdn? */
         const cdn = tag.dataset[attributes.cdn];
         if (cdn) {
-            state[attributes.cdn] = cdn;
+            state[attributes.cdn] = stripTrailingSlash(cdn);
         }
 
         /** stage? */
@@ -100,6 +100,15 @@ function getIdValueEventListener(what) {
 }
 
 /**
+ * util
+ */
+function stripTrailingSlash(str) {
+    return str.endsWith('/') ?
+        str.slice(0, -1) :
+        str;
+}
+
+/**
  * install css
  */
 function stylesInstall() {
@@ -115,7 +124,7 @@ function stylesInstall() {
     element.id = getIdValue('css');
 
     // build url
-    let url = new URL(state[attributes.cdn] + 'api/loader.css');
+    let url = new URL(state[attributes.cdn] + '/api/loader.css');
     url.search = new URLSearchParams({
         v: getUnixTime(),
     });
@@ -158,7 +167,7 @@ function iframeInstall() {
     element.scrolling = "no";
 
     // build url
-    let url = new URL(state[attributes.cdn]);
+    let url = new URL(state[attributes.cdn] + '/');
     let params = {
         v: getUnixTime(),
         [queryParams.scrolling]: false,
