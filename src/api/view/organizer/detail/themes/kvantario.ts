@@ -1,10 +1,12 @@
 import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTheme";
+import {getSafeFontFamily} from "@local/components/theme/fonts";
 
 const clientKvantario = {
     main: '#1F1940',
     secondary: '#D527D7',
     labels: '#DDD6ED',
     background: '#1A1135',
+    googleFont: 'Changa',
 };
 
 const kvantarioTheme: CustomizedThemeOverride = {
@@ -38,8 +40,8 @@ const kvantarioTheme: CustomizedThemeOverride = {
     // ⚠️ customs...
     loaderColor: '#FFFFFF',
 
-    // todo
-    //customFontFamilyName: "",
+    customFontFamilyName: clientKvantario.googleFont,
+    customFontFamilySafeValue: getSafeFontFamily(clientKvantario.googleFont),
 
     bodyBackground: '#1A1135',
 
