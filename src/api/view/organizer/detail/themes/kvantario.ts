@@ -2,7 +2,7 @@ import {CustomizedThemeOverride} from "@local/components/theme/lib-mango/MangoTh
 
 const clientKvantario = {
     main: '#1F1940',
-    secondary: '#9E17FF',
+    secondary: '#D527D7',
     labels: '#DDD6ED',
     background: '#1A1135',
 };
@@ -44,6 +44,7 @@ const kvantarioTheme: CustomizedThemeOverride = {
     bodyBackground: '#1A1135',
 
     disabledDayColor: '#665D78',
+    disabledDayAndTodayBg: '#431C5E',
     calendarTodayBorder: '1px solid #D527D7',
     selectedDayColor: '#D527D7',
 
