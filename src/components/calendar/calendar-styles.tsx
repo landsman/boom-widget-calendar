@@ -151,5 +151,12 @@ const Wrapper = styled.div`
       color: ${(props) => props.theme?.disabledDayColor ? props.theme?.disabledDayColor : 'unset'};
     }
   }
+
+  .rdp-day_today.rdp-day_disabled {
+    background: ${(props) => props.theme?.disabledDayAndTodayBg ? props.theme?.disabledDayAndTodayBg : 'unset'};
+    border-color: ${(props) => props.theme?.disabledDayAndTodayBg ? props.theme?.disabledDayAndTodayBg : 'unset'};
+    color: ${(props) => props.theme.colors!.gray!['4']};
+    opacity: 1;
+  }
     
 `;
