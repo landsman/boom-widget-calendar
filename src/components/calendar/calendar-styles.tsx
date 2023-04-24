@@ -146,6 +146,7 @@ const Wrapper = styled.div`
   .rdp-day_disabled {
     cursor: not-allowed;
     color: ${(props) => props.theme?.disabledDayColor ? props.theme?.disabledDayColor : 'unset'};
+    opacity: 0.7 !important;
     
     &:hover {
       color: ${(props) => props.theme?.disabledDayColor ? props.theme?.disabledDayColor : 'unset'};
