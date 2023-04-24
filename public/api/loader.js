@@ -62,7 +62,7 @@ async function loadFieldsFromDataAttributes() {
         }
 
         /** stage? */
-        const prod = tag.dataset[attributes.isProduction];
+        const prod = tag.dataset[attributes.prod];
         if (prod) {
             state[attributes.production] = prod;
         }
