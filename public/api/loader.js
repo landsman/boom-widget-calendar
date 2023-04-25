@@ -64,7 +64,7 @@ async function loadFieldsFromDataAttributes() {
         /** stage? */
         const prod = tag.dataset[attributes.prod];
         if (prod) {
-            state[attributes.prod] = prod;
+            state[attributes.prod] = ("true" === prod);
         }
 
         /** override locale */
