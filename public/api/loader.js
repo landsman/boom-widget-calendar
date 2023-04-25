@@ -64,7 +64,7 @@ async function loadFieldsFromDataAttributes() {
         /** stage? */
         const prod = tag.dataset[attributes.prod];
         if (prod) {
-            state[attributes.production] = prod;
+            state[attributes.prod] = prod;
         }
 
         /** override locale */
@@ -171,7 +171,7 @@ function iframeInstall() {
     let params = {
         v: getUnixTime(),
         [queryParams.scrolling]: false,
-        [queryParams.isProduction]: state[attributes.production],
+        [queryParams.isProduction]: state[attributes.prod],
         [queryParams.organizerId]: state[attributes.id],
     };
 
