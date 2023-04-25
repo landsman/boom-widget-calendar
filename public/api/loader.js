@@ -52,7 +52,7 @@ async function loadFieldsFromDataAttributes() {
         /** run code manually? */
         const manual = tag.dataset[attributes.manual];
         if (manual) {
-            state[attributes.manual] = manual;
+            state[attributes.manual] = toBoolean(manual);
         }
 
         /** override cdn? */
@@ -64,7 +64,7 @@ async function loadFieldsFromDataAttributes() {
         /** stage? */
         const prod = tag.dataset[attributes.prod];
         if (prod) {
-            state[attributes.prod] = ("true" === prod);
+            state[attributes.prod] = toBoolean(prod);
         }
 
         /** override locale */
@@ -106,6 +106,19 @@ function stripTrailingSlash(str) {
     return str.endsWith('/') ?
         str.slice(0, -1) :
         str;
+}
+
+/**
+ * util
+ */
+function toBoolean(value) {
+    if (undefined === value) {
+        return false;
+    }
+    if ("false" !== value || "true" !== value) {
+        console.warn("Please provide boolean value! This is not valid: ", value);
+    }
+    return value === "true";
 }
 
 /**
