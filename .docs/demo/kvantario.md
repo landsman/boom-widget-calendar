@@ -1,6 +1,6 @@
 # Kvantario
 
-- [Website](https://www.kvantario.com/)
+- [Website](https://www.kvantario.com/tickets/)
 - [Example of integration](https://landsman.github.io/boom-widget-calendar/demo/kvantario.html)
 
 ## Production snippet
@@ -15,7 +15,7 @@
 <!-- /BoomEvents.org calendar -->
 ```
 
-## Stage snippet
+## Stage (dev) snippet
 
 - [Connect page](https://connect.boomevents.dev/cs/organizer/e7af7792-38d0-4ba3-9024-330b6e273725)
 

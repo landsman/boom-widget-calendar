@@ -4,7 +4,7 @@
 - [Connect - production](https://connect.boomevents.org/cs/organizer/1bf341fa-7bbd-4ac7-ab1e-7b2bea081314)
 
 
-## Production
+## Production snippet
 
 ```html
 <!-- BoomEvents.org calendar -->
@@ -14,7 +14,7 @@
 <!-- /BoomEvents.org calendar -->
 ```
 
-## Stage
+## Stage (dev) snippet
 
 Following code snippet will render responsive iframe in your page [that looks like this](https://landsman.github.io/boom-widget-calendar/?organizerId=e43780b9-a220-42d3-a026-cc97875a61e3&isProduction=false).
 
