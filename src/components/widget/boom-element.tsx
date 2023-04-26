@@ -9,19 +9,16 @@ import {
 import {useAppContext} from "@local/runtime";
 import {PureCssLoader} from "@local/components/loader/pure-css-loader";
 import {useLocaleContext} from "@local/configuration/i18n";
-import {useIframeMessenger} from "@local/hooks/iframe-messenger";
 
 export function BoomWidgetElement() {
     const {
         isProduction,
-        organizerId,
         themeConfig,
         selectedEvent,
         isWidgetLoading,
         setWidgetLoading
     } = useAppContext();
     const { locale } = useLocaleContext();
-    const { handleContentInitialized, handleContentResize  } = useIframeMessenger();
     const [oldEventId, setOldEventId] = useState<undefined | string>(undefined);
 
     const eventId = selectedEvent!.id;
@@ -38,19 +35,6 @@ export function BoomWidgetElement() {
         eventId,
         eventUrl,
     };
-
-    const handleResize = (_entries: ResizeObserverEntry[]) => {
-        handleContentResize(organizerId!);
-    }
-
-    /** Run after page init necessarily steps to handle widget on 3rd party website */
-    const handleWidgetMessageBroker = () => {
-        handleContentInitialized(organizerId!);
-        const element = document.getElementsByClassName(boomWidgetIds.widgetClass)[0];
-        if (element) {
-            new ResizeObserver(handleResize).observe(element);
-        }
-    }
 
     /**
      * init
@@ -70,9 +54,6 @@ export function BoomWidgetElement() {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eventId, oldEventId]);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(handleWidgetMessageBroker, []);
 
     return (
         <Wrapper>
