@@ -1,6 +1,6 @@
 # Kvantario
 
-- [Website](https://www.kvantario.com/)
+- [Website](https://www.kvantario.com/tickets/)
 - [Example of integration](https://landsman.github.io/boom-widget-calendar/demo/kvantario.html)
 
 ## Production snippet
