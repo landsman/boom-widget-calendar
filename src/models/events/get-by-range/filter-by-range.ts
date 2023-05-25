@@ -14,6 +14,7 @@ export async function filterByRange(
             organizerId,
             fromDate: dateRange.from,
             toDate: dateRange.to,
+            size: 100,
             sort: 'desc',
         });
         if (api) {
