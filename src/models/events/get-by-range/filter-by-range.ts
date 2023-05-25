@@ -15,6 +15,7 @@ export async function filterByRange(
             fromDate: dateRange.from,
             toDate: dateRange.to,
             size: 100,
+            published: true,
             sort: 'desc',
         });
         if (api) {
