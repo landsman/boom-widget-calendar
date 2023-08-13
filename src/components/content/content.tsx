@@ -72,7 +72,7 @@ const Left = styled(Column)`
 
   // columns
   @media (min-width: ${breakpoints.tablet}) {
-    width: 40%;
+    width: ${(props) => props.theme.leftSize ? props.theme.leftSize : '40%'};
   }
 `;
 
@@ -81,6 +81,6 @@ const Right = styled(Column)`
 
   // columns
   @media (min-width: ${breakpoints.tablet}) {
-    width: 60%;
+    width: ${(props) => props.theme.rightSize ? props.theme.rightSize : '60%'};
   }
 `;

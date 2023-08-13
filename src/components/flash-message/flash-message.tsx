@@ -41,7 +41,8 @@ export const FlashMessageWrapper = styled.div`
   border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 
   @media (max-width: ${breakpoints.tablet}) {
-    border: 0;
+    // todo
+    //border: 0;
   }
   
   svg {

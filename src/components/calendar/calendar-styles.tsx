@@ -41,7 +41,7 @@ const Wrapper = styled.div`
     
     width: 100%;
     max-width: 100%;
-    padding: 30px 30px;
+    padding: ${(props) => props.theme.calendarPadding ? props.theme.calendarPadding : '30px 30px'}; // todo
     background: ${(props) => props.theme.colors!.gray!['0']};
     border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
     
@@ -55,8 +55,9 @@ const Wrapper = styled.div`
       max-width: 100%;
       margin: 0 auto;
       padding: 10px 0;
-      border: 0;
-      box-shadow: unset;
+      // todo
+      //border: 0;
+      //box-shadow: unset;
     }
   }
 

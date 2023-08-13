@@ -3,10 +3,10 @@ import {getSafeFontFamily} from "@local/components/theme/fonts/safe-font";
 
 const clientPubQuiz = {
     main: '#FFFFFF',
-    secondary: '#94795D',
-    labels: '#262626',
+    secondary: '#FF0000B2',
+    labels: '#000000',
     background: '#FFFFFF',
-    googleFont: 'Poppins', // in figma is "Gotham" font :(
+    googleFont: 'Montserrat',
 };
 
 const pubQuizTheme: CustomizedThemeOverride = {
@@ -43,31 +43,35 @@ const pubQuizTheme: CustomizedThemeOverride = {
     customFontFamilySafeValue: getSafeFontFamily(clientPubQuiz.googleFont),
 
     // ⚠️ customs...
-    bodyBackground: '#F4F2EF',
+    bodyBackground: '#FFFFFF',
 
-    disabledDayColor: '#665D78',
-    disabledDayAndTodayBg: '#E7E2DC',
+    leftSize: '36.5%',
+    rightSize: '63.5%',
+
+    disabledDayColor: '#000',
+    disabledDayAndTodayBg: '#FFF',
     selectedDayColor: '#94795D',
-    calendarTodayBorder: '1px solid #94795D',
+    calendarTodayBorder: 'border: 1.2px solid rgba(255, 0, 0, 0.70)',
 
-    calendarDayNameColor: '#4A4A4A',
+    calendarPadding: '16px',
+    calendarDayNameColor: '#626262',
     calendarMonthArrowBg: '#FFFFFF',
-    calendarMonthArrowBgHover: '#E7E2DC',
-    calendarMonthArrowBorder: '1px solid #94795D',
-    calendarMonthArrowIcon: '#94795D',
-    calendarMonthArrowIconHover: '#94795D',
+    calendarMonthArrowBgHover: '#FFD5D5',
+    calendarMonthArrowBorder: '1px solid #FF0000B2',
+    calendarMonthArrowIcon: '#FF0000B2',
+    calendarMonthArrowIconHover: '#FF0000B2',
 
-    calendarBorder: '1px solid #94795D',
-    calendarShadow: '0px 10px 10px -5px rgba(33, 33, 33, 0.04), 0px 20px 25px -5px rgba(33, 33, 33, 0.05), 0px 1px 3px rgba(33, 33, 33, 0.05);',
+    calendarBorder: '1px solid #E8E8E8',
+    calendarShadow: '0px 7px 7px -5px rgba(0, 0, 0, 0.02), 0px 10px 15px -5px rgba(0, 0, 0, 0.03), 0px 1px 3px 0px rgba(0, 0, 0, 0.03)',
 
-    calendarTimeSlotBg: '#363152',
-    calendarTimeSlotColor: '#FFFFFF',
+    calendarTimeSlotBg: '#FF000099',
+    calendarTimeSlotColor: '#000000',
 
-    flashMessageBg: '#E7E2DC',
+    flashMessageBg: '#FFF',
 
     borderRadius: {
-        xs: 0,
-        sm: 0,
+        xs: 4,
+        sm: 6,
     }
 };
 

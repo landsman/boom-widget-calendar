@@ -18,5 +18,5 @@ export enum CustomTheme {
     /**
      * @see https://www.pubquiz.cz/
      * */
-    PUBQUIZ = 'pubqiz',
+    PUBQUIZ = 'pubquiz',
 }

@@ -21,12 +21,17 @@ type MangoCustomizedTheme = {
      */
     customFontFamilySafeValue?: string;
 
+    leftSize?: string;
+    rightSize?: string;
+
     // todo: wrap to some calendar-related field?
     bodyFontFamily?: string;
     bodyBackground?: string;
     disabledDayColor?: string;
     disabledDayAndTodayBg?: string;
     selectedDayColor?: string;
+
+    calendarPadding?: string;
     calendarTodayBorder?: string;
     calendarDayNameColor?: string;
     calendarMonthArrowBg?: string;
