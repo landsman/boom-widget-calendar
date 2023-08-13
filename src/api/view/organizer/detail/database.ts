@@ -58,4 +58,25 @@ export const organizersDatabase: Organizer[] = [
         customTheme: CustomTheme.PRAVCICKA_BRANA,
         features: null,
     },
+    {
+        // PubQuiz #1 @ stage
+        id: "46ca6cbc-7394-4efc-a270-63e43ceb1d4c",
+        production: false,
+        customTheme: CustomTheme.PUBQUIZ,
+        features: null,
+    },
+    {
+        // PubQuiz #2 @ stage
+        id: "ffae5cd6-ed6e-41f2-8409-17b5e8d38a5a",
+        production: false,
+        customTheme: CustomTheme.PUBQUIZ,
+        features: null,
+    },
+    {
+        // PubQuiz #1 @ production
+        id: "8f0e49eb-9416-4de9-a878-488e4665d682",
+        production: true,
+        customTheme: CustomTheme.PUBQUIZ,
+        features: null,
+    },
 ]

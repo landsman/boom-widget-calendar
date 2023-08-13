@@ -14,4 +14,9 @@ export enum CustomTheme {
      * @see https://www.pbrana.cz/
      * */
     PRAVCICKA_BRANA = 'pbrana',
+
+    /**
+     * @see https://www.pubquiz.cz/
+     * */
+    PUBQUIZ = 'pubqiz',
 }
