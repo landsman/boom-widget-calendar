@@ -128,6 +128,7 @@ const Wrapper = styled.div`
   
   .rdp-day {
     font-weight: 500;
+    color: ${(props) => props.theme.calendarAvailableDayColor ? props.theme.calendarAvailableDayColor : props.theme.colors!.gray!['4']};
   }
 
   .rdp-day_today {

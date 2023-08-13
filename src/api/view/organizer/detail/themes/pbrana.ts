@@ -64,6 +64,7 @@ const pravcickaBranaTheme: CustomizedThemeOverride = {
     calendarTimeSlotColor: '#FFFFFF',
 
     flashMessageBg: '#E7E2DC',
+    flashMessageColor: '#6C6C6C', // todo!
 
     borderRadius: {
         xs: 0,

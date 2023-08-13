@@ -32,7 +32,9 @@ export const FlashMessageWrapper = styled.div`
     max-width: 100%;
   }
   
-  color: ${(props) => props.theme.colors!.gray!['4']};
+  
+  color: ${(props) => props.theme.flashMessageColor ? props.theme.flashMessageColor : props.theme.colors!.gray!['4']};
+  
   font-size: 16px;
 
   background: ${(props) => props.theme.flashMessageBg};
@@ -54,7 +56,7 @@ export const FlashMessageWrapper = styled.div`
     display: inline-block;
     
     path {
-      fill: ${(props) => props.theme.colors!.gray!['4']};
+      fill: ${(props) => props.theme.flashMessageColor ? props.theme.flashMessageColor : props.theme.colors!.gray!['4']};
     }
   }
 `;

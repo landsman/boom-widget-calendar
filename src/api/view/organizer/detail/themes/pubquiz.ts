@@ -16,7 +16,7 @@ const pubQuizTheme: CustomizedThemeOverride = {
             clientPubQuiz.background, // ticket type in order
             clientPubQuiz.main, // currency switcher,
             clientPubQuiz.secondary, // Border a icons
-            clientPubQuiz.labels, // input borders,
+            '#D9D9D9', // input borders,
             '#6C6C6C',
             '#4B4B4B',
             '#333333',
@@ -31,7 +31,7 @@ const pubQuizTheme: CustomizedThemeOverride = {
             '#861172',
             '#5db446',
             clientPubQuiz.secondary, // Buttons background, icon violet
-            '#a2a98a',
+            '#FF6666',
             '#7b9822',
             '#FFF', // Button background hover
         ],
@@ -48,10 +48,11 @@ const pubQuizTheme: CustomizedThemeOverride = {
     leftSize: '36.5%',
     rightSize: '63.5%',
 
-    disabledDayColor: '#000',
+    disabledDayColor: '#4B4B4B',
     disabledDayAndTodayBg: '#FFF',
-    selectedDayColor: '#94795D',
-    calendarTodayBorder: 'border: 1.2px solid rgba(255, 0, 0, 0.70)',
+    calendarAvailableDayColor: '#000',
+    selectedDayColor: '#F66767',
+    calendarTodayBorder: '1.2px solid rgba(255, 0, 0, 0.70)',
 
     calendarPadding: '16px',
     calendarDayNameColor: '#626262',
@@ -64,10 +65,12 @@ const pubQuizTheme: CustomizedThemeOverride = {
     calendarBorder: '1px solid #E8E8E8',
     calendarShadow: '0px 7px 7px -5px rgba(0, 0, 0, 0.02), 0px 10px 15px -5px rgba(0, 0, 0, 0.03), 0px 1px 3px 0px rgba(0, 0, 0, 0.03)',
 
-    calendarTimeSlotBg: '#FF000099',
-    calendarTimeSlotColor: '#000000',
+    calendarTimeSlotBg: '#FFF',
+    calendarTimeSlotColor: '#000',
+    calendarTimeSlotBorder: `1px solid ${clientPubQuiz.secondary}`,
 
     flashMessageBg: '#FFF',
+    flashMessageColor: '#000',
 
     borderRadius: {
         xs: 4,

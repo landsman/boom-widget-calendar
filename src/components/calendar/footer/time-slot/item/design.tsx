@@ -24,6 +24,7 @@ export const SlotContent = styled.div<{ active?: boolean }>`
 
   background: ${(props) => props.theme.calendarTimeSlotBg ? props.theme.calendarTimeSlotBg : 'unset'};
   color: ${(props) => props.theme.calendarTimeSlotColor ? props.theme.calendarTimeSlotColor : 'unset'};
+  border: ${(props) => props.theme.calendarTimeSlotBorder ? props.theme.calendarTimeSlotBorder: 'unset'};
   border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 
   &:hover {

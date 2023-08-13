@@ -29,22 +29,28 @@ type MangoCustomizedTheme = {
     bodyBackground?: string;
     disabledDayColor?: string;
     disabledDayAndTodayBg?: string;
-    selectedDayColor?: string;
 
+    calendarAvailableDayColor?: string;
+    selectedDayColor?: string;
     calendarPadding?: string;
     calendarTodayBorder?: string;
     calendarDayNameColor?: string;
+
     calendarMonthArrowBg?: string;
     calendarMonthArrowBgHover?: string;
     calendarMonthArrowIcon?: string;
     calendarMonthArrowIconHover?: string;
     calendarMonthArrowBorder?: string;
+
     calendarBorder?: string;
     calendarShadow?: string;
+
     calendarTimeSlotBg?: string;
     calendarTimeSlotColor?: string;
+    calendarTimeSlotBorder?: string;
 
     flashMessageBg?: string;
+    flashMessageColor?: string;
 }
 
 export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;
