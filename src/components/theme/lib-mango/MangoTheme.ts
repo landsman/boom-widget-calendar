@@ -33,6 +33,7 @@ type MangoCustomizedTheme = {
     calendarAvailableDayColor?: string;
     selectedDayColor?: string;
     calendarPadding?: string;
+    calendarPaddingMobile?: string;
     calendarTodayBorder?: string;
     calendarDayNameColor?: string;
 

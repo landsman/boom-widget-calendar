@@ -38,26 +38,25 @@ const Wrapper = styled.div`
   
   // calendar styles overrides
   &> div, .rdp {
+    display: flex;
+    justify-content: center;
     
     width: 100%;
     max-width: 100%;
-    padding: ${(props) => props.theme.calendarPadding ? props.theme.calendarPadding : '30px 30px'}; // todo
+
+    margin: 0;
+    padding: ${(props) => props.theme.calendarPadding ? props.theme.calendarPadding : '30px 30px'};
+    
     background: ${(props) => props.theme.colors!.gray!['0']};
     border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
-    
-    margin: 0 auto;
 
     border: ${(props) => props.theme?.calendarBorder ? props.theme?.calendarBorder : 'unset'};
     box-shadow:  ${(props) => props.theme?.calendarShadow ? props.theme?.calendarShadow : 'unset'};
     
     @media (max-width: ${breakpoints.tablet}) {
-      width: 290px;
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 10px 0;
-      // todo
-      //border: 0;
-      //box-shadow: unset;
+      padding: ${(props) => props.theme.calendarPaddingMobile ? props.theme.calendarPaddingMobile : '10px 0'};
+      display: flex;
+      justify-content: center;
     }
   }
 

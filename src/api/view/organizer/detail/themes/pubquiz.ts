@@ -56,6 +56,8 @@ const pubQuizTheme: CustomizedThemeOverride = {
     calendarTodayBorder: '1.2px solid rgba(255, 0, 0, 0.70)',
 
     calendarPadding: '16px',
+    calendarPaddingMobile: '20px',
+
     calendarDayNameColor: '#626262',
     calendarMonthArrowBg: '#FFFFFF',
     calendarMonthArrowBgHover: '#FFD5D5',
