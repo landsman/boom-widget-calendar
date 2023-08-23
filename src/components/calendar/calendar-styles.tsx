@@ -38,25 +38,25 @@ const Wrapper = styled.div`
   
   // calendar styles overrides
   &> div, .rdp {
+    display: flex;
+    justify-content: center;
     
     width: 100%;
     max-width: 100%;
-    padding: 30px 30px;
+
+    margin: 0;
+    padding: ${(props) => props.theme.calendarPadding ? props.theme.calendarPadding : '30px 30px'};
+    
     background: ${(props) => props.theme.colors!.gray!['0']};
     border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
-    
-    margin: 0 auto;
 
     border: ${(props) => props.theme?.calendarBorder ? props.theme?.calendarBorder : 'unset'};
     box-shadow:  ${(props) => props.theme?.calendarShadow ? props.theme?.calendarShadow : 'unset'};
     
     @media (max-width: ${breakpoints.tablet}) {
-      width: 290px;
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 10px 0;
-      border: 0;
-      box-shadow: unset;
+      padding: ${(props) => props.theme.calendarPaddingMobile ? props.theme.calendarPaddingMobile : '10px 0'};
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -79,6 +79,10 @@ const Wrapper = styled.div`
   
   .rdp-button {
     color: ${(props) => props.theme.colors!.gray!['4']};
+    
+    &:hover:not(.rdp-day_selected) {
+      border-color: ${(props) => props.theme?.calendarMonthArrowBgHover ? props.theme?.calendarMonthArrowBgHover : 'unset'}!important;
+    }
     
     &:hover:not([disabled]):not(.rdp-day_selected) {
       background: ${(props) => props.theme?.calendarMonthArrowBgHover ? props.theme?.calendarMonthArrowBgHover : 'unset'}!important;
@@ -127,6 +131,7 @@ const Wrapper = styled.div`
   
   .rdp-day {
     font-weight: 500;
+    color: ${(props) => props.theme.calendarAvailableDayColor ? props.theme.calendarAvailableDayColor : props.theme.colors!.gray!['4']};
   }
 
   .rdp-day_today {

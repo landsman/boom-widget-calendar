@@ -21,25 +21,40 @@ type MangoCustomizedTheme = {
      */
     customFontFamilySafeValue?: string;
 
+    leftSize?: string;
+    rightSize?: string;
+
     // todo: wrap to some calendar-related field?
     bodyFontFamily?: string;
     bodyBackground?: string;
     disabledDayColor?: string;
     disabledDayAndTodayBg?: string;
+
+    calendarAvailableDayColor?: string;
     selectedDayColor?: string;
+    calendarPadding?: string;
+    calendarPaddingMobile?: string;
     calendarTodayBorder?: string;
     calendarDayNameColor?: string;
+
     calendarMonthArrowBg?: string;
     calendarMonthArrowBgHover?: string;
     calendarMonthArrowIcon?: string;
     calendarMonthArrowIconHover?: string;
     calendarMonthArrowBorder?: string;
+
     calendarBorder?: string;
     calendarShadow?: string;
+
     calendarTimeSlotBg?: string;
+    calendarTimeSlotBgHover?: string;
     calendarTimeSlotColor?: string;
+    calendarTimeSlotColorActive?: string;
+    calendarTimeSlotBorder?: string;
 
     flashMessageBg?: string;
+    flashMessageColor?: string;
+    flashMessageShadow?: string;
 }
 
 export type CustomizedThemeOverride = MantineThemeOverride & MangoCustomizedTheme;

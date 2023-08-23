@@ -24,16 +24,17 @@ export const SlotContent = styled.div<{ active?: boolean }>`
 
   background: ${(props) => props.theme.calendarTimeSlotBg ? props.theme.calendarTimeSlotBg : 'unset'};
   color: ${(props) => props.theme.calendarTimeSlotColor ? props.theme.calendarTimeSlotColor : 'unset'};
+  border: ${(props) => props.theme.calendarTimeSlotBorder ? props.theme.calendarTimeSlotBorder: 'unset'};
   border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 
   &:hover {
-    background: white;
+    background: ${(props) => props.theme.calendarTimeSlotBgHover ? props.theme.calendarTimeSlotBgHover : 'white'};
     color: black;
   }
 
   ${({ active }) => active && css`
     background: ${(props) => props.theme.colors!.gray!['3']};
-    color: ${(props) => props.theme.colors!.gray!['4']};
+    color: ${(props) => props.theme.calendarTimeSlotColorActive ? props.theme.calendarTimeSlotColorActive : props.theme.colors!.gray!['4']};
     
     &:hover {
       cursor: not-allowed;
