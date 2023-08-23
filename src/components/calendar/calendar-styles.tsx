@@ -81,6 +81,10 @@ const Wrapper = styled.div`
   .rdp-button {
     color: ${(props) => props.theme.colors!.gray!['4']};
     
+    &:hover:not(.rdp-day_selected) {
+      border-color: ${(props) => props.theme?.calendarMonthArrowBgHover ? props.theme?.calendarMonthArrowBgHover : 'unset'}!important;
+    }
+    
     &:hover:not([disabled]):not(.rdp-day_selected) {
       background: ${(props) => props.theme?.calendarMonthArrowBgHover ? props.theme?.calendarMonthArrowBgHover : 'unset'}!important;
     }

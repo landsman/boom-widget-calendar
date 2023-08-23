@@ -7,6 +7,7 @@ const clientPubQuiz = {
     labels: '#000000',
     background: '#FFFFFF',
     googleFont: 'Montserrat',
+    shadows: '0px 7px 7px -5px rgba(0, 0, 0, 0.02), 0px 10px 15px -5px rgba(0, 0, 0, 0.03), 0px 1px 3px 0px rgba(0, 0, 0, 0.03)',
 };
 
 const pubQuizTheme: CustomizedThemeOverride = {
@@ -63,14 +64,17 @@ const pubQuizTheme: CustomizedThemeOverride = {
     calendarMonthArrowIconHover: '#FF0000B2',
 
     calendarBorder: '1px solid #E8E8E8',
-    calendarShadow: '0px 7px 7px -5px rgba(0, 0, 0, 0.02), 0px 10px 15px -5px rgba(0, 0, 0, 0.03), 0px 1px 3px 0px rgba(0, 0, 0, 0.03)',
+    calendarShadow: clientPubQuiz.shadows,
 
     calendarTimeSlotBg: '#FFF',
+    calendarTimeSlotBgHover: '#FFD5D5',
     calendarTimeSlotColor: '#000',
+    calendarTimeSlotColorActive: '#FFF',
     calendarTimeSlotBorder: `1px solid ${clientPubQuiz.secondary}`,
 
     flashMessageBg: '#FFF',
     flashMessageColor: '#000',
+    flashMessageShadow: clientPubQuiz.shadows,
 
     borderRadius: {
         xs: 4,

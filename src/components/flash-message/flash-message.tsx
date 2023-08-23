@@ -32,20 +32,14 @@ export const FlashMessageWrapper = styled.div`
     max-width: 100%;
   }
   
-  
   color: ${(props) => props.theme.flashMessageColor ? props.theme.flashMessageColor : props.theme.colors!.gray!['4']};
-  
   font-size: 16px;
 
   background: ${(props) => props.theme.flashMessageBg};
-  
   border: ${(props) => props.theme.calendarBorder ? props.theme.calendarBorder: 'unset'};
   border-radius: ${(props) => props.theme.borderRadius ? props.theme.borderRadius.sm + `px` : 'unset'};
 
-  @media (max-width: ${breakpoints.tablet}) {
-    // todo
-    //border: 0;
-  }
+  box-shadow: ${(props) => props.theme.flashMessageShadow ? props.theme.flashMessageShadow : 'unset'};
   
   svg {
     width: 24px;
