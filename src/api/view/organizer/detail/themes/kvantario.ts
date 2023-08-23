@@ -9,6 +9,9 @@ const clientKvantario = {
     googleFont: 'Changa',
 };
 
+/**
+ * Figma: https://www.figma.com/file/HOP3681frNy2LjpGFxGRno/%F0%9F%A4%96-Custom-widgets%2C-calendars%2C-PDF-tickets?type=design&node-id=3701%3A69447&mode=design&t=5CqW3bqKbwVYNw4j-1
+ */
 const kvantarioTheme: CustomizedThemeOverride = {
     colors: {
         gray: [
@@ -59,7 +62,7 @@ const kvantarioTheme: CustomizedThemeOverride = {
     calendarTimeSlotColor: '#FFFFFF',
 
     flashMessageBg: '#251D3F',
-    flashMessageColor: '#6C6C6C', // todo!
+    flashMessageColor: '#FFF',
 
     borderRadius: {
         xs: 4,

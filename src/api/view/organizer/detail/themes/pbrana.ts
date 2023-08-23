@@ -9,6 +9,9 @@ const clientPravcickaBrana = {
     googleFont: 'Poppins', // in figma is "Gotham" font :(
 };
 
+/**
+ * Figma: https://www.figma.com/file/HOP3681frNy2LjpGFxGRno/%F0%9F%A4%96-Custom-widgets%2C-calendars%2C-PDF-tickets?type=design&node-id=3717%3A23143&mode=design&t=5CqW3bqKbwVYNw4j-1
+ */
 const pravcickaBranaTheme: CustomizedThemeOverride = {
     colors: {
         gray: [
@@ -24,7 +27,7 @@ const pravcickaBranaTheme: CustomizedThemeOverride = {
             clientPravcickaBrana.labels, // labels
         ],
         violet: [
-            '#F3EBFF',
+            '#FFFFFF',
             '#EDE2FC',
             '#24d347', // Disabled button colors
             '#24d347',
@@ -64,7 +67,7 @@ const pravcickaBranaTheme: CustomizedThemeOverride = {
     calendarTimeSlotColor: '#FFFFFF',
 
     flashMessageBg: '#E7E2DC',
-    flashMessageColor: '#6C6C6C', // todo!
+    flashMessageColor: '#262626',
 
     borderRadius: {
         xs: 0,

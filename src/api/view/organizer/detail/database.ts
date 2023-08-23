@@ -2,14 +2,9 @@ import {Organizer} from "@local/api/view/organizer/detail/types";
 import {CustomTheme} from "@local/api/view/organizer/detail/themes/_custom";
 
 /**
- * this would be nice API!
- *
- * Check organization events online on connect:
- * - Prod: https://connect.boomevents.org/cs/organizer/<id>
- * - Stage: https://connect.boomevents.dev/cs/organizer/<id>
- *
+ * for internal testing, localhost etc
  */
-export const organizersDatabase: Organizer[] = [
+const internal: Organizer[] = [
     {
         // michal landsman @ stage
         id: "e43780b9-a220-42d3-a026-cc97875a61e3",
@@ -19,6 +14,28 @@ export const organizersDatabase: Organizer[] = [
             allowTimeSlots: true,
         },
     },
+    {
+        // michal landsman 2 @ stage
+        id: "37b08079-4066-4156-be9d-a5637d0d0ee7",
+        production: false,
+        customTheme: CustomTheme.PRAVCICKA_BRANA,
+        features: null,
+    },
+    {
+        // Matej Hules @ production
+        id: "8f0e49eb-9416-4de9-a878-488e4665d682",
+        production: true,
+        customTheme: CustomTheme.PUBQUIZ,
+        features: {
+            allowTimeSlots: true,
+        },
+    },
+]
+
+/**
+ * real clients
+ */
+const clients: Organizer[] = [
     {
         // kvantario @ stage
         id: "e7af7792-38d0-4ba3-9024-330b6e273725",
@@ -52,13 +69,6 @@ export const organizersDatabase: Organizer[] = [
         features: null,
     },
     {
-        // michal landsman 2 @ stage
-        id: "37b08079-4066-4156-be9d-a5637d0d0ee7",
-        production: false,
-        customTheme: CustomTheme.PRAVCICKA_BRANA,
-        features: null,
-    },
-    {
         // PubQuiz #1 @ stage
         id: "46ca6cbc-7394-4efc-a270-63e43ceb1d4c",
         production: false,
@@ -76,13 +86,15 @@ export const organizersDatabase: Organizer[] = [
             allowTimeSlots: true,
         },
     },
-    {
-        // PubQuiz #1 @ production
-        id: "8f0e49eb-9416-4de9-a878-488e4665d682",
-        production: true,
-        customTheme: CustomTheme.PUBQUIZ,
-        features: {
-            allowTimeSlots: true,
-        },
-    },
 ]
+
+
+/**
+ * this would be nice API!
+ *
+ * Check organization events online on connect:
+ * - Prod: https://connect.boomevents.org/cs/organizer/<id>
+ * - Stage: https://connect.boomevents.dev/cs/organizer/<id>
+ *
+ */
+export const organizersDatabase: Organizer[] = internal.concat(clients);

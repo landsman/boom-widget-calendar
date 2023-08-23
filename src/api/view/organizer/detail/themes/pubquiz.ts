@@ -10,6 +10,9 @@ const clientPubQuiz = {
     shadows: '0px 7px 7px -5px rgba(0, 0, 0, 0.02), 0px 10px 15px -5px rgba(0, 0, 0, 0.03), 0px 1px 3px 0px rgba(0, 0, 0, 0.03)',
 };
 
+/**
+ * Figma: https://www.figma.com/file/mEss2Av6En0RwshfgDajo7/PubQuiz-custom-designs?type=design&node-id=27%3A9725&mode=design&t=ILvoEvzjVdwCLC3q-1
+ */
 const pubQuizTheme: CustomizedThemeOverride = {
     colors: {
         gray: [
