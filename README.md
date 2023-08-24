@@ -1,5 +1,7 @@
 # Boom Widget Calendar
 
+> Moved to: https://github.com/boomeventsorg/widget-calendar
+
 Embeddable widget with calendar for https://www.boomevents.org.
 
 ## Example
