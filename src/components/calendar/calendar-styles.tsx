@@ -160,7 +160,7 @@ const Wrapper = styled.div`
 
   .rdp-day_today.rdp-day_disabled {
     background: ${(props) => props.theme?.disabledDayAndTodayBg ? props.theme?.disabledDayAndTodayBg : 'unset'};
-    border-color: ${(props) => props.theme?.disabledDayAndTodayBg ? props.theme?.disabledDayAndTodayBg : 'unset'};
+    border-color: ${(props) => props.theme?.disabledDayAndTodayBorder ? props.theme?.disabledDayAndTodayBorder : 'unset'};
     color: ${(props) => props.theme.colors!.gray!['4']};
     opacity: 1;
   }

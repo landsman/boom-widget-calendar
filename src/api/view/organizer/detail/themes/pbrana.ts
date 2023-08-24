@@ -52,6 +52,7 @@ const pravcickaBranaTheme: CustomizedThemeOverride = {
     disabledDayAndTodayBg: '#E7E2DC',
     selectedDayColor: '#94795D',
     calendarTodayBorder: '1px solid #94795D',
+    disabledDayAndTodayBorder: '1px solid #94795D',
 
     calendarDayNameColor: '#4A4A4A',
     calendarMonthArrowBg: '#FFFFFF',

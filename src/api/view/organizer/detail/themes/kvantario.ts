@@ -51,6 +51,7 @@ const kvantarioTheme: CustomizedThemeOverride = {
     disabledDayColor: '#665D78',
     disabledDayAndTodayBg: '#431C5E',
     calendarTodayBorder: '1px solid #D527D7',
+    disabledDayAndTodayBorder: '1px solid #D527D7',
     selectedDayColor: '#D527D7',
 
     calendarMonthArrowBg: '#363053',

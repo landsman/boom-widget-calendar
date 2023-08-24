@@ -56,7 +56,8 @@ const pubQuizTheme: CustomizedThemeOverride = {
     disabledDayAndTodayBg: '#FFF',
     calendarAvailableDayColor: '#000',
     selectedDayColor: '#F66767',
-    calendarTodayBorder: '1.2px solid rgba(255, 0, 0, 0.70)',
+    calendarTodayBorder: '1.2px solid #FF6666',
+    disabledDayAndTodayBorder: '1.2px solid #FF6666',
 
     calendarPadding: '16px',
     calendarPaddingMobile: '20px',
