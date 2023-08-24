@@ -29,6 +29,7 @@ type MangoCustomizedTheme = {
     bodyBackground?: string;
     disabledDayColor?: string;
     disabledDayAndTodayBg?: string;
+    disabledDayAndTodayBorder?: string;
 
     calendarAvailableDayColor?: string;
     selectedDayColor?: string;
