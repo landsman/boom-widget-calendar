@@ -6,7 +6,7 @@ require('dotenv').config();
  * global config
  */
 const root = path.join(__dirname, '..', '..');
-const localHostDomain = 'http://localhost:3000/boom-widget-calendar/';
+const localHostDomain = 'http://localhost:3000';
 const configuration = {
     customDomain: process.env.CUSTOM_DOMAIN || localHostDomain,
     source: process.env.SOURCE || path.join(root, 'public', 'api'),
